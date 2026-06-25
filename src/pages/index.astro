@@ -5,7 +5,6 @@ import Hero from "../components/Hero.astro";
 import Section from "../components/Section.astro";
 import SectionHeading from "../components/SectionHeading.astro";
 import Button from "../components/Button.astro";
-import Glass from "../components/Glass.astro";
 import Icon from "../components/Icon.astro";
 import SmartImage from "../components/SmartImage.astro";
 import LearnCard from "../components/LearnCard.astro";
@@ -243,33 +242,50 @@ const latest = (await getPublicEpics()).slice(0, 3);
         <SectionHeading
           id="join-title"
           eyebrow="Get involved"
-          title="Come and grow with us"
+          title="Share advice, support the garden"
           accent="emerald"
-          lead="None of us is an expert — we're learning together. Join the group, lend a hand on a sprint, or just follow along."
+          lead="We are learning in public. If you have garden experience, a practical tip can save us weeks of trial and error."
         />
-        <div class="join__cta">
-          <Button href={site.links.join} variant="cta">Join the group</Button>
+        <form class="advice-form" data-advice-form data-email={site.links.email}>
+          <label for="garden-advice">
+            Do you have garden experience and want to give us a tip?
+          </label>
+          <textarea
+            id="garden-advice"
+            name="advice"
+            rows="5"
+            placeholder="Write your advice here. We will be very grateful."
+            required
+          ></textarea>
+          <div class="advice-form__actions">
+            <Button type="submit" variant="cta">Send advice</Button>
+            <a href={site.links.email} class="advice-form__mail">
+              <Icon name="mail" size={18} /> Email us directly
+            </a>
+          </div>
+        </form>
+        <div class="support-box" id="support">
+          <div>
+            <p class="support-box__eyebrow">Support materials</p>
+            <h3>Help us buy seeds, soil and tools</h3>
+            <p>
+              A small contribution can become compost, labels, seedlings or the
+              next tool we need for a sprint.
+            </p>
+          </div>
+          <Button href={site.links.support} variant="solid">Support financially</Button>
         </div>
-        <ul class="join__links">
-          <li>
-            <a href={site.links.whatsapp} rel="noopener noreferrer">
-              <Icon name="whatsapp" size={20} /> WhatsApp group
-            </a>
-          </li>
-          <li>
-            <a href={site.links.email}>
-              <Icon name="mail" size={20} /> Email us
-            </a>
-          </li>
-          <li>
-            <a href={site.links.youtube} rel="noopener noreferrer">
-              <Icon name="youtube" size={20} /> Watch on YouTube
-            </a>
-          </li>
-        </ul>
       </div>
-      <div class="join__glass">
-        <Glass variant="divider" />
+      <div class="join__media">
+        <SmartImage
+          dir="site"
+          src="get-involved-garden-plot.jpg"
+          alt="Prepared garden beds in the Garden Lodge plot in Hamburg"
+          width={768}
+          height={1024}
+          sizes="(min-width: 880px) 480px, 92vw"
+          class="join__img"
+        />
       </div>
     </div>
   </Section>
@@ -495,35 +511,126 @@ const latest = (await getPublicEpics()).slice(0, 3);
   .join__cta {
     margin-top: var(--sp-2);
   }
-  .join__links {
-    list-style: none;
-    padding: 0;
-    margin: var(--sp-8) 0 0;
+  .advice-form {
+    margin-top: var(--sp-6);
     display: flex;
     flex-direction: column;
     gap: var(--sp-3);
   }
-  .join__links a {
+  .advice-form label {
+    font-weight: 600;
+    color: var(--gl-ink);
+  }
+  .advice-form textarea {
+    width: 100%;
+    resize: vertical;
+    min-height: 144px;
+    border: 1.5px solid #d9d0bd;
+    border-radius: var(--r-md);
+    padding: 14px 16px;
+    font: inherit;
+    color: var(--gl-ink);
+    background: var(--gl-cream);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  }
+  .advice-form textarea::placeholder {
+    color: color-mix(in srgb, var(--gl-ink-soft) 78%, transparent);
+  }
+  .advice-form textarea:focus {
+    border-color: var(--gl-emerald);
+    outline: 3px solid var(--gl-emerald-tint);
+  }
+  .advice-form__actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-4);
+  }
+  .advice-form__mail {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     color: var(--gl-indigo);
     text-decoration: none;
     font-weight: 500;
     width: fit-content;
   }
-  .join__links a:hover {
+  .advice-form__mail:hover {
     text-decoration: underline;
     text-underline-offset: 3px;
   }
-  .join__glass {
-    align-self: stretch;
+  .support-box {
+    margin-top: var(--sp-8);
+    border: 1.5px solid #e2dac8;
+    border-radius: var(--r-lg);
+    background: color-mix(in srgb, var(--gl-amber-tint) 30%, var(--gl-surface));
+    padding: var(--sp-5);
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-4);
   }
-  .join__glass :global(.glass) {
+  @media (min-width: 620px) {
+    .support-box {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .support-box__eyebrow {
+    margin: 0 0 4px;
+    color: var(--gl-amber-tint-ink);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .support-box h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    color: var(--gl-aubergine);
+    font-size: 22px;
+  }
+  .support-box p:not(.support-box__eyebrow) {
+    margin: var(--sp-2) 0 0;
+    color: var(--gl-ink-soft);
+    line-height: 1.55;
+  }
+  .join__media {
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background: var(--gl-cream-2);
+  }
+  .join__media :global(img),
+  .join__media :global(.gl-img-fallback) {
     width: 100%;
-  }
-  .join__glass :global(.glass__panes) {
-    min-height: 260px;
+    height: 100%;
+    min-height: 360px;
+    display: block;
+    object-fit: cover;
+    border-radius: 0;
   }
 </style>
+
+<script>
+  const adviceForm = document.querySelector<HTMLFormElement>("[data-advice-form]");
+  adviceForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = event.currentTarget as HTMLFormElement;
+    const textarea = form.querySelector<HTMLTextAreaElement>("textarea[name='advice']");
+    const rawEmail = form.dataset.email ?? "mailto:hello@example.com";
+    const advice = textarea?.value.trim() ?? "";
+    if (!advice) {
+      textarea?.focus();
+      return;
+    }
+
+    const target = rawEmail.replace(/^mailto:/, "");
+    const subject = encodeURIComponent("Garden Lodge advice");
+    const body = encodeURIComponent(
+      `Hello Garden Lodge,\n\nI have a garden tip for you:\n\n${advice}\n\nThank you for documenting the project.`,
+    );
+    window.location.href = `mailto:${target}?subject=${subject}&body=${body}`;
+  });
+</script>

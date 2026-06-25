@@ -7,10 +7,8 @@ export const site = {
   links: {
     sprintBoard: "/sprints",
     backlog: "/backlog",
-    whatsapp: "#", // WhatsApp group invite
     email: "mailto:hello@example.com",
-    youtube: "#", // YouTube channel
-    join: "#", // join-the-group form/page
+    support: "mailto:hello@example.com?subject=I%20want%20to%20support%20Garden%20Lodge",
   },
   nav: [
     { label: "Why", href: "/#why" },
