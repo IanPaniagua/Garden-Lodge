@@ -265,7 +265,10 @@ const latest = (await getPublicEpics()).slice(0, 3);
           </div>
         </form>
         <div class="support-box" id="support">
-          <div>
+          <div class="support-box__icon" aria-hidden="true">
+            <Icon name="leaf" size={22} />
+          </div>
+          <div class="support-box__body">
             <p class="support-box__eyebrow">Support materials</p>
             <h3>Help us buy seeds, soil and tools</h3>
             <p>
@@ -273,7 +276,9 @@ const latest = (await getPublicEpics()).slice(0, 3);
               next tool we need for a sprint.
             </p>
           </div>
-          <Button href={site.links.support} variant="solid">Support financially</Button>
+          <Button href={site.links.support} variant="solid" class="support-box__button">
+            Support financially
+          </Button>
         </div>
       </div>
       <div class="join__media">
@@ -561,38 +566,48 @@ const latest = (await getPublicEpics()).slice(0, 3);
   }
   .support-box {
     margin-top: var(--sp-8);
-    border: 1.5px solid #e2dac8;
+    border: 1px solid #e7e1d2;
     border-radius: var(--r-lg);
-    background: color-mix(in srgb, var(--gl-amber-tint) 30%, var(--gl-surface));
-    padding: var(--sp-5);
+    background:
+      linear-gradient(180deg, rgba(250, 244, 232, 0.72), rgba(255, 255, 255, 0.88)),
+      var(--gl-surface);
+    padding: var(--sp-6);
+    box-shadow: var(--shadow-md);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: var(--sp-4);
   }
-  @media (min-width: 620px) {
-    .support-box {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
+  .support-box__icon {
+    width: 46px;
+    height: 46px;
+    border-radius: var(--r-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gl-cream);
+    background: var(--gl-emerald);
+  }
+  .support-box__body {
+    max-width: 46ch;
   }
   .support-box__eyebrow {
     margin: 0 0 4px;
-    color: var(--gl-amber-tint-ink);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
+    color: var(--gl-emerald);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
   }
   .support-box h3 {
     margin: 0;
     font-family: var(--font-display);
     color: var(--gl-aubergine);
-    font-size: 22px;
+    font-size: clamp(22px, 4vw, 28px);
+    line-height: 1.14;
   }
   .support-box p:not(.support-box__eyebrow) {
-    margin: var(--sp-2) 0 0;
+    margin: var(--sp-3) 0 0;
     color: var(--gl-ink-soft);
     line-height: 1.55;
   }
