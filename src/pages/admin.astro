@@ -1,0 +1,735 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="Garden Ops"
+  description="Private Garden Lodge operations dashboard."
+  noindex
+>
+  <section class="admin">
+    <div class="admin__head">
+      <div>
+        <p class="eyebrow">Garden Ops</p>
+        <h1>Admin studio</h1>
+        <p>
+          Manage epics, backlog and progress photos here. The public website can
+          stay simple: how we work, what happened, and what others can learn.
+        </p>
+      </div>
+      <div class="admin__status" data-status>Connecting to InsForge...</div>
+    </div>
+
+    <section class="panel auth-panel" data-auth-panel>
+      <h2>Sign in</h2>
+      <p>Use an InsForge account before editing the garden record.</p>
+      <form class="auth-form" data-login-form>
+        <label>
+          Email
+          <input name="email" type="email" autocomplete="email" required />
+        </label>
+        <label>
+          Password
+          <input name="password" type="password" autocomplete="current-password" required />
+        </label>
+        <div class="admin__actions">
+          <button type="submit">Sign in</button>
+          <button type="button" data-signup>Create account</button>
+          <button type="button" data-oauth="google">Google</button>
+          <button type="button" data-oauth="github">GitHub</button>
+        </div>
+      </form>
+    </section>
+
+    <div class="admin__app" data-admin-app hidden>
+      <div class="admin__toolbar">
+        <p data-user></p>
+        <button type="button" data-signout>Sign out</button>
+      </div>
+
+      <section class="panel">
+        <div class="panel__head">
+          <div>
+            <p class="eyebrow">Epics</p>
+            <h2>Sprint record</h2>
+          </div>
+          <button type="button" data-new-epic>New epic</button>
+        </div>
+        <div class="epic-list" data-epic-list></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <div>
+            <p class="eyebrow">Framework</p>
+            <h2 data-epic-form-title>Create epic</h2>
+          </div>
+        </div>
+        <form class="editor" data-epic-form>
+          <input name="id" type="hidden" />
+          <div class="editor__grid">
+            <label>
+              Title
+              <input name="title" required placeholder="Composting properly" />
+            </label>
+            <label>
+              Sprint
+              <input name="sprint" required placeholder="Sprint 3" />
+            </label>
+            <label>
+              Status
+              <select name="status">
+                <option value="draft">Draft</option>
+                <option value="planned">Planned</option>
+                <option value="in_progress">In progress</option>
+                <option value="ready_to_publish">Ready to publish</option>
+                <option value="published">Published</option>
+                <option value="archived">Archived</option>
+              </select>
+            </label>
+            <label>
+              Date
+              <input name="start_date" type="date" />
+            </label>
+          </div>
+          <label>
+            Summary
+            <textarea name="summary" rows="2"></textarea>
+          </label>
+
+          <div class="phase">
+            <h3>Set a goal</h3>
+            <label>Problem<textarea name="goal_problem" rows="3"></textarea></label>
+            <label>Current context<textarea name="goal_context" rows="3"></textarea></label>
+            <label>Planned solution<textarea name="goal_plannedSolution" rows="3"></textarea></label>
+          </div>
+
+          <div class="phase">
+            <h3>Learn how it's done</h3>
+            <label>Learnings, one per line<textarea name="learn_learnings" rows="4"></textarea></label>
+            <label>Research, one per line<textarea name="learn_research" rows="3"></textarea></label>
+            <label>Strategy<textarea name="learn_strategy" rows="3"></textarea></label>
+          </div>
+
+          <div class="phase">
+            <h3>Apply it</h3>
+            <label>What we applied<textarea name="apply_text" rows="3"></textarea></label>
+          </div>
+
+          <div class="phase">
+            <h3>Leave it better</h3>
+            <label>Improvement<textarea name="leave_text" rows="3"></textarea></label>
+            <label>Result<textarea name="leave_result" rows="3"></textarea></label>
+          </div>
+
+          <label>
+            Next signals, one per line
+            <textarea name="next" rows="3"></textarea>
+          </label>
+
+          <div class="admin__actions">
+            <button type="submit">Save epic</button>
+            <button type="reset">Clear</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <div>
+            <p class="eyebrow">Photos</p>
+            <h2>Upload progress media</h2>
+          </div>
+        </div>
+        <form class="editor" data-upload-form>
+          <div class="editor__grid">
+            <label>
+              Epic
+              <select name="epic_id" data-epic-select></select>
+            </label>
+            <label>
+              Photo type
+              <select name="context">
+                <option value="epic_cover">Cover</option>
+                <option value="epic_apply">Apply it</option>
+                <option value="epic_leave_better">Leave it better</option>
+              </select>
+            </label>
+          </div>
+          <label>
+            Image
+            <input name="file" type="file" accept="image/*" required />
+          </label>
+          <label>
+            Alt text
+            <input name="alt" placeholder="Team adding compost to a raised bed" />
+          </label>
+          <label>
+            Caption
+            <input name="caption" placeholder="Compost added before planting." />
+          </label>
+          <div class="admin__actions">
+            <button type="submit">Upload photo</button>
+          </div>
+        </form>
+        <div class="media-grid" data-media-grid></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel__head">
+          <div>
+            <p class="eyebrow">Backlog</p>
+            <h2>Ideas and next work</h2>
+          </div>
+        </div>
+        <form class="editor" data-backlog-form>
+          <div class="editor__grid">
+            <label>Title<input name="title" required /></label>
+            <label>
+              Status
+              <select name="status">
+                <option value="idea">Idea</option>
+                <option value="next">Next</option>
+                <option value="in_progress">In progress</option>
+                <option value="done">Done</option>
+              </select>
+            </label>
+            <label>
+              Priority
+              <select name="priority">
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+                <option value="low">Low</option>
+              </select>
+            </label>
+          </div>
+          <label>Problem<textarea name="problem" rows="2"></textarea></label>
+          <label>Goal<textarea name="goal" rows="2"></textarea></label>
+          <label>Notes<textarea name="notes" rows="2"></textarea></label>
+          <div class="admin__actions">
+            <button type="submit">Add backlog item</button>
+          </div>
+        </form>
+        <div class="backlog-list" data-backlog-list></div>
+      </section>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { insforge, insforgeConfig } from "../lib/insforgeClient";
+
+  const $ = (selector: string) => document.querySelector<HTMLElement>(selector);
+  const status = $("[data-status]");
+  const authPanel = $("[data-auth-panel]");
+  const app = $("[data-admin-app]");
+  const userLine = $("[data-user]");
+  const epicList = $("[data-epic-list]");
+  const backlogList = $("[data-backlog-list]");
+  const mediaGrid = $("[data-media-grid]");
+  const epicSelect = document.querySelector<HTMLSelectElement>("[data-epic-select]");
+  const epicForm = document.querySelector<HTMLFormElement>("[data-epic-form]");
+  const uploadForm = document.querySelector<HTMLFormElement>("[data-upload-form]");
+  const backlogForm = document.querySelector<HTMLFormElement>("[data-backlog-form]");
+  const loginForm = document.querySelector<HTMLFormElement>("[data-login-form]");
+
+  let epics: any[] = [];
+
+  function setStatus(message: string, type = "info") {
+    if (!status) return;
+    status.textContent = message;
+    status.dataset.type = type;
+  }
+
+  function lines(value: FormDataEntryValue | null) {
+    return String(value ?? "")
+      .split("\n")
+      .map((line) => line.trim())
+      .filter(Boolean);
+  }
+
+  function slugify(value: string) {
+    return value
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
+  function fillEpicForm(epic: any | null) {
+    if (!epicForm) return;
+    epicForm.reset();
+    $("[data-epic-form-title]")!.textContent = epic ? "Edit epic" : "Create epic";
+    if (!epic) return;
+    const values: Record<string, string> = {
+      id: epic.id,
+      title: epic.title,
+      sprint: epic.sprint,
+      status: epic.status,
+      start_date: epic.start_date ?? "",
+      summary: epic.summary ?? "",
+      goal_problem: epic.goal?.problem ?? "",
+      goal_context: epic.goal?.context ?? "",
+      goal_plannedSolution: epic.goal?.plannedSolution ?? "",
+      learn_learnings: (epic.learn?.learnings ?? []).join("\n"),
+      learn_research: (epic.learn?.research ?? []).join("\n"),
+      learn_strategy: epic.learn?.strategy ?? "",
+      apply_text: epic.apply?.text ?? "",
+      leave_text: epic.leave_better?.text ?? "",
+      leave_result: epic.leave_better?.result ?? "",
+      next: (epic.next ?? []).join("\n"),
+    };
+    for (const [name, value] of Object.entries(values)) {
+      const field = epicForm.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null;
+      if (field) field.value = value;
+    }
+  }
+
+  function renderEpics() {
+    if (!epicList || !epicSelect) return;
+    epicList.innerHTML = epics
+      .map(
+        (epic) => `
+          <article class="mini-card">
+            <span>${epic.sprint} · ${epic.status}</span>
+            <h3>${epic.title}</h3>
+            <p>${epic.summary || epic.goal?.problem || ""}</p>
+            <button type="button" data-edit-epic="${epic.id}">Edit</button>
+          </article>
+        `,
+      )
+      .join("");
+    epicSelect.innerHTML = epics
+      .map((epic) => `<option value="${epic.id}">${epic.sprint} · ${epic.title}</option>`)
+      .join("");
+  }
+
+  function renderBacklog(items: any[]) {
+    if (!backlogList) return;
+    backlogList.innerHTML = items
+      .map(
+        (item) => `
+          <article class="mini-card">
+            <span>${item.status} · ${item.priority}</span>
+            <h3>${item.title}</h3>
+            <p>${item.goal || item.problem || ""}</p>
+          </article>
+        `,
+      )
+      .join("");
+  }
+
+  function renderMedia(items: any[]) {
+    if (!mediaGrid) return;
+    mediaGrid.innerHTML = items
+      .map(
+        (item) => `
+          <figure>
+            <img src="${item.url}" alt="${item.alt || item.caption || item.filename}" loading="lazy" />
+            <figcaption>${item.caption || item.filename}</figcaption>
+          </figure>
+        `,
+      )
+      .join("");
+  }
+
+  async function loadData() {
+    setStatus("Loading Garden Ops...");
+    const [epicResult, backlogResult, mediaResult] = await Promise.all([
+      insforge.database.from("epics").select("*").order("start_date", { ascending: false }),
+      insforge.database.from("backlog_items").select("*").order("created_at", { ascending: false }),
+      insforge.database.from("media_assets").select("*").order("created_at", { ascending: false }).limit(12),
+    ]);
+
+    if (epicResult.error || backlogResult.error || mediaResult.error) {
+      setStatus(epicResult.error?.message || backlogResult.error?.message || mediaResult.error?.message || "Could not load data", "error");
+      return;
+    }
+
+    epics = epicResult.data ?? [];
+    renderEpics();
+    renderBacklog(backlogResult.data ?? []);
+    renderMedia(mediaResult.data ?? []);
+    setStatus(`Connected to ${insforgeConfig.baseUrl}`, "ok");
+  }
+
+  async function refreshAuth() {
+    const { data } = await insforge.auth.getCurrentUser();
+    const user = data?.user;
+    if (user) {
+      authPanel?.setAttribute("hidden", "");
+      app?.removeAttribute("hidden");
+      if (userLine) userLine.textContent = `Signed in as ${user.email}`;
+      await loadData();
+    } else {
+      authPanel?.removeAttribute("hidden");
+      app?.setAttribute("hidden", "");
+      setStatus("Sign in to edit Garden Ops.");
+    }
+  }
+
+  loginForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = new FormData(loginForm);
+    const { error } = await insforge.auth.signInWithPassword({
+      email: String(form.get("email")),
+      password: String(form.get("password")),
+    });
+    if (error) return setStatus(error.message, "error");
+    await refreshAuth();
+  });
+
+  $("[data-signup]")?.addEventListener("click", async () => {
+    if (!loginForm) return;
+    const form = new FormData(loginForm);
+    const { error, data } = await insforge.auth.signUp({
+      email: String(form.get("email")),
+      password: String(form.get("password")),
+      name: "Garden Lodge admin",
+    });
+    if (error) return setStatus(error.message, "error");
+    if (data?.requireEmailVerification) {
+      setStatus("Account created. Check the verification code flow in InsForge.", "ok");
+    } else {
+      await refreshAuth();
+    }
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-oauth]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const provider = button.dataset.oauth!;
+      const { error } = await insforge.auth.signInWithOAuth(provider, {
+        redirectTo: window.location.href,
+      });
+      if (error) setStatus(error.message, "error");
+    });
+  });
+
+  $("[data-signout]")?.addEventListener("click", async () => {
+    await insforge.auth.signOut();
+    await refreshAuth();
+  });
+
+  $("[data-new-epic]")?.addEventListener("click", () => fillEpicForm(null));
+
+  epicList?.addEventListener("click", (event) => {
+    const button = (event.target as HTMLElement).closest<HTMLButtonElement>("[data-edit-epic]");
+    if (!button) return;
+    fillEpicForm(epics.find((epic) => epic.id === button.dataset.editEpic) ?? null);
+    epicForm?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  epicForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = new FormData(epicForm);
+    const title = String(form.get("title"));
+    const id = String(form.get("id") ?? "");
+    const payload = {
+      title,
+      slug: slugify(title),
+      sprint: String(form.get("sprint")),
+      status: String(form.get("status")),
+      start_date: String(form.get("start_date")) || null,
+      summary: String(form.get("summary") ?? ""),
+      goal: {
+        problem: String(form.get("goal_problem") ?? ""),
+        context: String(form.get("goal_context") ?? ""),
+        plannedSolution: String(form.get("goal_plannedSolution") ?? ""),
+      },
+      learn: {
+        learnings: lines(form.get("learn_learnings")),
+        research: lines(form.get("learn_research")),
+        strategy: String(form.get("learn_strategy") ?? ""),
+      },
+      apply: {
+        text: String(form.get("apply_text") ?? ""),
+        photos: epics.find((epic) => epic.id === id)?.apply?.photos ?? [],
+      },
+      leave_better: {
+        text: String(form.get("leave_text") ?? ""),
+        result: String(form.get("leave_result") ?? ""),
+        photos: epics.find((epic) => epic.id === id)?.leave_better?.photos ?? [],
+      },
+      next: lines(form.get("next")),
+      updated_at: new Date().toISOString(),
+    };
+
+    const result = id
+      ? await insforge.database.from("epics").update(payload).eq("id", id).select()
+      : await insforge.database.from("epics").insert(payload).select();
+
+    if (result.error) return setStatus(result.error.message, "error");
+    setStatus("Epic saved.", "ok");
+    await loadData();
+  });
+
+  uploadForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = new FormData(uploadForm);
+    const file = form.get("file") as File;
+    const epic = epics.find((item) => item.id === form.get("epic_id"));
+    const context = String(form.get("context"));
+    if (!file || !epic) return;
+
+    setStatus("Uploading photo...");
+    const safeName = file.name.toLowerCase().replace(/[^a-z0-9.]+/g, "-");
+    const path = `epics/${epic.slug}/${context}/${Date.now()}-${safeName}`;
+    const upload = await insforge.storage.from("garden-media").upload(path, file);
+    if (upload.error || !upload.data) return setStatus(upload.error?.message ?? "Upload failed", "error");
+
+    const photo = {
+      src: upload.data.url,
+      key: upload.data.key,
+      alt: String(form.get("alt") ?? ""),
+      caption: String(form.get("caption") ?? ""),
+    };
+
+    await insforge.database.from("media_assets").insert({
+      bucket: upload.data.bucket,
+      storage_key: upload.data.key,
+      url: upload.data.url,
+      filename: file.name,
+      mime_type: file.type,
+      size_bytes: file.size,
+      context,
+      linked_table: "epics",
+      linked_id: epic.id,
+      alt: photo.alt,
+      caption: photo.caption,
+    });
+
+    const patch: Record<string, any> = {};
+    if (context === "epic_cover") {
+      patch.cover_url = upload.data.url;
+      patch.cover_key = upload.data.key;
+    } else if (context === "epic_apply") {
+      patch.apply = { ...(epic.apply ?? {}), photos: [...(epic.apply?.photos ?? []), photo] };
+    } else if (context === "epic_leave_better") {
+      patch.leave_better = {
+        ...(epic.leave_better ?? {}),
+        photos: [...(epic.leave_better?.photos ?? []), photo],
+      };
+    }
+    await insforge.database.from("epics").update(patch).eq("id", epic.id);
+
+    uploadForm.reset();
+    setStatus("Photo uploaded.", "ok");
+    await loadData();
+  });
+
+  backlogForm?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const form = new FormData(backlogForm);
+    const title = String(form.get("title"));
+    const payload = {
+      title,
+      slug: slugify(title),
+      status: String(form.get("status")),
+      priority: String(form.get("priority")),
+      problem: String(form.get("problem") ?? ""),
+      goal: String(form.get("goal") ?? ""),
+      notes: String(form.get("notes") ?? ""),
+    };
+    const { error } = await insforge.database.from("backlog_items").insert(payload).select();
+    if (error) return setStatus(error.message, "error");
+    backlogForm.reset();
+    setStatus("Backlog item added.", "ok");
+    await loadData();
+  });
+
+  refreshAuth();
+</script>
+
+<style>
+  .admin {
+    max-width: 1180px;
+    margin-inline: auto;
+    padding: var(--sp-8) 18px var(--sp-16);
+  }
+  .admin__head,
+  .admin__toolbar,
+  .panel__head,
+  .admin__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+  }
+  .admin__head {
+    margin-bottom: var(--sp-8);
+  }
+  .admin__head h1 {
+    font-size: clamp(34px, 5vw, 52px);
+    line-height: 1;
+    margin: 0 0 var(--sp-3);
+    color: var(--gl-emerald);
+  }
+  .admin__head p {
+    max-width: 68ch;
+    color: var(--gl-ink-soft);
+    margin: 0;
+  }
+  .admin__status {
+    border: 1px solid #e7e1d2;
+    border-radius: var(--r-pill);
+    background: var(--gl-surface);
+    color: var(--gl-ink-soft);
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+  .admin__status[data-type="ok"] {
+    color: var(--gl-emerald);
+    background: var(--gl-emerald-tint);
+  }
+  .admin__status[data-type="error"] {
+    color: var(--gl-aubergine);
+    background: var(--gl-aubergine-tint);
+  }
+  .admin__app {
+    display: grid;
+    gap: var(--sp-6);
+  }
+  .panel {
+    background: var(--gl-surface);
+    border: 1px solid #e7e1d2;
+    border-radius: var(--r-md);
+    padding: var(--sp-6);
+    box-shadow: var(--shadow-sm);
+  }
+  .panel h2 {
+    margin: 0;
+    color: var(--gl-indigo);
+    font-size: 26px;
+  }
+  .panel p {
+    color: var(--gl-ink-soft);
+  }
+  button {
+    font: inherit;
+    font-weight: 600;
+    border: 1.5px solid var(--gl-emerald);
+    border-radius: var(--r-pill);
+    background: var(--gl-emerald);
+    color: var(--gl-cream);
+    padding: 10px 16px;
+    cursor: pointer;
+  }
+  button[type="reset"],
+  [data-signout],
+  [data-oauth],
+  [data-signup],
+  [data-edit-epic] {
+    background: transparent;
+    color: var(--gl-ink);
+    border-color: #d8d0bf;
+  }
+  .auth-form,
+  .editor {
+    display: grid;
+    gap: var(--sp-4);
+  }
+  .editor__grid {
+    display: grid;
+    gap: var(--sp-4);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 760px) {
+    .editor__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  label {
+    display: grid;
+    gap: 6px;
+    color: var(--gl-ink);
+    font-size: 14px;
+    font-weight: 700;
+  }
+  input,
+  select,
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #d8d0bf;
+    border-radius: var(--r-sm);
+    background: var(--gl-cream-2);
+    color: var(--gl-ink);
+    font: inherit;
+    font-weight: 400;
+    padding: 10px 12px;
+  }
+  textarea {
+    resize: vertical;
+  }
+  .phase {
+    display: grid;
+    gap: var(--sp-3);
+    padding: var(--sp-4);
+    border: 1px solid #ece6d8;
+    border-radius: var(--r-sm);
+    background: var(--gl-cream-2);
+  }
+  .phase h3 {
+    font-family: var(--font-display);
+    margin: 0;
+    color: var(--gl-aubergine);
+    font-size: 22px;
+  }
+  .epic-list,
+  .backlog-list {
+    display: grid;
+    gap: var(--sp-3);
+    grid-template-columns: 1fr;
+    margin-top: var(--sp-4);
+  }
+  @media (min-width: 860px) {
+    .epic-list,
+    .backlog-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .mini-card {
+    display: grid;
+    gap: var(--sp-2);
+    border: 1px solid #ece6d8;
+    border-radius: var(--r-sm);
+    background: var(--gl-cream-2);
+    padding: var(--sp-4);
+  }
+  .mini-card span {
+    color: var(--gl-ink-soft);
+    font-size: 12px;
+  }
+  .mini-card h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    margin: 0;
+    color: var(--gl-emerald);
+  }
+  .mini-card p {
+    font-size: 14px;
+    margin: 0;
+  }
+  .media-grid {
+    display: grid;
+    gap: var(--sp-4);
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    margin-top: var(--sp-4);
+  }
+  .media-grid figure {
+    margin: 0;
+  }
+  .media-grid img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--r-sm);
+  }
+  .media-grid figcaption {
+    color: var(--gl-ink-soft);
+    font-size: 13px;
+    margin-top: 4px;
+  }
+</style>

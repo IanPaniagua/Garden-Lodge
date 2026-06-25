@@ -1,0 +1,50 @@
+---
+// Small leaded-glass wordmark motif (brand kit §6) — a 2x2 jewel-pane tile in a
+// lead frame. Used in the nav/footer beside the "Garden Lodge" wordmark.
+interface Props {
+  size?: number;
+  class?: string;
+}
+const { size = 26, class: className } = Astro.props;
+---
+
+<span
+  class:list={["glassmark", className]}
+  style={`--gm-size:${size}px`}
+  aria-hidden="true"
+>
+  <span class="glassmark__pane" style="background:var(--gl-aubergine)"></span>
+  <span class="glassmark__pane" style="background:var(--gl-emerald)"></span>
+  <span class="glassmark__pane" style="background:var(--gl-blue)"></span>
+  <span class="glassmark__pane" style="background:var(--gl-amber)"></span>
+</span>
+
+<style>
+  .glassmark {
+    display: inline-grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5px;
+    width: var(--gm-size);
+    height: var(--gm-size);
+    padding: 2px;
+    background: var(--gl-lead);
+    border-radius: 7px;
+    flex: none;
+  }
+  .glassmark__pane {
+    position: relative;
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .glassmark__pane::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      150deg,
+      rgba(255, 255, 255, 0.32),
+      rgba(255, 255, 255, 0) 45%
+    );
+  }
+</style>

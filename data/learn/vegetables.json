@@ -1,0 +1,89 @@
+[
+  {
+    "id": "lettuce-lollo-bionda",
+    "category": "vegetable",
+    "name": { "en": "Lettuce (Lollo Bionda)", "es": "Lechuga (Lollo Bionda)", "de": "Salat (Lollo Bionda)" },
+    "scientificName": "Lactuca sativa",
+    "image": "lettuce-lollo-bionda.jpg",
+    "summary": {
+      "en": "Loose-leaf lettuce, fast and forgiving for beginners.",
+      "es": "Lechuga de hoja suelta, rápida y agradecida para empezar.",
+      "de": "Pflücksalat, schnell und unkompliziert für Anfänger."
+    },
+    "tags": ["leafy", "beginner"],
+    "data": {
+      "sun": "partial_sun",
+      "water": "medium",
+      "sowMonths": [3, 4, 5, 8],
+      "harvestMonths": [5, 6, 7, 10],
+      "sowDepthCm": 1,
+      "spacingCm": 25,
+      "soil": "well_drained",
+      "difficulty": "easy",
+      "companions": ["carrot", "radish"],
+      "tips": {
+        "en": "In sandy soil, mix in compost to hold moisture and pick outer leaves first.",
+        "es": "En suelo arenoso, añade compost para retener humedad y cosecha las hojas exteriores primero.",
+        "de": "In sandigem Boden Kompost untermischen und zuerst die äußeren Blätter ernten."
+      }
+    }
+  },
+  {
+    "id": "lettuce-eichenlaub",
+    "category": "vegetable",
+    "name": { "en": "Oak-leaf lettuce (Eichenlaub grün)", "es": "Lechuga hoja de roble (Eichenlaub grün)", "de": "Eichenlaubsalat (grün)" },
+    "scientificName": "Lactuca sativa",
+    "image": "lettuce-eichenlaub.jpg",
+    "summary": {
+      "en": "Soft oak-shaped leaves, slow to bolt and easy to grow.",
+      "es": "Hojas suaves en forma de roble, tardan en espigar y fáciles de cultivar.",
+      "de": "Weiche, eichenförmige Blätter, schießt spät und ist leicht anzubauen."
+    },
+    "tags": ["leafy", "beginner"],
+    "data": {
+      "sun": "partial_sun",
+      "water": "medium",
+      "sowMonths": [3, 4, 5, 8, 9],
+      "harvestMonths": [5, 6, 7, 10],
+      "sowDepthCm": 1,
+      "spacingCm": 25,
+      "soil": "well_drained",
+      "difficulty": "easy",
+      "companions": ["radish", "beetroot"],
+      "tips": {
+        "en": "Sow a few seeds every two weeks for a continuous harvest.",
+        "es": "Siembra unas semillas cada dos semanas para cosechar de forma continua.",
+        "de": "Alle zwei Wochen ein paar Samen säen für eine fortlaufende Ernte."
+      }
+    }
+  },
+  {
+    "id": "potato-bag",
+    "category": "vegetable",
+    "name": { "en": "Potato (in bags)", "es": "Patata (en saco)", "de": "Kartoffel (im Sack)" },
+    "scientificName": "Solanum tuberosum",
+    "image": "potato-bag.jpg",
+    "summary": {
+      "en": "Grown in bags — perfect for small or sandy plots.",
+      "es": "Cultivada en saco: perfecta para parcelas pequeñas o arenosas.",
+      "de": "Im Sack gezogen — ideal für kleine oder sandige Beete."
+    },
+    "tags": ["root", "container"],
+    "data": {
+      "sun": "full_sun",
+      "water": "medium",
+      "sowMonths": [3, 4, 5],
+      "harvestMonths": [7, 8, 9],
+      "sowDepthCm": 12,
+      "spacingCm": 30,
+      "soil": "loose",
+      "difficulty": "easy",
+      "companions": ["bean", "marigold"],
+      "tips": {
+        "en": "Add soil as the shoots grow (earthing up). Water steadily but never waterlogged.",
+        "es": "Añade tierra a medida que crecen los brotes (aporcado). Riega constante pero sin encharcar.",
+        "de": "Erde nachfüllen, wenn die Triebe wachsen (Anhäufeln). Gleichmäßig gießen, aber nicht zu nass."
+      }
+    }
+  }
+]

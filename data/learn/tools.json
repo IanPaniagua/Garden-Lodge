@@ -1,0 +1,59 @@
+[
+  {
+    "id": "hand-trowel",
+    "category": "tool",
+    "name": { "en": "Hand trowel", "es": "Desplantador", "de": "Pflanzkelle" },
+    "image": "hand-trowel.jpg",
+    "summary": {
+      "en": "Small hand tool for digging holes and transplanting.",
+      "es": "Herramienta de mano para hacer hoyos y trasplantar.",
+      "de": "Kleines Handwerkzeug zum Löcher graben und Umpflanzen."
+    },
+    "tags": ["hand", "essential"],
+    "data": {
+      "use": { "en": "Digging small holes, transplanting seedlings, weeding.", "es": "Hacer hoyos pequeños, trasplantar plántulas, desherbar.", "de": "Kleine Löcher graben, Setzlinge umpflanzen, jäten." },
+      "whenToUse": { "en": "All season — the everyday tool.", "es": "Toda la temporada: la herramienta del día a día.", "de": "Die ganze Saison — das Alltagswerkzeug." },
+      "care": { "en": "Wipe clean and dry after use to prevent rust.", "es": "Limpia y seca tras usar para evitar óxido.", "de": "Nach Gebrauch abwischen und trocknen, um Rost zu vermeiden." },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "garden-rake",
+    "category": "tool",
+    "name": { "en": "Garden rake", "es": "Rastrillo", "de": "Gartenrechen" },
+    "image": "garden-rake.jpg",
+    "summary": {
+      "en": "Levels soil and clears leaves and debris.",
+      "es": "Nivela el suelo y retira hojas y restos.",
+      "de": "Ebnet den Boden und entfernt Laub und Reste."
+    },
+    "tags": ["hand", "essential"],
+    "data": {
+      "use": { "en": "Levelling beds, breaking clods, clearing debris.", "es": "Nivelar bancales, romper terrones, retirar restos.", "de": "Beete ebnen, Erdklumpen zerkleinern, Reste entfernen." },
+      "whenToUse": { "en": "Bed preparation and autumn clean-up.", "es": "Preparación de bancales y limpieza de otoño.", "de": "Beetvorbereitung und Herbstaufräumen." },
+      "care": { "en": "Knock off soil and store dry.", "es": "Quita la tierra y guárdalo seco.", "de": "Erde abklopfen und trocken lagern." },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "hedge-trimmer",
+    "category": "tool",
+    "name": { "en": "Hedge trimmer", "es": "Cortasetos", "de": "Heckenschere" },
+    "image": "hedge-trimmer.jpg",
+    "summary": {
+      "en": "Powered shears for shaping hedges and shrubs.",
+      "es": "Tijera motorizada para dar forma a setos y arbustos.",
+      "de": "Motorschere zum Formen von Hecken und Sträuchern."
+    },
+    "tags": ["powered", "pruning"],
+    "data": {
+      "use": { "en": "Trimming and shaping hedges and shrubs.", "es": "Recortar y dar forma a setos y arbustos.", "de": "Hecken und Sträucher schneiden und formen." },
+      "whenToUse": { "en": "Late spring and late summer; avoid nesting season.", "es": "Final de primavera y final de verano; evita época de nidos.", "de": "Spätfrühling und Spätsommer; Brutzeit meiden." },
+      "care": { "en": "Clean and oil the blades after each use.", "es": "Limpia y engrasa las cuchillas tras cada uso.", "de": "Klingen nach jedem Gebrauch reinigen und ölen." },
+      "ownOrRent": "own",
+      "powered": true
+    }
+  }
+]

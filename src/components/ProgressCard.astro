@@ -1,0 +1,124 @@
+---
+import SmartImage from "./SmartImage.astro";
+import type { GardenEpic } from "../lib/ops";
+
+interface Props {
+  entry: GardenEpic;
+  eager?: boolean;
+}
+const { entry, eager = false } = Astro.props;
+const { title, date, sprint, cover, coverUrl, summary } = entry;
+const dateStr = (date ?? new Date()).toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+const iso = (date ?? new Date()).toISOString().slice(0, 10);
+---
+
+<a class="pcard" href={`/progress/${entry.slug}`}>
+  <div class="pcard__media">
+    {
+      coverUrl ? (
+        <img
+          src={coverUrl}
+          alt={title}
+          loading={eager ? "eager" : "lazy"}
+          class="pcard__img"
+        />
+      ) : (
+        <SmartImage
+          dir="progress"
+          src={cover ?? undefined}
+          alt={title}
+          width={480}
+          height={300}
+          loading={eager ? "eager" : "lazy"}
+          sizes="(min-width: 900px) 360px, 90vw"
+          class="pcard__img"
+        />
+      )
+    }
+    <span class="pcard__sprint pill pill--indigo">{sprint}</span>
+  </div>
+  <div class="pcard__body">
+    <time class="pcard__date" datetime={iso}>{dateStr}</time>
+    <h3 class="pcard__title">{title}</h3>
+    <p class="pcard__summary">{summary}</p>
+    <span class="pcard__more">Read entry →</span>
+  </div>
+</a>
+
+<style>
+  .pcard {
+    display: flex;
+    flex-direction: column;
+    background: var(--gl-surface);
+    border: 1px solid #e7e1d2;
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--gl-ink);
+    height: 100%;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+  .pcard:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  .pcard__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: var(--gl-cream-2);
+  }
+  .pcard__media :global(img),
+  .pcard__media :global(.gl-img-fallback) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0;
+  }
+  .pcard__sprint {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin: 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .pcard__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    padding: var(--sp-6);
+    flex: 1;
+  }
+  .pcard__date {
+    font-size: 13px;
+    color: var(--gl-ink-soft);
+  }
+  .pcard__title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gl-indigo);
+    margin: 0;
+    line-height: 1.2;
+  }
+  .pcard__summary {
+    font-size: 15px;
+    color: var(--gl-ink-soft);
+    margin: 0;
+    line-height: 1.55;
+  }
+  .pcard__more {
+    margin-top: auto;
+    padding-top: var(--sp-3);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gl-indigo);
+  }
+</style>

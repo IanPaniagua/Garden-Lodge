@@ -1,0 +1,146 @@
+---
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Button from "../components/Button.astro";
+import { getPublicBacklog } from "../lib/ops";
+
+const backlog = await getPublicBacklog();
+
+const statusOrder = ["next", "in_progress", "idea", "done"] as const;
+const statusLabel = {
+  next: "Next",
+  in_progress: "In progress",
+  idea: "Ideas",
+  done: "Done",
+};
+---
+
+<Base
+  title="Backlog"
+  description="Garden Lodge backlog: ideas, problems and goals waiting to become documented garden epics."
+>
+  <Section tone="surface">
+    <SectionHeading
+      eyebrow="Backlog"
+      title="Ideas before they become epics"
+      accent="teal"
+      lead="Every useful suggestion starts here. When it is ready, it becomes a sprint with a clear problem, context, planned solution and progress record."
+    />
+    <div class="backlog">
+      {
+        statusOrder.map((status) => {
+          const items = backlog.filter((item) => item.status === status);
+          if (!items.length) return null;
+          return (
+            <section class="backlog__group" aria-labelledby={`${status}-heading`}>
+              <h2 id={`${status}-heading`}>{statusLabel[status]}</h2>
+              <div class="backlog__items">
+                {items.map((item) => (
+                  <article class="idea">
+                    <div class="idea__meta">
+                      <span class={`idea__priority idea__priority--${item.priority}`}>
+                        {item.priority}
+                      </span>
+                    </div>
+                    <h3>{item.title}</h3>
+                    <dl>
+                      <div>
+                        <dt>Problem</dt>
+                        <dd>{item.problem}</dd>
+                      </div>
+                      <div>
+                        <dt>Goal</dt>
+                        <dd>{item.goal}</dd>
+                      </div>
+                    </dl>
+                    <p>{item.notes}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          );
+        })
+      }
+    </div>
+    <div class="backlog__foot">
+      <Button href="/sprints" variant="solid">Open sprint board</Button>
+    </div>
+  </Section>
+</Base>
+
+<style>
+  .backlog {
+    display: grid;
+    gap: var(--sp-8);
+  }
+  .backlog__group h2 {
+    font-family: var(--font-display);
+    font-size: 26px;
+    color: var(--gl-teal);
+    margin: 0 0 var(--sp-4);
+  }
+  .backlog__items {
+    display: grid;
+    gap: var(--sp-4);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 760px) {
+    .backlog__items {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .idea {
+    border: 1px solid #e7e1d2;
+    border-radius: var(--r-md);
+    background: var(--gl-cream-2);
+    padding: var(--sp-6);
+  }
+  .idea__meta {
+    display: flex;
+    margin-bottom: var(--sp-3);
+  }
+  .idea__priority {
+    border-radius: var(--r-pill);
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gl-ink);
+    background: var(--gl-amber-tint);
+  }
+  .idea__priority--high {
+    background: var(--gl-aubergine-tint);
+    color: var(--gl-aubergine);
+  }
+  .idea__priority--medium {
+    background: var(--gl-indigo-tint);
+    color: var(--gl-indigo);
+  }
+  .idea h3 {
+    font-family: var(--font-display);
+    color: var(--gl-ink);
+    font-size: 22px;
+    margin: 0 0 var(--sp-4);
+  }
+  .idea dl {
+    display: grid;
+    gap: var(--sp-3);
+    margin: 0;
+  }
+  .idea dt {
+    color: var(--gl-teal);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .idea dd,
+  .idea p {
+    color: var(--gl-ink-soft);
+    margin: 0;
+  }
+  .idea p {
+    margin-top: var(--sp-4);
+  }
+  .backlog__foot {
+    margin-top: var(--sp-8);
+  }
+</style>

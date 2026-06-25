@@ -1,0 +1,110 @@
+---
+// Leaded stained-glass panel (brand kit §6, ref: brand/brand-vivo.html).
+// Jewel tones are scattered so aubergine, indigo, blue, emerald, teal, plum,
+// moss and amber all appear and greens aren't clustered. Lead lines are
+// --gl-lead. The diagonal sheen stays subtle (≤ .35 alpha).
+//
+// `variant="hero"` renders a tall panel with the dark text overlay; the default
+// renders a slim divider band with no overlay.
+interface Props {
+  variant?: "hero" | "divider";
+  class?: string;
+}
+const { variant = "hero", class: className } = Astro.props;
+
+// 18 panes (6×3), tones deliberately scattered — matches the approved reference.
+const tones = [
+  "aubergine", "indigo", "emerald", "plum", "teal", "blue",
+  "moss", "amber", "aubergine", "blue", "emerald", "indigo",
+  "teal", "plum", "moss", "amber", "aubergine", "blue",
+];
+const toneVar: Record<string, string> = {
+  aubergine: "var(--gl-aubergine)",
+  indigo: "var(--gl-indigo)",
+  emerald: "var(--gl-emerald)",
+  plum: "var(--gl-plum)",
+  teal: "var(--gl-teal)",
+  blue: "var(--gl-blue)",
+  moss: "var(--gl-moss)",
+  amber: "var(--gl-amber)",
+};
+---
+
+<div class:list={["glass", `glass--${variant}`, className]}>
+  <div class="glass__panes" aria-hidden="true">
+    {
+      tones.map((tone) => (
+        <div class="glass__pane" style={`background:${toneVar[tone]}`} />
+      ))
+    }
+  </div>
+  {
+    variant === "hero" && (
+      <div class="glass__overlay">
+        <slot />
+      </div>
+    )
+  }
+</div>
+
+<style>
+  .glass--hero .glass__panes {
+    min-height: 420px;
+  }
+  .glass--hero {
+    background: transparent;
+    border-color: rgba(39, 36, 31, 0.66);
+  }
+  .glass--hero .glass__panes {
+    background: rgba(39, 36, 31, 0.72);
+  }
+  .glass--hero .glass__pane {
+    opacity: 0.46;
+    -webkit-backdrop-filter: blur(6px) saturate(1.18);
+    backdrop-filter: blur(6px) saturate(1.18);
+  }
+  .glass--hero .glass__overlay {
+    background: none;
+  }
+  @media (min-width: 768px) {
+    .glass--hero .glass__panes {
+      min-height: 460px;
+    }
+  }
+  .glass--divider {
+    border-width: 5px;
+    border-radius: var(--r-lg);
+  }
+  .glass--divider .glass__panes {
+    min-height: 90px;
+  }
+
+  /* Subtle, slow shimmer of "light through glass" — disabled for reduced motion
+     via the global rule in global.css. */
+  .glass__pane::after {
+    background: linear-gradient(
+      150deg,
+      rgba(255, 255, 255, 0.32),
+      rgba(255, 255, 255, 0) 42%
+    );
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .glass--hero .glass__pane::after {
+      animation: glass-sheen 9s ease-in-out infinite alternate;
+    }
+    .glass__pane:nth-child(3n)::after {
+      animation-delay: -3s;
+    }
+    .glass__pane:nth-child(3n + 1)::after {
+      animation-delay: -6s;
+    }
+  }
+  @keyframes glass-sheen {
+    from {
+      opacity: 0.75;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>

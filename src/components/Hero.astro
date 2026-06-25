@@ -1,0 +1,100 @@
+---
+import Glass from "./Glass.astro";
+import Button from "./Button.astro";
+import SmartImage from "./SmartImage.astro";
+import { site } from "../lib/site";
+---
+
+<section class="hero-shell" aria-label={`${site.name} hero`}>
+  <SmartImage
+    dir="site"
+    src="hero-garden.jpg"
+    alt=""
+    width={1800}
+    height={1200}
+    loading="eager"
+    sizes="100vw"
+    class="hero-shell__image"
+  />
+  <div class="hero-shell__shade" aria-hidden="true"></div>
+  <div class="gl-container gl-hero">
+    <Glass variant="hero" class="gl-hero__panel">
+      <p class="gl-hero__eyebrow eyebrow">A community garden in Hamburg</p>
+      <h1 class="gl-hero__brand">{site.name}</h1>
+      <p class="gl-hero__sub">
+        We tend gardens the way you tend soil — patiently, every season.
+      </p>
+      <div class="gl-hero__cta">
+        <Button href="#get-involved" variant="cta">Get involved</Button>
+        <Button href="#why" variant="link">See the garden →</Button>
+      </div>
+    </Glass>
+  </div>
+</section>
+
+<style>
+  .hero-shell {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: #12351f;
+  }
+  .hero-shell :global(.hero-shell__image) {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: auto !important;
+    filter: brightness(1.12) saturate(1.02);
+  }
+  .hero-shell__shade {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(255, 252, 246, 0.08), rgba(255, 252, 246, 0.14)),
+      radial-gradient(circle at 18% 22%, rgba(255, 248, 228, 0.2), transparent 34%);
+  }
+  .gl-hero {
+    padding-top: var(--sp-12);
+    padding-bottom: var(--sp-8);
+    position: relative;
+  }
+  .gl-hero :global(.gl-hero__panel) {
+    box-shadow: 0 24px 80px rgba(5, 14, 9, 0.36);
+  }
+  .gl-hero__eyebrow {
+    color: #efe8d8;
+    margin: 0 0 var(--sp-3);
+  }
+  .gl-hero__brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(40px, 6vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    color: var(--gl-cream);
+    margin: 0;
+    text-shadow: 0 2px 12px rgba(25, 18, 12, 0.24);
+  }
+  .gl-hero__sub {
+    font-size: clamp(16px, 2.2vw, 19px);
+    color: #efe8d8;
+    margin: var(--sp-4) 0 0;
+    max-width: 30ch;
+    line-height: 1.55;
+  }
+  .gl-hero__cta {
+    margin-top: var(--sp-6);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--sp-2) var(--sp-4);
+  }
+  /* The hero overlay is dark, so the ghost "link" button text must be cream. */
+  .gl-hero__cta :global(.btn--link) {
+    color: var(--gl-cream);
+  }
+</style>

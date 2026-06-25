@@ -1,0 +1,32 @@
+---
+interface Props {
+  href?: string;
+  variant?: "cta" | "solid" | "ghost" | "link";
+  class?: string;
+  type?: "button" | "submit";
+  external?: boolean;
+}
+const {
+  href,
+  variant = "solid",
+  class: className,
+  type = "button",
+  external = false,
+} = Astro.props;
+
+const cls = ["btn", `btn--${variant}`, className];
+const rel = external ? "noopener noreferrer" : undefined;
+const target = external ? "_blank" : undefined;
+---
+
+{
+  href ? (
+    <a href={href} class:list={cls} rel={rel} target={target}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class:list={cls}>
+      <slot />
+    </button>
+  )
+}

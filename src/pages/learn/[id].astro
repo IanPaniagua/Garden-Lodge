@@ -1,0 +1,362 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import SmartImage from "../../components/SmartImage.astro";
+import LangToggle from "../../components/LangToggle.astro";
+import Icon from "../../components/Icon.astro";
+import Button from "../../components/Button.astro";
+import T from "../../components/T.astro";
+import { labelAll, monthNamesAll, type I18nText } from "../../lib/i18n";
+import { categoryTone } from "../../lib/learn";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("learn");
+  return entries.map((entry) => ({
+    params: { id: entry.id },
+    props: { entry: entry.data },
+  }));
+}
+
+const { entry } = Astro.props;
+const tone = categoryTone[entry.category];
+const toneColor = `var(--gl-${tone === "amber" ? "amber" : tone})`;
+const categoryLabel = labelAll("categories", entry.category);
+
+// Field-name labels (trilingual). The values come from the entry.
+const F = {
+  sun: { en: "Sun", es: "Sol", de: "Sonne" },
+  water: { en: "Water", es: "Agua", de: "Wasser" },
+  soil: { en: "Soil", es: "Suelo", de: "Boden" },
+  difficulty: { en: "Difficulty", es: "Dificultad", de: "Schwierigkeit" },
+  sow: { en: "Sowing window", es: "Época de siembra", de: "Aussaatzeit" },
+  harvest: { en: "Harvest window", es: "Época de cosecha", de: "Erntezeit" },
+  depth: { en: "Sowing depth", es: "Profundidad", de: "Saattiefe" },
+  spacing: { en: "Spacing", es: "Separación", de: "Abstand" },
+  companions: { en: "Good companions", es: "Buenas compañeras", de: "Gute Nachbarn" },
+  tips: { en: "Tips", es: "Consejos", de: "Tipps" },
+  use: { en: "What it's for", es: "Para qué sirve", de: "Wofür" },
+  whenToUse: { en: "When to use", es: "Cuándo usar", de: "Wann verwenden" },
+  care: { en: "Care", es: "Cuidado", de: "Pflege" },
+  ownOrRent: { en: "Buy or rent", es: "Comprar o alquilar", de: "Kaufen oder mieten" },
+  powered: { en: "Type", es: "Tipo", de: "Art" },
+  role: { en: "Role", es: "Función", de: "Rolle" },
+  affects: { en: "Affects", es: "Afecta a", de: "Betrifft" },
+  season: { en: "Active", es: "Activa", de: "Aktiv" },
+  howTo: { en: "What to do", es: "Qué hacer", de: "Was tun" },
+  scientificName: { en: "Scientific name", es: "Nombre científico", de: "Wissenschaftlicher Name" },
+  imageSource: { en: "Image source", es: "Fuente de imagen", de: "Bildquelle" },
+} satisfies Record<string, I18nText>;
+
+const POWERED: I18nText = { en: "Powered", es: "Motorizada", de: "Motorisiert" };
+const MANUAL: I18nText = { en: "Manual", es: "Manual", de: "Handbetrieb" };
+
+const cm = (n: number): I18nText => ({
+  en: `${n} cm`,
+  es: `${n} cm`,
+  de: `${n} cm`,
+});
+type Row = { label: I18nText; value: I18nText; icon?: string };
+const rows: Row[] = [];
+
+if (entry.category === "vegetable" || entry.category === "flower") {
+  const d = entry.data;
+  if (entry.scientificName) {
+    rows.push({ label: F.scientificName, value: { en: entry.scientificName, es: entry.scientificName, de: entry.scientificName }, icon: "tag" });
+  }
+  rows.push(
+    { label: F.sun, value: labelAll("sun", d.sun), icon: "sun" },
+    { label: F.water, value: labelAll("water", d.water), icon: "droplet" },
+    { label: F.soil, value: labelAll("soil", d.soil), icon: "leaf" },
+    { label: F.difficulty, value: labelAll("difficulty", d.difficulty), icon: "sprout" },
+    { label: F.sow, value: monthNamesAll(d.sowMonths), icon: "calendar" },
+    { label: F.harvest, value: monthNamesAll(d.harvestMonths), icon: "calendar" },
+    { label: F.depth, value: cm(d.sowDepthCm), icon: "ruler" },
+    { label: F.spacing, value: cm(d.spacingCm), icon: "ruler" },
+  );
+} else if (entry.category === "tool") {
+  const d = entry.data;
+  rows.push(
+    { label: F.use, value: d.use, icon: "wrench" },
+    { label: F.whenToUse, value: d.whenToUse, icon: "calendar" },
+    { label: F.care, value: d.care, icon: "sprout" },
+    { label: F.powered, value: d.powered ? POWERED : MANUAL, icon: "bolt" },
+    { label: F.ownOrRent, value: labelAll("ownOrRent", d.ownOrRent), icon: "tag" },
+  );
+} else if (entry.category === "fauna") {
+  const d = entry.data;
+  if (entry.scientificName) {
+    rows.push({ label: F.scientificName, value: { en: entry.scientificName, es: entry.scientificName, de: entry.scientificName }, icon: "tag" });
+  }
+  rows.push(
+    { label: F.role, value: labelAll("role", d.role), icon: "bug" },
+    { label: F.season, value: monthNamesAll(d.season), icon: "calendar" },
+    { label: F.howTo, value: d.howTo, icon: "leaf" },
+  );
+}
+
+// Free-text arrays (companions / affects) aren't coded, so shown verbatim.
+const lists: { label: I18nText; items: string[] } = (() => {
+  if (entry.category === "vegetable" || entry.category === "flower")
+    return { label: F.companions, items: entry.data.companions };
+  if (entry.category === "fauna") return { label: F.affects, items: entry.data.affects };
+  return { label: F.companions, items: [] };
+})();
+
+const tips: I18nText | null =
+  entry.category === "vegetable" || entry.category === "flower"
+    ? entry.data.tips
+    : null;
+---
+
+<Base
+  title={entry.name.en}
+  description={entry.summary.en}
+  image={`/images/learn/${entry.image}`}
+>
+  <article class="gl-container detail">
+    <a href="/learn" class="detail__back">
+      <Icon name="arrow-right" size={16} class="detail__back-icon" />
+      <T text={{ en: "Back to library", es: "Volver a la biblioteca", de: "Zur Bibliothek" }} />
+    </a>
+
+    <div class="detail__top">
+      <div class="detail__media">
+        <SmartImage
+          dir="learn"
+          src={entry.image}
+          alt={`${entry.name.en} — ${entry.name.de}`}
+          width={720}
+          height={540}
+          loading="eager"
+          sizes="(min-width: 800px) 420px, 92vw"
+          class="detail__img"
+        />
+      </div>
+      <div class="detail__intro">
+        <div class="detail__intro-head">
+          <span class={`pill pill--${tone === "amber" ? "amber" : tone}`}>
+            <T text={categoryLabel} />
+          </span>
+          <LangToggle />
+        </div>
+        <h1 class="detail__name" style={`color:${toneColor}`}><T text={entry.name} /></h1>
+        <p class="detail__summary"><T text={entry.summary} /></p>
+        {
+          entry.tags.length > 0 && (
+            <ul class="detail__tags" aria-label="Tags">
+              {entry.tags.map((tag) => (
+                <li class="pill pill--amber">{tag}</li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+    </div>
+
+    <dl class="detail__data">
+      {
+        rows.map((row) => (
+          <div class="detail__row">
+            <dt>
+              {row.icon && <Icon name={row.icon as any} size={16} />}
+              <T text={row.label} />
+            </dt>
+            <dd><T text={row.value} /></dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    {
+      lists.items.length > 0 && (
+        <div class="detail__block">
+          <h2 class="detail__block-title"><T text={lists.label} /></h2>
+          <ul class="detail__companions">
+            {lists.items.map((item) => (
+              <li class="pill pill--emerald">{item}</li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
+    {
+      tips && (
+        <div class="detail__block detail__tips">
+          <h2 class="detail__block-title"><T text={F.tips} /></h2>
+          <p><T text={tips} /></p>
+        </div>
+      )
+    }
+
+    {
+      (entry.imageSource || entry.imageCredit || entry.imageLicense) && (
+        <div class="detail__block detail__source">
+          <h2 class="detail__block-title"><T text={F.imageSource} /></h2>
+          <p>
+            {[entry.imageCredit, entry.imageSource, entry.imageLicense].filter(Boolean).join(" · ")}
+          </p>
+        </div>
+      )
+    }
+
+    <div class="detail__foot">
+      <Button href="/learn" variant="ghost">
+        <T text={{ en: "Browse all", es: "Ver todo", de: "Alle ansehen" }} />
+      </Button>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .detail {
+    padding-block: var(--sp-8) var(--sp-16);
+  }
+  .detail__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gl-indigo);
+    text-decoration: none;
+    margin-bottom: var(--sp-6);
+  }
+  .detail__back :global(.detail__back-icon) {
+    transform: rotate(180deg);
+  }
+  .detail__back:hover {
+    color: var(--gl-indigo-dark, #193672);
+  }
+  .detail__top {
+    display: grid;
+    gap: var(--sp-8);
+    align-items: start;
+  }
+  @media (min-width: 800px) {
+    .detail__top {
+      grid-template-columns: 420px 1fr;
+    }
+  }
+  .detail__media {
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background: var(--gl-cream-2);
+  }
+  .detail__media :global(img),
+  .detail__media :global(.gl-img-fallback) {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0;
+  }
+  .detail__intro-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-3);
+  }
+  .detail__intro-head .pill {
+    margin: 0;
+  }
+  .detail__name {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 5vw, 40px);
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0 0 var(--sp-3);
+  }
+  .detail__summary {
+    font-size: 18px;
+    color: var(--gl-ink-soft);
+    margin: 0;
+    max-width: 60ch;
+  }
+  .detail__tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0;
+    margin: var(--sp-4) 0 0;
+  }
+  .detail__tags .pill {
+    margin: 0;
+  }
+
+  .detail__data {
+    margin: var(--sp-12) 0 0;
+    display: grid;
+    gap: 1px;
+    background: #e7e1d2;
+    border: 1px solid #e7e1d2;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+  }
+  @media (min-width: 640px) {
+    .detail__data {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .detail__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    background: var(--gl-surface);
+    padding: var(--sp-4) var(--sp-6);
+  }
+  .detail__row dt {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gl-teal);
+    margin: 0;
+  }
+  .detail__row dd {
+    margin: 0;
+    font-size: 16px;
+    color: var(--gl-ink);
+  }
+
+  .detail__block {
+    margin-top: var(--sp-8);
+  }
+  .detail__block-title {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gl-aubergine);
+    margin: 0 0 var(--sp-3);
+  }
+  .detail__companions {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 0;
+    margin: 0;
+  }
+  .detail__companions .pill {
+    margin: 0;
+    text-transform: capitalize;
+  }
+  .detail__tips p {
+    font-size: 17px;
+    line-height: 1.6;
+    max-width: 68ch;
+    margin: 0;
+    color: var(--gl-ink);
+  }
+  .detail__source p {
+    font-size: 14px;
+    color: var(--gl-ink-soft);
+    margin: 0;
+  }
+  .detail__foot {
+    margin-top: var(--sp-12);
+  }
+</style>

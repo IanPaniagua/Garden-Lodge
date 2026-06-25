@@ -1,0 +1,529 @@
+---
+import { getEntry, getCollection, render } from "astro:content";
+import Base from "../layouts/Base.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Button from "../components/Button.astro";
+import Glass from "../components/Glass.astro";
+import Icon from "../components/Icon.astro";
+import SmartImage from "../components/SmartImage.astro";
+import LearnCard from "../components/LearnCard.astro";
+import ProgressCard from "../components/ProgressCard.astro";
+import { site } from "../lib/site";
+import { getPublicEpics } from "../lib/ops";
+
+// --- Vision & mission (markdown body) ---
+const vision = await getEntry("pages", "vision-mission");
+const { Content: VisionContent } = await render(vision!);
+
+// --- How we work (intro from frontmatter; steps structured below) ---
+const howWeWork = await getEntry("pages", "how-we-work");
+const steps = [
+  {
+    icon: "calendar",
+    tone: "emerald",
+    title: "Set a goal",
+    text: "A clear goal for the week or fortnight, broken into tasks so everyone knows what success looks like.",
+  },
+  {
+    icon: "users",
+    tone: "indigo",
+    title: "Learn how it's done",
+    text: "We research, ask experienced gardeners, and gather practical advice. Knowledge first, then action.",
+  },
+  {
+    icon: "shovel",
+    tone: "aubergine",
+    title: "Apply it",
+    text: "Hands in the soil, as a team — plant, tend and test approaches together so learning spreads quickly.",
+  },
+  {
+    icon: "sprout",
+    tone: "teal",
+    title: "Leave it better",
+    text: "Leave the plot a little cleaner and better than we found it — a little more each cycle.",
+  },
+] as const;
+
+const toneVar = (t: string) =>
+  `var(--gl-${t === "glassblue" ? "blue" : t})`;
+
+// --- Garden stages band ---
+const stages = [
+  { icon: "sprout", tone: "emerald", title: "Sow", caption: "Seeds in — lettuce, radish, marigold." },
+  { icon: "shovel", tone: "teal", title: "Transplant", caption: "Move seedlings to their place." },
+  { icon: "ruler", tone: "indigo", title: "Train", caption: "Stake and support as they grow." },
+  { icon: "leaf", tone: "aubergine", title: "Harvest", caption: "Pick when ripe; share the surplus." },
+] as const;
+
+// --- Learning preview: one entry per category ---
+const learnAll = (await getCollection("learn")).map((e) => e.data);
+const previewOrder = ["vegetable", "flower", "fauna", "tool"] as const;
+const learnPreview = previewOrder
+  .map((cat) => learnAll.find((e) => e.category === cat))
+  .filter((e): e is NonNullable<typeof e> => Boolean(e));
+
+// --- Latest progress: newest 3 ---
+const latest = (await getPublicEpics()).slice(0, 3);
+---
+
+<Base>
+  <Hero />
+
+  {/* 3 · Vision & mission */}
+  <Section id="why" tone="surface" labelledby="why-title">
+    <div class="why">
+      <div class="why__text">
+        <SectionHeading
+          id="why-title"
+          eyebrow="Why we do this"
+          title="Vision & mission"
+          accent="aubergine"
+        />
+        <div class="gl-prose"><VisionContent /></div>
+        <blockquote class="why__quote">
+          “{site.tagline} — patiently, every season.”
+        </blockquote>
+      </div>
+      <div class="why__media">
+        <SmartImage
+          dir="site"
+          src="vision-garden.jpg"
+          alt="Pink hydrangea in bloom at the Garden Lodge plot"
+          width={560}
+          height={640}
+          sizes="(min-width: 880px) 480px, 92vw"
+          class="why__img"
+        />
+      </div>
+    </div>
+  </Section>
+
+  {/* 4 · How we work */}
+  <Section id="how-we-work" tone="cream" labelledby="how-title">
+    <SectionHeading
+      id="how-title"
+      eyebrow="How we work"
+      title="One simple loop, every cycle"
+      accent="emerald"
+      lead={howWeWork?.data.intro}
+    />
+    <div class="steps">
+      {
+        steps.map((step, i) => (
+          <div class="card step">
+            <div class="card__icon" style={`background:${toneVar(step.tone)}`}>
+              <Icon name={step.icon} size={22} />
+            </div>
+            <span class="step__num" style={`color:${toneVar(step.tone)}`}>
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            <h3 style={`color:${toneVar(step.tone)}`}>{step.title}</h3>
+            <p>{step.text}</p>
+          </div>
+        ))
+      }
+    </div>
+  </Section>
+
+  {/* 5 · We work in sprints */}
+  <Section tone="surface" labelledby="sprints-title">
+    <SectionHeading
+      id="sprints-title"
+      eyebrow="We work in sprints"
+      title="Transparent work, a shared backlog"
+      accent="indigo"
+      lead="Each cycle is a sprint with a single clear goal and a visible result. Ideas go into a shared backlog and get pulled into the next sprint — so no useful suggestion is lost."
+    />
+    <div class="sprints">
+      <div class="card sprints__card">
+        <div class="card__icon" style="background:var(--gl-indigo)">
+          <Icon name="calendar" size={22} />
+        </div>
+        <h3>Sprint board</h3>
+        <p>
+          A simple, visible board showing Done, In progress and Next — updated
+          each sprint by the core group.
+        </p>
+        <Button href={site.links.sprintBoard} variant="solid">
+          Open the sprint board
+        </Button>
+      </div>
+      <div class="card sprints__card">
+        <div class="card__icon" style="background:var(--gl-teal)">
+          <Icon name="leaf" size={22} />
+        </div>
+        <h3>Backlog & ideas</h3>
+        <p>
+          Every idea is recorded in a shared backlog so it can be prioritised
+          and scheduled into upcoming sprints.
+        </p>
+        <Button href={site.links.backlog} variant="ghost">
+          See the backlog
+        </Button>
+      </div>
+    </div>
+    <p class="sprints__note">
+      The board and backlog now live in this site, so the work and the public
+      learning record stay connected.
+    </p>
+  </Section>
+
+  {/* 6 · Garden stages */}
+  <Section tone="cream-2" labelledby="stages-title">
+    <SectionHeading
+      id="stages-title"
+      eyebrow="In the garden"
+      title="From seed to harvest"
+      accent="teal"
+      align="center"
+    />
+    <ol class="stages">
+      {
+        stages.map((stage, i) => (
+          <li class="stage">
+            <div class="stage__chip" style={`background:${toneVar(stage.tone)}`}>
+              <Icon name={stage.icon} size={26} />
+            </div>
+            <h3 class="stage__title">{stage.title}</h3>
+            <p class="stage__caption">{stage.caption}</p>
+            {i < stages.length - 1 && (
+              <span class="stage__arrow" aria-hidden="true">
+                <Icon name="arrow-right" size={20} />
+              </span>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </Section>
+
+  {/* 7 · Learning together */}
+  <Section tone="surface" labelledby="learn-title">
+    <div class="learn-preview__head">
+      <SectionHeading
+        id="learn-title"
+        eyebrow="Learning together"
+        title="A growing library of garden knowledge"
+        accent="indigo"
+        lead="What to sow when, who helps and who harms, and which tools earn their keep — in English, Español and Deutsch. Use the language toggle to switch."
+      />
+      <Button href="/learn" variant="solid" class="learn-preview__cta"
+        >Open the library</Button
+      >
+    </div>
+    <div class="learn-preview__grid">
+      {learnPreview.map((entry) => <LearnCard entry={entry} />)}
+    </div>
+  </Section>
+
+  {/* 8 · Latest from the progress log */}
+  <Section tone="cream" labelledby="latest-title">
+    <div class="latest__head">
+      <SectionHeading
+        id="latest-title"
+        eyebrow="Progress log"
+        title="Latest from the garden"
+        accent="aubergine"
+      />
+      <Button href="/progress" variant="ghost" class="latest__cta"
+        >All entries</Button
+      >
+    </div>
+    <div class="latest__grid">
+      {latest.map((entry) => <ProgressCard entry={entry} />)}
+    </div>
+  </Section>
+
+  {/* 9 · Get involved */}
+  <Section id="get-involved" tone="surface" labelledby="join-title">
+    <div class="join">
+      <div class="join__text">
+        <SectionHeading
+          id="join-title"
+          eyebrow="Get involved"
+          title="Come and grow with us"
+          accent="emerald"
+          lead="None of us is an expert — we're learning together. Join the group, lend a hand on a sprint, or just follow along."
+        />
+        <div class="join__cta">
+          <Button href={site.links.join} variant="cta">Join the group</Button>
+        </div>
+        <ul class="join__links">
+          <li>
+            <a href={site.links.whatsapp} rel="noopener noreferrer">
+              <Icon name="whatsapp" size={20} /> WhatsApp group
+            </a>
+          </li>
+          <li>
+            <a href={site.links.email}>
+              <Icon name="mail" size={20} /> Email us
+            </a>
+          </li>
+          <li>
+            <a href={site.links.youtube} rel="noopener noreferrer">
+              <Icon name="youtube" size={20} /> Watch on YouTube
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="join__glass">
+        <Glass variant="divider" />
+      </div>
+    </div>
+  </Section>
+</Base>
+
+<style>
+  /* Why */
+  .why {
+    display: grid;
+    gap: var(--sp-8);
+    align-items: center;
+  }
+  @media (min-width: 880px) {
+    .why {
+      grid-template-columns: 1fr 480px;
+      gap: var(--sp-16);
+    }
+  }
+  .why__quote {
+    margin: var(--sp-6) 0 0;
+    font-family: var(--font-display);
+    font-size: 20px;
+    line-height: 1.4;
+    color: var(--gl-aubergine);
+    border-left: 3px solid var(--gl-amber);
+    padding-left: var(--sp-4);
+  }
+  .why__media {
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background: var(--gl-cream-2);
+  }
+  .why__media :global(img),
+  .why__media :global(.gl-img-fallback) {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 0;
+    min-height: 320px;
+  }
+
+  /* Steps */
+  .steps {
+    display: grid;
+    gap: var(--sp-6);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 560px) {
+    .steps {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 980px) {
+    .steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .step {
+    position: relative;
+  }
+  .step__num {
+    position: absolute;
+    top: var(--sp-6);
+    right: var(--sp-6);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 18px;
+    opacity: 0.5;
+  }
+
+  /* Sprints */
+  .sprints {
+    display: grid;
+    gap: var(--sp-6);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 720px) {
+    .sprints {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  .sprints__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-3);
+  }
+  .sprints__card .btn {
+    margin-top: var(--sp-2);
+  }
+  .sprints__note {
+    margin: var(--sp-6) 0 0;
+    font-size: 14px;
+    color: var(--gl-ink-soft);
+  }
+
+  /* Stages */
+  .stages {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--sp-8);
+    grid-template-columns: 1fr;
+    max-width: 760px;
+    margin-inline: auto;
+  }
+  @media (min-width: 720px) {
+    .stages {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-4);
+    }
+  }
+  .stage {
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--sp-2);
+  }
+  .stage__chip {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--r-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+  .stage__title {
+    font-family: var(--font-ui);
+    font-size: 18px;
+    font-weight: 600;
+    margin: var(--sp-2) 0 0;
+  }
+  .stage__caption {
+    font-size: 14px;
+    color: var(--gl-ink-soft);
+    margin: 0;
+    max-width: 24ch;
+  }
+  .stage__arrow {
+    color: var(--gl-ink-soft);
+    margin-top: var(--sp-2);
+  }
+  @media (min-width: 720px) {
+    .stage__arrow {
+      position: absolute;
+      top: 20px;
+      right: -12px;
+      margin: 0;
+    }
+  }
+
+  /* Learning preview */
+  .learn-preview__head,
+  .latest__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--sp-4);
+  }
+  .learn-preview__head :global(.gl-heading),
+  .latest__head :global(.gl-heading) {
+    margin-bottom: var(--sp-4);
+    max-width: 60ch;
+  }
+  .learn-preview__cta,
+  .latest__cta {
+    margin-bottom: var(--sp-4);
+    flex: none;
+  }
+  .learn-preview__grid {
+    display: grid;
+    gap: var(--sp-6);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 560px) {
+    .learn-preview__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (min-width: 980px) {
+    .learn-preview__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* Latest */
+  .latest__grid {
+    display: grid;
+    gap: var(--sp-6);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 620px) {
+    .latest__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 960px) {
+    .latest__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  /* Join */
+  .join {
+    display: grid;
+    gap: var(--sp-8);
+    align-items: center;
+  }
+  @media (min-width: 880px) {
+    .join {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-12);
+    }
+  }
+  .join__cta {
+    margin-top: var(--sp-2);
+  }
+  .join__links {
+    list-style: none;
+    padding: 0;
+    margin: var(--sp-8) 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+  .join__links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gl-indigo);
+    text-decoration: none;
+    font-weight: 500;
+    width: fit-content;
+  }
+  .join__links a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .join__glass {
+    align-self: stretch;
+    display: flex;
+  }
+  .join__glass :global(.glass) {
+    width: 100%;
+  }
+  .join__glass :global(.glass__panes) {
+    min-height: 260px;
+  }
+</style>

@@ -1,0 +1,443 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   Garden Lodge — design tokens (brand kit §3) as raw CSS variables.
+   These are the single source of truth; the @theme block below maps the
+   same values onto Tailwind utilities (bg-emerald, text-aubergine, etc.).
+   ========================================================================= */
+:root {
+  /* jewel tones */
+  --gl-emerald: #1c7a4e;
+  --gl-moss: #4e8b3e;
+  --gl-teal: #117e8b;
+  --gl-indigo: #21458f;
+  --gl-blue: #2e6bc6;
+  --gl-aubergine: #6a2a55;
+  --gl-plum: #8a3a6e;
+  --gl-amber: #d49a2f;
+  /* neutrals */
+  --gl-cream: #f6f1e6;
+  --gl-cream-2: #fcf9f2;
+  --gl-surface: #ffffff;
+  --gl-ink: #241d26;
+  --gl-ink-soft: #5c5650;
+  --gl-lead: #16121a;
+  /* states */
+  --gl-emerald-dark: #155e3c;
+  --gl-amber-dark: #b07f1e;
+  --gl-indigo-dark: #193672;
+  /* tints */
+  --gl-emerald-tint: #e3f1ea;
+  --gl-teal-tint: #e6f4f6;
+  --gl-indigo-tint: #e7eefb;
+  --gl-blue-tint: #eaf1fc;
+  --gl-aubergine-tint: #f3e6ef;
+  --gl-amber-tint: #faefd7;
+  /* tint text pairings (brand kit §2) */
+  --gl-amber-tint-ink: #3a2607;
+  /* type */
+  --font-display: "Fraunces", Georgia, serif;
+  --font-ui: "Outfit", system-ui, sans-serif;
+  /* radius */
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+  --r-pill: 999px;
+  /* shadow */
+  --shadow-sm: 0 4px 14px rgba(36, 29, 38, 0.1);
+  --shadow-md: 0 6px 18px rgba(36, 29, 38, 0.12);
+  --shadow-lg: 0 18px 50px rgba(36, 29, 38, 0.3);
+  /* spacing scale */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-24: 6rem;
+  /* layout */
+  --container: 1120px;
+}
+
+/* =========================================================================
+   Tailwind theme mapping (brand kit §4) — Tailwind v4 CSS-first config.
+   ========================================================================= */
+@theme {
+  --color-emerald: #1c7a4e;
+  --color-emerald-dark: #155e3c;
+  --color-emerald-tint: #e3f1ea;
+  --color-moss: #4e8b3e;
+  --color-teal: #117e8b;
+  --color-teal-tint: #e6f4f6;
+  --color-indigo: #21458f;
+  --color-indigo-dark: #193672;
+  --color-indigo-tint: #e7eefb;
+  --color-glassblue: #2e6bc6;
+  --color-glassblue-tint: #eaf1fc;
+  --color-aubergine: #6a2a55;
+  --color-aubergine-tint: #f3e6ef;
+  --color-plum: #8a3a6e;
+  --color-amber: #d49a2f;
+  --color-amber-dark: #b07f1e;
+  --color-amber-tint: #faefd7;
+  --color-cream: #f6f1e6;
+  --color-cream-2: #fcf9f2;
+  --color-surface: #ffffff;
+  --color-ink: #241d26;
+  --color-ink-soft: #5c5650;
+  --color-lead: #16121a;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-ui: "Outfit", system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --shadow-soft: 0 4px 14px rgba(36, 29, 38, 0.1);
+  --shadow-card: 0 6px 18px rgba(36, 29, 38, 0.12);
+  --shadow-glass: 0 18px 50px rgba(36, 29, 38, 0.3);
+
+  --container-screen: 1120px;
+}
+
+/* =========================================================================
+   Base elements
+   ========================================================================= */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--gl-cream);
+  color: var(--gl-ink);
+  font-family: var(--font-ui);
+  line-height: 1.6;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+}
+
+a {
+  color: inherit;
+}
+
+/* Container helper (brand kit §7) */
+.gl-container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 18px;
+}
+
+@media (min-width: 768px) {
+  .gl-container {
+    padding-inline: 24px;
+  }
+}
+
+/* Eyebrow / overline — the only allowed uppercase (brand kit §5) */
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* =========================================================================
+   Buttons (brand kit §9)
+   ========================================================================= */
+.btn {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: var(--r-pill);
+  padding: 13px 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: 0.15s ease;
+  text-decoration: none;
+  min-height: 44px;
+}
+
+.btn--cta {
+  background: var(--gl-amber);
+  color: var(--gl-amber-tint-ink);
+}
+.btn--cta:hover {
+  background: var(--gl-amber-dark);
+}
+
+.btn--solid {
+  background: var(--gl-emerald);
+  color: var(--gl-cream);
+}
+.btn--solid:hover {
+  background: var(--gl-emerald-dark);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--gl-ink);
+  border-color: var(--gl-ink);
+}
+.btn--ghost:hover {
+  background: var(--gl-ink);
+  color: var(--gl-cream);
+}
+
+.btn--link {
+  padding: 13px 4px;
+  color: var(--gl-ink);
+  border-bottom: 2px solid var(--gl-amber);
+  border-radius: 0;
+  min-height: 0;
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 154, 47, 0.5);
+}
+
+/* Generic focus ring for all other interactive elements (brand kit §14) */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 154, 47, 0.5);
+  border-radius: var(--r-sm);
+}
+
+/* =========================================================================
+   Cards (brand kit §10)
+   ========================================================================= */
+.card {
+  background: var(--gl-surface);
+  border: 1px solid #e7e1d2;
+  border-radius: var(--r-lg);
+  padding: var(--sp-6);
+  box-shadow: var(--shadow-md);
+}
+.card__icon {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-bottom: var(--sp-4);
+}
+.card h3 {
+  font-family: var(--font-ui);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+.card p {
+  font-size: 14px;
+  color: var(--gl-ink-soft);
+  margin: 0;
+}
+
+/* =========================================================================
+   Pills / badges (brand kit §11)
+   ========================================================================= */
+.pill {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 13px;
+  border-radius: var(--r-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 6px 6px 0;
+  line-height: 1.4;
+}
+.pill--emerald {
+  background: var(--gl-emerald-tint);
+  color: var(--gl-emerald);
+}
+.pill--teal {
+  background: var(--gl-teal-tint);
+  color: var(--gl-teal);
+}
+.pill--indigo {
+  background: var(--gl-indigo-tint);
+  color: var(--gl-indigo);
+}
+.pill--blue {
+  background: var(--gl-blue-tint);
+  color: var(--gl-indigo);
+}
+.pill--aubergine {
+  background: var(--gl-aubergine-tint);
+  color: var(--gl-aubergine);
+}
+.pill--amber {
+  background: var(--gl-amber-tint);
+  color: var(--gl-amber-tint-ink);
+}
+
+/* =========================================================================
+   Leaded stained glass (brand kit §6) — see Glass.astro
+   ========================================================================= */
+.glass {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-xl);
+  border: 6px solid var(--gl-lead);
+  box-shadow: var(--shadow-lg);
+  background: var(--gl-lead);
+}
+.glass__panes {
+  display: grid;
+  gap: 5px;
+  background: var(--gl-lead);
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 1fr;
+}
+.glass__pane {
+  position: relative;
+}
+.glass__pane::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 0.32),
+    rgba(255, 255, 255, 0) 42%
+  );
+}
+.glass__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 var(--sp-12);
+  background: linear-gradient(
+    90deg,
+    rgba(22, 18, 26, 0.82) 0%,
+    rgba(22, 18, 26, 0.55) 48%,
+    rgba(22, 18, 26, 0.12) 100%
+  );
+}
+@media (max-width: 620px) {
+  .glass__panes {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .glass__overlay {
+    padding: 0 var(--sp-6);
+  }
+}
+
+/* =========================================================================
+   Accessibility — respect reduced motion (brand kit §14)
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* =========================================================================
+   Trilingual toggle — show only the active language (<T> component).
+   Default html[data-lang="en"] is set in markup so it works without JS.
+   ========================================================================= */
+.i18n {
+  display: contents;
+}
+.i18n [data-l] {
+  display: none;
+}
+html[data-lang="en"] .i18n [data-l="en"],
+html[data-lang="es"] .i18n [data-l="es"],
+html[data-lang="de"] .i18n [data-l="de"] {
+  display: inline;
+}
+
+/* =========================================================================
+   Prose — rendered markdown bodies (progress entries, vision text)
+   ========================================================================= */
+.gl-prose {
+  max-width: 68ch;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--gl-ink);
+}
+.gl-prose > * + * {
+  margin-top: var(--sp-4);
+}
+.gl-prose h2 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--gl-indigo);
+  margin-top: var(--sp-8);
+  line-height: 1.2;
+}
+.gl-prose h3 {
+  font-family: var(--font-ui);
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: var(--sp-6);
+}
+.gl-prose a {
+  color: var(--gl-indigo);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.gl-prose strong {
+  font-weight: 600;
+}
+.gl-prose ul,
+.gl-prose ol {
+  padding-left: 1.4em;
+}
+.gl-prose li + li {
+  margin-top: var(--sp-2);
+}
+.gl-prose blockquote {
+  border-left: 3px solid var(--gl-amber);
+  padding-left: var(--sp-4);
+  color: var(--gl-ink-soft);
+  font-style: italic;
+}
+
+/* Visually-hidden helper for accessible labels */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garden Lodge · vidriera viva</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Outfit:wght@300;400;500;600&display=swap');
+:root{
+  --emerald:#1C7A4E; --moss:#4E8B3E; --teal:#117E8B; --indigo:#21458F;
+  --blue:#2E6BC6; --aubergine:#6A2A55; --plum:#8A3A6E; --amber:#D49A2F;
+  --cream:#F6F1E6; --ink:#241D26;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Outfit',sans-serif;color:var(--ink);background:var(--cream)}
+.wrap{max-width:820px;margin:0 auto;padding:30px 18px 48px}
+
+/* ---- leaded glass hero ---- */
+.glass{position:relative;border-radius:18px;overflow:hidden;border:6px solid #16121a;
+  box-shadow:0 18px 50px rgba(36,29,38,.35); background:#16121a}
+.panes{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(3,1fr);
+  gap:5px;background:#16121a;height:340px}
+.pane{position:relative}
+.pane::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(150deg,rgba(255,255,255,.32),rgba(255,255,255,0) 42%);}
+.p1{background:var(--aubergine)} .p2{background:var(--indigo)} .p3{background:var(--emerald)}
+.p4{background:var(--plum)} .p5{background:var(--teal)} .p6{background:var(--blue)}
+.p7{background:var(--moss)} .p8{background:var(--amber)} .p9{background:var(--aubergine)}
+.p10{background:var(--blue)} .p11{background:var(--emerald)} .p12{background:var(--indigo)}
+.p13{background:var(--teal)} .p14{background:var(--plum)} .p15{background:var(--moss)}
+.p16{background:var(--amber)} .p17{background:var(--aubergine)} .p18{background:var(--blue)}
+.hero-txt{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;
+  padding:0 44px;background:linear-gradient(90deg,rgba(22,18,26,.82) 0%,rgba(22,18,26,.55) 48%,rgba(22,18,26,.12) 100%)}
+.hero-txt .brand{font-family:'Fraunces',serif;font-weight:700;font-size:46px;color:var(--cream);
+  line-height:1;letter-spacing:-.5px;text-shadow:0 2px 16px rgba(0,0,0,.5)}
+.hero-txt .sub{font-size:16px;color:#efe8d8;margin-top:14px;max-width:360px;line-height:1.55}
+.hero-txt .cta{margin-top:24px}
+.btn{display:inline-block;font-weight:500;font-size:15px;padding:13px 26px;border-radius:30px;
+  background:var(--amber);color:#3a2607;text-decoration:none}
+.btn2{display:inline-block;font-weight:500;font-size:15px;padding:13px 18px;color:var(--cream);
+  border-bottom:2px solid var(--amber);margin-left:14px;text-decoration:none}
+
+/* ---- palette row ---- */
+h2{font-family:'Fraunces',serif;font-weight:600;font-size:22px;margin:38px 0 16px;color:var(--ink)}
+.prow{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.chip{border-radius:12px;height:96px;position:relative;overflow:hidden;
+  box-shadow:0 4px 14px rgba(36,29,38,.18)}
+.chip::after{content:"";position:absolute;inset:0;background:linear-gradient(150deg,rgba(255,255,255,.28),rgba(255,255,255,0) 45%)}
+.chip span{position:absolute;left:12px;bottom:10px;font-size:12px;font-weight:500;z-index:2}
+
+/* ---- sample cards ---- */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+.card{background:#fff;border-radius:16px;padding:22px;border:1px solid #e7e1d2;
+  box-shadow:0 6px 18px rgba(36,29,38,.08)}
+.card .ico{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;font-size:22px;color:#fff;margin-bottom:14px}
+.card h3{margin:0 0 6px;font-size:18px;font-weight:600}
+.card p{margin:0;font-size:14px;color:#5c5650;line-height:1.55}
+.tagrow{margin-top:14px}
+.pill{display:inline-block;font-size:12px;font-weight:500;padding:5px 13px;border-radius:20px;margin:0 6px 6px 0}
+@media(max-width:620px){.panes{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(6,1fr);height:420px}
+  .prow{grid-template-columns:repeat(3,1fr)}.cards{grid-template-columns:1fr}.hero-txt .brand{font-size:34px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="glass">
+    <div class="panes">
+      <div class="pane p1"></div><div class="pane p2"></div><div class="pane p3"></div>
+      <div class="pane p4"></div><div class="pane p5"></div><div class="pane p6"></div>
+      <div class="pane p7"></div><div class="pane p8"></div><div class="pane p9"></div>
+      <div class="pane p10"></div><div class="pane p11"></div><div class="pane p12"></div>
+      <div class="pane p13"></div><div class="pane p14"></div><div class="pane p15"></div>
+      <div class="pane p16"></div><div class="pane p17"></div><div class="pane p18"></div>
+    </div>
+    <div class="hero-txt">
+      <div class="brand">Garden Lodge</div>
+      <div class="sub">Cuidamos jardines como se cuida la tierra. Mantenimiento, poda y plantación en Hamburgo.</div>
+      <div class="cta">
+        <a class="btn" href="#">Pedir presupuesto</a>
+        <a class="btn2" href="#">Ver el jardín →</a>
+      </div>
+    </div>
+  </div>
+
+  <h2>Paleta viva</h2>
+  <div class="prow">
+    <div class="chip" style="background:#1C7A4E"><span style="color:#eafaf1">Esmeralda · #1C7A4E</span></div>
+    <div class="chip" style="background:#117E8B"><span style="color:#e6fafd">Teal · #117E8B</span></div>
+    <div class="chip" style="background:#21458F"><span style="color:#e7eefb">Índigo · #21458F</span></div>
+    <div class="chip" style="background:#2E6BC6"><span style="color:#eaf1fc">Azul · #2E6BC6</span></div>
+    <div class="chip" style="background:#6A2A55"><span style="color:#f8e9f2">Berenjena · #6A2A55</span></div>
+  </div>
+  <div class="prow" style="margin-top:12px">
+    <div class="chip" style="background:#8A3A6E"><span style="color:#fbeaf4">Ciruela · #8A3A6E</span></div>
+    <div class="chip" style="background:#4E8B3E"><span style="color:#eef8e6">Musgo · #4E8B3E</span></div>
+    <div class="chip" style="background:#D49A2F"><span style="color:#3a2607">Ámbar · #D49A2F</span></div>
+    <div class="chip" style="background:#F6F1E6"><span style="color:#5c5650">Crema · #F6F1E6</span></div>
+    <div class="chip" style="background:#241D26"><span style="color:#cfc7d0">Tinta · #241D26</span></div>
+  </div>
+
+  <h2>Cómo se siente en uso</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="ico" style="background:#1C7A4E">✿</div>
+      <h3 style="color:#1C7A4E">Mantenimiento</h3>
+      <p>Riego, siega y cuidado constante para que tu jardín luzca en cada estación.</p>
+      <div class="tagrow">
+        <span class="pill" style="background:#e3f1ea;color:#1C7A4E">verde</span>
+        <span class="pill" style="background:#e6f4f6;color:#117E8B">teal</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ico" style="background:#6A2A55">❀</div>
+      <h3 style="color:#6A2A55">Plantación</h3>
+      <p>Diseño y plantado de macizos, setos y huertos, adaptados a tu suelo y tu luz.</p>
+      <div class="tagrow">
+        <span class="pill" style="background:#f3e6ef;color:#6A2A55">berenjena</span>
+        <span class="pill" style="background:#e7eefb;color:#21458F">azul</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

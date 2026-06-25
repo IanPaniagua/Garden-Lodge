@@ -1,0 +1,71 @@
+[
+  {
+    "id": "ladybug",
+    "category": "fauna",
+    "name": { "en": "Ladybug", "es": "Mariquita", "de": "Marienkäfer" },
+    "scientificName": "Coccinella septempunctata",
+    "image": "ladybug.jpg",
+    "summary": {
+      "en": "A friend of the garden — eats aphids by the hundred.",
+      "es": "Amiga del jardín: come pulgones a cientos.",
+      "de": "Ein Freund des Gartens — frisst Blattläuse zu Hunderten."
+    },
+    "tags": ["beneficial"],
+    "data": {
+      "role": "beneficial",
+      "affects": ["aphid"],
+      "season": [4, 5, 6, 7, 8, 9],
+      "howTo": {
+        "en": "Attract by planting dill, fennel and marigold; avoid pesticides.",
+        "es": "Atráela plantando eneldo, hinojo y caléndula; evita pesticidas.",
+        "de": "Mit Dill, Fenchel und Ringelblume anlocken; Pestizide vermeiden."
+      }
+    }
+  },
+  {
+    "id": "earthworm",
+    "category": "fauna",
+    "name": { "en": "Earthworm", "es": "Lombriz de tierra", "de": "Regenwurm" },
+    "scientificName": "Lumbricus terrestris",
+    "image": "earthworm.jpg",
+    "summary": {
+      "en": "Nature's tiller — aerates soil and makes it richer.",
+      "es": "El arador de la naturaleza: airea el suelo y lo enriquece.",
+      "de": "Der Pflüger der Natur — lockert den Boden und macht ihn reicher."
+    },
+    "tags": ["beneficial", "soil"],
+    "data": {
+      "role": "beneficial",
+      "affects": ["soil"],
+      "season": [3, 4, 5, 6, 7, 8, 9, 10],
+      "howTo": {
+        "en": "Encourage with compost and mulch; keep soil moist, not dry.",
+        "es": "Favorécela con compost y acolchado; mantén el suelo húmedo, no seco.",
+        "de": "Mit Kompost und Mulch fördern; Boden feucht halten, nicht trocken."
+      }
+    }
+  },
+  {
+    "id": "aphid",
+    "category": "fauna",
+    "name": { "en": "Aphid", "es": "Pulgón", "de": "Blattlaus" },
+    "scientificName": "Aphidoidea",
+    "image": "aphid.jpg",
+    "summary": {
+      "en": "A common pest — sap-suckers that weaken plants.",
+      "es": "Plaga común: chupan savia y debilitan las plantas.",
+      "de": "Ein häufiger Schädling — saugt Saft und schwächt Pflanzen."
+    },
+    "tags": ["pest"],
+    "data": {
+      "role": "pest",
+      "affects": ["lettuce", "many plants"],
+      "season": [4, 5, 6, 7, 8],
+      "howTo": {
+        "en": "Spray off with water, invite ladybugs, or use mild soapy water.",
+        "es": "Quítalos con agua, invita mariquitas o usa agua con jabón suave.",
+        "de": "Mit Wasser abspülen, Marienkäfer anlocken oder milde Seifenlauge verwenden."
+      }
+    }
+  }
+]

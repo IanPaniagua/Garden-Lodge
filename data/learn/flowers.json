@@ -1,0 +1,60 @@
+[
+  {
+    "id": "marigold",
+    "category": "flower",
+    "name": { "en": "Pot marigold", "es": "Caléndula", "de": "Ringelblume" },
+    "scientificName": "Calendula officinalis",
+    "image": "marigold.jpg",
+    "summary": {
+      "en": "Bright companion flower that helps deter pests.",
+      "es": "Flor acompañante brillante que ayuda a repeler plagas.",
+      "de": "Leuchtende Begleitpflanze, die Schädlinge fernhält."
+    },
+    "tags": ["companion", "pollinator"],
+    "data": {
+      "sun": "full_sun",
+      "water": "low",
+      "sowMonths": [4, 5],
+      "harvestMonths": [6, 7, 8, 9],
+      "sowDepthCm": 1,
+      "spacingCm": 20,
+      "soil": "well_drained",
+      "difficulty": "easy",
+      "companions": ["tomato", "potato"],
+      "tips": {
+        "en": "Plant near vegetables to attract pollinators and confuse pests.",
+        "es": "Plántala junto a hortalizas para atraer polinizadores y confundir plagas.",
+        "de": "In der Nähe von Gemüse pflanzen, um Bestäuber anzulocken und Schädlinge zu verwirren."
+      }
+    }
+  },
+  {
+    "id": "sunflower",
+    "category": "flower",
+    "name": { "en": "Sunflower", "es": "Girasol", "de": "Sonnenblume" },
+    "scientificName": "Helianthus annuus",
+    "image": "sunflower.jpg",
+    "summary": {
+      "en": "Tall, cheerful flower that feeds bees and birds.",
+      "es": "Flor alta y alegre que alimenta abejas y pájaros.",
+      "de": "Hohe, fröhliche Blume, die Bienen und Vögel ernährt."
+    },
+    "tags": ["pollinator", "tall"],
+    "data": {
+      "sun": "full_sun",
+      "water": "medium",
+      "sowMonths": [4, 5],
+      "harvestMonths": [8, 9],
+      "sowDepthCm": 2,
+      "spacingCm": 40,
+      "soil": "well_drained",
+      "difficulty": "easy",
+      "companions": ["cucumber"],
+      "tips": {
+        "en": "Give it a sheltered spot — tall stems can catch the wind.",
+        "es": "Dale un sitio resguardado: los tallos altos cogen el viento.",
+        "de": "Einen geschützten Platz wählen — hohe Stängel fangen den Wind."
+      }
+    }
+  }
+]

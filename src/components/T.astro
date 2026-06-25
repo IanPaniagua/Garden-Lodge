@@ -1,0 +1,17 @@
+---
+import type { I18nText } from "../lib/i18n";
+
+// Renders all three languages; CSS (global.css) shows only the one matching
+// html[data-lang]. Works with no JS (defaults to English) and switches
+// instantly when the language toggle flips the attribute.
+interface Props {
+  text: I18nText;
+}
+const { text } = Astro.props;
+---
+
+<span class="i18n"
+  ><span data-l="en">{text.en}</span><span data-l="es">{text.es}</span><span
+    data-l="de">{text.de}</span
+  ></span
+>

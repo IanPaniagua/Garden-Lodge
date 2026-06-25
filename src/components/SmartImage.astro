@@ -1,0 +1,80 @@
+---
+import { Image } from "astro:assets";
+import { resolveImage, type ImageDir } from "../lib/images";
+
+interface Props {
+  dir: ImageDir;
+  src: string | undefined;
+  alt: string;
+  width: number;
+  height: number;
+  class?: string;
+  loading?: "lazy" | "eager";
+  sizes?: string;
+}
+
+const {
+  dir,
+  src,
+  alt,
+  width,
+  height,
+  class: className,
+  loading = "lazy",
+  sizes,
+} = Astro.props;
+
+const resolved = resolveImage(dir, src);
+const ratio = `${width} / ${height}`;
+---
+
+{
+  resolved ? (
+    <Image
+      src={resolved}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading}
+      sizes={sizes}
+      class={className}
+      style={`aspect-ratio:${ratio}`}
+    />
+  ) : (
+    <div
+      class:list={["gl-img-fallback", className]}
+      style={`aspect-ratio:${ratio}`}
+      role="img"
+      aria-label={alt}
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        aria-hidden="true"
+      >
+        <path d="M12 2C8 6 7 9 7 12a5 5 0 0 0 10 0c0-3-1-6-5-10Z" />
+        <path d="M12 22v-6" />
+      </svg>
+    </div>
+  )
+}
+
+<style>
+  .gl-img-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: linear-gradient(150deg, var(--gl-emerald-tint), var(--gl-cream-2));
+    color: var(--gl-emerald);
+    border-radius: inherit;
+  }
+  .gl-img-fallback svg {
+    width: 28%;
+    max-width: 64px;
+    height: auto;
+    opacity: 0.55;
+  }
+</style>

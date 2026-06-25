@@ -1,0 +1,42 @@
+{
+  "sun": {
+    "full_sun":    { "en": "Full sun",     "es": "Pleno sol",    "de": "Volle Sonne" },
+    "partial_sun": { "en": "Partial sun",   "es": "Sol parcial",  "de": "Halbschatten" },
+    "shade":       { "en": "Shade",         "es": "Sombra",       "de": "Schatten" }
+  },
+  "water": {
+    "low":    { "en": "Low",    "es": "Bajo",  "de": "Gering" },
+    "medium": { "en": "Medium", "es": "Medio", "de": "Mittel" },
+    "high":   { "en": "High",   "es": "Alto",  "de": "Hoch" }
+  },
+  "soil": {
+    "well_drained": { "en": "Well-drained", "es": "Bien drenado", "de": "Gut durchlässig" },
+    "loose":        { "en": "Loose",        "es": "Suelto",       "de": "Locker" },
+    "rich":         { "en": "Rich",         "es": "Rico",         "de": "Nährstoffreich" }
+  },
+  "difficulty": {
+    "easy":   { "en": "Easy",   "es": "Fácil",  "de": "Einfach" },
+    "medium": { "en": "Medium", "es": "Media",  "de": "Mittel" },
+    "hard":   { "en": "Hard",   "es": "Difícil","de": "Schwer" }
+  },
+  "role": {
+    "beneficial": { "en": "Beneficial", "es": "Beneficioso", "de": "Nützlich" },
+    "pest":       { "en": "Pest",       "es": "Plaga",       "de": "Schädling" },
+    "neutral":    { "en": "Neutral",    "es": "Neutral",     "de": "Neutral" }
+  },
+  "ownOrRent": {
+    "own":  { "en": "Worth owning", "es": "Mejor comprar", "de": "Lohnt zu kaufen" },
+    "rent": { "en": "Rent it",      "es": "Mejor alquilar","de": "Mieten" }
+  },
+  "categories": {
+    "tool":      { "en": "Tools",      "es": "Herramientas", "de": "Werkzeuge" },
+    "vegetable": { "en": "Vegetables", "es": "Hortalizas",   "de": "Gemüse" },
+    "flower":    { "en": "Flowers",    "es": "Flores",       "de": "Blumen" },
+    "fauna":     { "en": "Fauna",      "es": "Fauna",        "de": "Tierwelt" }
+  },
+  "months": {
+    "en": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+    "es": ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],
+    "de": ["Jan","Feb","Mär","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"]
+  }
+}

@@ -1,0 +1,172 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Section from "../../components/Section.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import LearnCard from "../../components/LearnCard.astro";
+import LangToggle from "../../components/LangToggle.astro";
+import T from "../../components/T.astro";
+import Glass from "../../components/Glass.astro";
+import { labelAll } from "../../lib/i18n";
+import { categoryTone } from "../../lib/learn";
+
+const all = await getCollection("learn");
+// Stable order: by category then name, so the grid is predictable.
+const order = ["vegetable", "flower", "fauna", "tool"];
+const entries = all
+  .map((e) => e.data)
+  .sort(
+    (a, b) =>
+      order.indexOf(a.category) - order.indexOf(b.category) ||
+      a.name.en.localeCompare(b.name.en),
+  );
+
+const categories = order.filter((c) =>
+  entries.some((e) => e.category === c),
+) as Array<keyof typeof categoryTone>;
+---
+
+<Base
+  title="Learning together"
+  description="A growing, trilingual library of garden knowledge — vegetables, flowers, fauna and tools. Switch between English, Español and Deutsch."
+>
+  <Section tone="cream" class="learn-hero">
+    <SectionHeading
+      eyebrow="Learning together"
+      title="Garden knowledge, in three languages"
+      accent="indigo"
+      lead="Everything we've learned by doing — what to sow when, who's friend or foe in the soil, and which tools earn their keep. Filter by type, switch the language."
+    />
+    <div class="learn-controls">
+      <div class="learn-filter" role="group" aria-label="Filter by category" data-filter>
+        <button type="button" class="learn-filter__btn is-active" data-cat="all" aria-pressed="true">
+          <T text={{ en: "All", es: "Todo", de: "Alle" }} />
+        </button>
+        {
+          categories.map((cat) => (
+            <button type="button" class="learn-filter__btn" data-cat={cat} aria-pressed="false">
+              <T text={labelAll("categories", cat)} />
+            </button>
+          ))
+        }
+      </div>
+      <div class="learn-lang">
+        <span class="eyebrow learn-lang__label">Language</span>
+        <LangToggle />
+      </div>
+    </div>
+  </Section>
+
+  <Section tone="surface" class="learn-grid-section">
+    <div class="learn-grid" data-grid>
+      {entries.map((entry) => <LearnCard entry={entry} />)}
+    </div>
+    <p class="learn-empty" data-empty hidden>
+      <T
+        text={{
+          en: "Nothing in this category yet.",
+          es: "Aún no hay nada en esta categoría.",
+          de: "Noch nichts in dieser Kategorie.",
+        }}
+      />
+    </p>
+  </Section>
+
+  <Section tone="cream-2">
+    <Glass variant="divider" />
+  </Section>
+</Base>
+
+<style>
+  .learn-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+  }
+  .learn-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+  }
+  .learn-filter__btn {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gl-ink);
+    background: var(--gl-surface);
+    border: 1.5px solid #e7e1d2;
+    border-radius: var(--r-pill);
+    padding: 8px 16px;
+    min-height: 40px;
+    cursor: pointer;
+    transition: 0.15s ease;
+  }
+  .learn-filter__btn:hover {
+    border-color: var(--gl-emerald);
+    color: var(--gl-emerald);
+  }
+  .learn-filter__btn.is-active {
+    background: var(--gl-emerald);
+    border-color: var(--gl-emerald);
+    color: var(--gl-cream);
+  }
+  .learn-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-2);
+  }
+  .learn-lang__label {
+    color: var(--gl-ink-soft);
+  }
+  .learn-grid {
+    display: grid;
+    gap: var(--sp-6);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 560px) {
+    .learn-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (min-width: 900px) {
+    .learn-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .learn-empty {
+    text-align: center;
+    color: var(--gl-ink-soft);
+    padding: var(--sp-8) 0;
+  }
+  .learn-card-hidden {
+    display: none !important;
+  }
+</style>
+
+<script>
+  const filter = document.querySelector<HTMLElement>("[data-filter]");
+  const grid = document.querySelector<HTMLElement>("[data-grid]");
+  const empty = document.querySelector<HTMLElement>("[data-empty]");
+
+  filter?.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-cat]");
+    if (!btn || !grid) return;
+    const cat = btn.dataset.cat;
+
+    filter.querySelectorAll<HTMLButtonElement>("[data-cat]").forEach((b) => {
+      const active = b === btn;
+      b.classList.toggle("is-active", active);
+      b.setAttribute("aria-pressed", String(active));
+    });
+
+    let visible = 0;
+    grid.querySelectorAll<HTMLElement>("[data-category]").forEach((card) => {
+      const show = cat === "all" || card.dataset.category === cat;
+      card.classList.toggle("learn-card-hidden", !show);
+      if (show) visible++;
+    });
+    if (empty) empty.hidden = visible !== 0;
+  });
+</script>

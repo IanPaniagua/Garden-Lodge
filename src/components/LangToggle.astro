@@ -1,0 +1,93 @@
+---
+import { LANGS } from "../lib/i18n";
+
+// EN/ES/DE toggle. Flips html[data-lang], which switches every <T> on the page
+// (the Learning library). Marketing copy is English-only and unaffected.
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+---
+
+<div
+  class:list={["langtoggle", className]}
+  role="group"
+  aria-label="Choose language"
+  data-lang-toggle
+>
+  {
+    LANGS.map((lang) => (
+      <button
+        type="button"
+        class="langtoggle__btn"
+        data-set-lang={lang}
+        aria-pressed={lang === "en" ? "true" : "false"}
+      >
+        {lang.toUpperCase()}
+      </button>
+    ))
+  }
+</div>
+
+<style>
+  .langtoggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    background: var(--gl-cream-2);
+    border: 1px solid #e7e1d2;
+    border-radius: var(--r-pill);
+  }
+  .langtoggle__btn {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--gl-ink-soft);
+    background: transparent;
+    border: none;
+    border-radius: var(--r-pill);
+    padding: 5px 10px;
+    cursor: pointer;
+    min-height: 30px;
+    transition: 0.15s ease;
+  }
+  .langtoggle__btn[aria-pressed="true"] {
+    background: var(--gl-indigo);
+    color: var(--gl-cream);
+  }
+  .langtoggle__btn:hover[aria-pressed="false"] {
+    color: var(--gl-indigo);
+  }
+</style>
+
+<script>
+  type Lang = "en" | "es" | "de";
+  const KEY = "gl-lang";
+
+  function apply(lang: Lang) {
+    document.documentElement.setAttribute("data-lang", lang);
+    document
+      .querySelectorAll<HTMLButtonElement>("[data-set-lang]")
+      .forEach((btn) => {
+        btn.setAttribute(
+          "aria-pressed",
+          btn.dataset.setLang === lang ? "true" : "false",
+        );
+      });
+    try {
+      localStorage.setItem(KEY, lang);
+    } catch {}
+  }
+
+  // Restore saved choice on load.
+  try {
+    const saved = localStorage.getItem(KEY) as Lang | null;
+    if (saved && saved !== "en") apply(saved);
+  } catch {}
+
+  document.querySelectorAll<HTMLButtonElement>("[data-set-lang]").forEach((btn) => {
+    btn.addEventListener("click", () => apply(btn.dataset.setLang as Lang));
+  });
+</script>

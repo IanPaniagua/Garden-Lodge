@@ -1,0 +1,139 @@
+---
+import Base from "../layouts/Base.astro";
+import Section from "../components/Section.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import Button from "../components/Button.astro";
+import Icon from "../components/Icon.astro";
+import { getSprintBoardEpics } from "../lib/ops";
+
+const entries = await getSprintBoardEpics();
+const columns = ["planned", "in_progress", "published"] as const;
+const statusLabels = {
+  planned: "Planned",
+  in_progress: "In progress",
+  published: "Published",
+};
+---
+
+<Base
+  title="Sprint board"
+  description="Garden Lodge sprint board: goals, learning, applied work and better results documented as epics."
+>
+  <Section tone="cream">
+    <SectionHeading
+      eyebrow="Sprint board"
+      title="Epics we can learn from"
+      accent="indigo"
+      lead="Each epic follows the same loop: set a goal, learn how it's done, apply it, and leave the garden better than before."
+    />
+    <div class="board">
+      {
+        columns.map((status) => (
+          <section class="board__column" aria-labelledby={`${status}-title`}>
+            <h2 id={`${status}-title`} class="board__title">
+              {statusLabels[status]}
+            </h2>
+            <div class="board__items">
+              {entries.filter((entry) => entry.status === status).length === 0 ? (
+                <p class="board__empty">Nothing here yet.</p>
+              ) : (
+                entries
+                  .filter((entry) => entry.status === status)
+                  .map((entry) => (
+                    <a class="epic" href={`/progress/${entry.slug}`}>
+                      <span class="epic__sprint">{entry.sprint}</span>
+                      <h3>{entry.title}</h3>
+                      <p>{entry.goal.problem}</p>
+                      <span class="epic__more">
+                        Open epic <Icon name="arrow-right" size={15} />
+                      </span>
+                    </a>
+                  ))
+              )}
+            </div>
+          </section>
+        ))
+      }
+    </div>
+    <div class="board__foot">
+      <Button href="/backlog" variant="ghost">See backlog and ideas</Button>
+    </div>
+  </Section>
+</Base>
+
+<style>
+  .board {
+    display: grid;
+    gap: var(--sp-6);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 880px) {
+    .board {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: start;
+    }
+  }
+  .board__column {
+    border: 1px solid #e7e1d2;
+    border-radius: var(--r-md);
+    background: var(--gl-surface);
+    padding: var(--sp-4);
+  }
+  .board__title {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gl-indigo);
+    margin: 0 0 var(--sp-4);
+  }
+  .board__items {
+    display: grid;
+    gap: var(--sp-3);
+  }
+  .board__empty {
+    margin: 0;
+    color: var(--gl-ink-soft);
+    font-size: 14px;
+  }
+  .epic {
+    display: grid;
+    gap: var(--sp-2);
+    padding: var(--sp-4);
+    border-radius: var(--r-sm);
+    border: 1px solid #ece6d8;
+    background: var(--gl-cream-2);
+    color: var(--gl-ink);
+    text-decoration: none;
+  }
+  .epic:hover {
+    border-color: var(--gl-emerald);
+  }
+  .epic__sprint {
+    font-size: 12px;
+    color: var(--gl-ink-soft);
+  }
+  .epic h3 {
+    font-family: var(--font-display);
+    font-size: 20px;
+    line-height: 1.2;
+    color: var(--gl-emerald);
+    margin: 0;
+  }
+  .epic p {
+    color: var(--gl-ink-soft);
+    font-size: 14px;
+    line-height: 1.45;
+    margin: 0;
+  }
+  .epic__more {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--gl-indigo);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .board__foot {
+    margin-top: var(--sp-8);
+  }
+</style>

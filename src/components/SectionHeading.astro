@@ -1,0 +1,68 @@
+---
+// Standard section heading: optional eyebrow + H2 (Fraunces) + optional lead-in.
+// `accent` tints the eyebrow/heading with a jewel tone (rotated across the page
+// so aubergine, blue and green all appear — brand kit §13.3).
+interface Props {
+  id?: string;
+  eyebrow?: string;
+  title: string;
+  accent?: "emerald" | "indigo" | "aubergine" | "teal" | "glassblue";
+  lead?: string;
+  align?: "left" | "center";
+}
+const {
+  id,
+  eyebrow,
+  title,
+  accent = "emerald",
+  lead,
+  align = "left",
+} = Astro.props;
+
+const color = {
+  emerald: "var(--gl-emerald)",
+  indigo: "var(--gl-indigo)",
+  aubergine: "var(--gl-aubergine)",
+  teal: "var(--gl-teal)",
+  glassblue: "var(--gl-indigo)",
+}[accent];
+---
+
+<div class:list={["gl-heading", `is-${align}`]}>
+  {
+    eyebrow && (
+      <p class="eyebrow gl-heading__eyebrow" style={`color:${color}`}>
+        {eyebrow}
+      </p>
+    )
+  }
+  <h2 id={id} class="gl-heading__title" style={`color:${color}`}>{title}</h2>
+  {lead && <p class="gl-heading__lead">{lead}</p>}
+</div>
+
+<style>
+  .gl-heading {
+    margin-bottom: var(--sp-8);
+  }
+  .gl-heading.is-center {
+    text-align: center;
+  }
+  .gl-heading.is-center .gl-heading__lead {
+    margin-inline: auto;
+  }
+  .gl-heading__eyebrow {
+    margin: 0 0 var(--sp-2);
+  }
+  .gl-heading__title {
+    font-size: clamp(26px, 4vw, 30px);
+    font-weight: 600;
+    line-height: 1.15;
+    margin: 0;
+  }
+  .gl-heading__lead {
+    font-size: 18px;
+    color: var(--gl-ink-soft);
+    max-width: 60ch;
+    margin: var(--sp-4) 0 0;
+  }
+</style>

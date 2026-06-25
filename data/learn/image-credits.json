@@ -1,0 +1,57 @@
+{
+  "hand-trowel": {
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Trowel.JPG",
+    "imageCredit": "Wikimedia Commons contributor",
+    "imageLicense": "Open license; see source page"
+  },
+  "garden-rake": {
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Rake.jpg",
+    "imageCredit": "Wikimedia Commons contributor",
+    "imageLicense": "Open license; see source page"
+  },
+  "hedge-trimmer": {
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Hedge_trimmers.JPG",
+    "imageCredit": "Wikimedia Commons contributor",
+    "imageLicense": "Open license; see source page"
+  },
+  "lettuce-lollo-bionda": {
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Romaine_lettuce.jpg",
+    "imageCredit": "Wikimedia Commons contributor",
+    "imageLicense": "Open license; see source page"
+  },
+  "lettuce-eichenlaub": {
+    "imageSource": "https://commons.wikimedia.org/wiki/File:HK_food_%E8%94%AC%E8%8F%9C_vegetable_Lettuce_%E7%94%9F%E8%8F%9C_Lactuca_Sativa_green_leaves_with_fresh_clear_water_January_2019_SSG_02.jpg",
+    "imageCredit": "Wikimedia Commons contributor",
+    "imageLicense": "Open license; see source page"
+  },
+  "potato-bag": {
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Potato_Flower_on_the_field.jpg",
+    "imageCredit": "Wikimedia Commons contributor",
+    "imageLicense": "Open license; see source page"
+  },
+  "marigold": {
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Calendula_officinalis_L.JPG",
+    "imageCredit": "Wikimedia Commons contributor",
+    "imageLicense": "Open license; see source page"
+  },
+  "sunflower": {
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Sunflower_l.jpg",
+    "imageCredit": "Wikimedia Commons contributor",
+    "imageLicense": "Open license; see source page"
+  },
+  "ladybug": {
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Coccinella_septempunctata_Luc_Viatour.JPG",
+    "imageCredit": "Wikimedia Commons contributor",
+    "imageLicense": "Open license; see source page"
+  },
+  "earthworm": {
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Lumbricus_terrestris_(26559560801).jpg",
+    "imageCredit": "Wikimedia Commons contributor",
+    "imageLicense": "Open license; see source page"
+  },
+  "aphid": {
+    "imageSource": "https://commons.wikimedia.org/wiki/File:Rose_aphids_(11053).jpg",
+    "imageCredit": "Wikimedia Commons contributor",
+    "imageLicense": "Open license; see source page"
+  }
+}

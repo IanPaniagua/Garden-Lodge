@@ -1,0 +1,38 @@
+[
+  {
+    "id": "composting-properly",
+    "title": "Composting properly",
+    "status": "next",
+    "priority": "high",
+    "problem": "The soil is sandy and loses moisture quickly, so we need a steady source of organic matter.",
+    "goal": "Create a simple compost routine that improves soil structure and teaches the group what can and cannot be composted.",
+    "notes": "This is the natural next epic after the first plantings."
+  },
+  {
+    "id": "watering-rhythm",
+    "title": "Watering rhythm",
+    "status": "next",
+    "priority": "high",
+    "problem": "Fast drainage means crops can dry out before the team notices.",
+    "goal": "Define a weekly watering check and record what plants look like before and after watering.",
+    "notes": "Useful for future learning cards about sandy soil and Hamburg weather."
+  },
+  {
+    "id": "progress-photos",
+    "title": "Progress photo habit",
+    "status": "idea",
+    "priority": "medium",
+    "problem": "Good work happens in the garden but is easy to forget if nobody documents it.",
+    "goal": "Take before, during and after photos for each epic using the same simple naming pattern.",
+    "notes": "This will make the website, blog and marketing much stronger."
+  },
+  {
+    "id": "plant-labels",
+    "title": "Plant labels in three languages",
+    "status": "idea",
+    "priority": "medium",
+    "problem": "Visitors can see plants but may not know their names or purpose.",
+    "goal": "Create simple ES/EN/DE labels with common name, scientific name and one useful care tip.",
+    "notes": "Connects directly with the learning-card library."
+  }
+]

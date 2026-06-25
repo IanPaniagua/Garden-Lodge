@@ -1,0 +1,55 @@
+---
+import Base from "../../layouts/Base.astro";
+import Section from "../../components/Section.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import ProgressCard from "../../components/ProgressCard.astro";
+import { getPublicEpics } from "../../lib/ops";
+
+const entries = await getPublicEpics();
+---
+
+<Base
+  title="Progress log"
+  description="Sprint by sprint, what we've done in the garden — clearing the land, first plantings, and everything since."
+>
+  <Section tone="cream">
+    <SectionHeading
+      eyebrow="Progress log"
+      title="What we've done, epic by epic"
+      accent="indigo"
+      lead="We keep the work transparent. Each entry records the goal, research, applied work and result so anyone can learn from the garden as it grows."
+    />
+    {
+      entries.length === 0 ? (
+        <p class="progress-empty">No entries yet — check back soon.</p>
+      ) : (
+        <div class="progress-grid">
+          {entries.map((entry, i) => (
+            <ProgressCard entry={entry} eager={i < 2} />
+          ))}
+        </div>
+      )
+    }
+  </Section>
+</Base>
+
+<style>
+  .progress-grid {
+    display: grid;
+    gap: var(--sp-6);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 620px) {
+    .progress-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 960px) {
+    .progress-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .progress-empty {
+    color: var(--gl-ink-soft);
+  }
+</style>

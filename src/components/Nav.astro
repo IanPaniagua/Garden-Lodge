@@ -1,0 +1,154 @@
+---
+import { site } from "../lib/site";
+import GlassMark from "./GlassMark.astro";
+---
+
+<header class="gl-nav">
+  <div class="gl-container gl-nav__inner">
+    <a href="/" class="gl-nav__brand" aria-label={`${site.name} — home`}>
+      <GlassMark size={26} />
+      <span class="gl-nav__wordmark">{site.name}</span>
+    </a>
+
+    <nav class="gl-nav__links" aria-label="Primary">
+      {site.nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <div class="gl-nav__right">
+      <button
+        type="button"
+        class="gl-nav__burger"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="gl-mobile-menu"
+        data-burger
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="gl-nav__mobile" id="gl-mobile-menu" hidden>
+    <nav class="gl-container" aria-label="Mobile">
+      {site.nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .gl-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--gl-cream) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #e7e1d2;
+  }
+  .gl-nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-4);
+    height: 64px;
+  }
+  .gl-nav__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .gl-nav__wordmark {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--gl-ink);
+    letter-spacing: -0.2px;
+  }
+  .gl-nav__links {
+    display: none;
+    gap: var(--sp-6);
+  }
+  .gl-nav__links a {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--gl-ink);
+    text-decoration: none;
+    padding: 6px 2px;
+    border-bottom: 2px solid transparent;
+    transition: 0.15s ease;
+  }
+  .gl-nav__links a:hover {
+    border-bottom-color: var(--gl-amber);
+    color: var(--gl-indigo);
+  }
+  .gl-nav__right {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-3);
+  }
+  .gl-nav__burger {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  .gl-nav__burger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--gl-ink);
+    border-radius: 2px;
+  }
+  .gl-nav__mobile {
+    border-top: 1px solid #e7e1d2;
+    background: var(--gl-surface);
+  }
+  .gl-nav__mobile nav {
+    display: flex;
+    flex-direction: column;
+    padding-block: var(--sp-3);
+  }
+  .gl-nav__mobile a {
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--gl-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gl-cream-2);
+  }
+
+  @media (min-width: 880px) {
+    .gl-nav__links {
+      display: flex;
+    }
+    .gl-nav__burger {
+      display: none;
+    }
+    .gl-nav__mobile {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const burger = document.querySelector<HTMLButtonElement>("[data-burger]");
+  const menu = document.getElementById("gl-mobile-menu");
+  burger?.addEventListener("click", () => {
+    const open = burger.getAttribute("aria-expanded") === "true";
+    burger.setAttribute("aria-expanded", String(!open));
+    if (menu) menu.hidden = open;
+  });
+  // Close the menu after following an in-page link.
+  menu?.querySelectorAll("a").forEach((a) =>
+    a.addEventListener("click", () => {
+      burger?.setAttribute("aria-expanded", "false");
+      menu.hidden = true;
+    }),
+  );
+</script>

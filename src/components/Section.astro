@@ -1,0 +1,40 @@
+---
+// Section wrapper with consistent vertical rhythm and gentle banding
+// (brand kit §7). `tone` picks the background; `id` enables anchor nav.
+interface Props {
+  id?: string;
+  tone?: "cream" | "surface" | "cream-2";
+  class?: string;
+  labelledby?: string;
+}
+const { id, tone = "cream", class: className, labelledby } = Astro.props;
+
+const bg = {
+  cream: "var(--gl-cream)",
+  surface: "var(--gl-surface)",
+  "cream-2": "var(--gl-cream-2)",
+}[tone];
+---
+
+<section
+  id={id}
+  class:list={["gl-section", className]}
+  style={`background:${bg}`}
+  aria-labelledby={labelledby}
+>
+  <div class="gl-container">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .gl-section {
+    padding-block: var(--sp-12);
+    scroll-margin-top: 80px;
+  }
+  @media (min-width: 768px) {
+    .gl-section {
+      padding-block: var(--sp-16);
+    }
+  }
+</style>

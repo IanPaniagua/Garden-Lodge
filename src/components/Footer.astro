@@ -1,0 +1,110 @@
+---
+import { site } from "../lib/site";
+import GlassMark from "./GlassMark.astro";
+
+const year = new Date().getFullYear();
+const social = [
+  { label: "WhatsApp", href: site.links.whatsapp },
+  { label: "Email", href: site.links.email },
+  { label: "YouTube", href: site.links.youtube },
+];
+---
+
+<footer class="gl-footer">
+  <div class="gl-container gl-footer__inner">
+    <div class="gl-footer__brand">
+      <a href="/" class="gl-footer__mark" aria-label={`${site.name} — home`}>
+        <GlassMark size={24} />
+        <span>{site.name}</span>
+      </a>
+      <p class="gl-footer__tagline">{site.tagline}</p>
+    </div>
+
+    <nav class="gl-footer__nav" aria-label="Footer">
+      {site.nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <nav class="gl-footer__social" aria-label="Social">
+      {
+        social.map((s) => (
+          <a href={s.href} rel="noopener noreferrer">
+            {s.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+
+  <div class="gl-container gl-footer__credits">
+    <p>© {year} {site.name}. A community garden in Hamburg.</p>
+    <p>Tended by hand · built with care.</p>
+  </div>
+</footer>
+
+<style>
+  .gl-footer {
+    background: var(--gl-indigo);
+    color: var(--gl-cream);
+    padding-block: var(--sp-12) var(--sp-6);
+  }
+  .gl-footer__inner {
+    display: grid;
+    gap: var(--sp-8);
+  }
+  .gl-footer__mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--gl-cream);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+  }
+  .gl-footer__tagline {
+    margin: var(--sp-3) 0 0;
+    color: #d9e0f2;
+    max-width: 32ch;
+    font-size: 15px;
+  }
+  .gl-footer__nav,
+  .gl-footer__social {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+  }
+  .gl-footer__nav a,
+  .gl-footer__social a {
+    color: #e7eefb;
+    text-decoration: none;
+    font-size: 15px;
+    width: fit-content;
+    border-bottom: 2px solid transparent;
+    transition: 0.15s ease;
+  }
+  .gl-footer__nav a:hover,
+  .gl-footer__social a:hover {
+    border-bottom-color: var(--gl-amber);
+  }
+  .gl-footer__credits {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--sp-2);
+    margin-top: var(--sp-12);
+    padding-top: var(--sp-6);
+    border-top: 1px solid rgba(246, 241, 230, 0.18);
+  }
+  .gl-footer__credits p {
+    margin: 0;
+    font-size: 13px;
+    color: #c3cdec;
+  }
+
+  @media (min-width: 768px) {
+    .gl-footer__inner {
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: var(--sp-12);
+    }
+  }
+</style>

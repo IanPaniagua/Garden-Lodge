@@ -1,0 +1,208 @@
+---
+import type { LearnEntry } from "../content.config";
+import { cardBadges, categoryTone } from "../lib/learn";
+import { labelAll } from "../lib/i18n";
+import SmartImage from "./SmartImage.astro";
+import Icon from "./Icon.astro";
+import T from "./T.astro";
+
+interface Props {
+  entry: LearnEntry;
+}
+const { entry } = Astro.props;
+const tone = categoryTone[entry.category];
+const badges = cardBadges(entry);
+const categoryLabel = labelAll("categories", entry.category);
+const toneColor = `var(--gl-${tone === "amber" ? "amber" : tone})`;
+---
+
+<a class="learncard" href={`/learn/${entry.id}`} data-category={entry.category}>
+  <div class="learncard__media">
+    <SmartImage
+      dir="learn"
+      src={entry.image}
+      alt={`${entry.name.en} — ${entry.name.de}`}
+      width={400}
+      height={300}
+      sizes="(min-width: 900px) 340px, (min-width: 560px) 45vw, 90vw"
+      class="learncard__img"
+    />
+    <span class={`learncard__cat pill pill--${tone === "amber" ? "amber" : tone}`}>
+      <T text={categoryLabel} />
+    </span>
+  </div>
+
+  <div class="learncard__body">
+    <h3 class="learncard__name" style={`color:${toneColor}`}>
+      <T text={entry.name} />
+    </h3>
+    <p class="learncard__summary"><T text={entry.summary} /></p>
+    {
+      entry.scientificName && (
+        <p class="learncard__scientific"><em>{entry.scientificName}</em></p>
+      )
+    }
+    <dl class="learncard__names" aria-label="Names in three languages">
+      <div>
+        <dt>ES</dt>
+        <dd>{entry.name.es}</dd>
+      </div>
+      <div>
+        <dt>EN</dt>
+        <dd>{entry.name.en}</dd>
+      </div>
+      <div>
+        <dt>DE</dt>
+        <dd>{entry.name.de}</dd>
+      </div>
+    </dl>
+
+    <ul class="learncard__badges" aria-label="Key facts">
+      {
+        badges.map((b) => (
+          <li class="learncard__badge">
+            <Icon name={b.icon} size={15} />
+            <span><T text={b.text} /></span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</a>
+
+<style>
+  .learncard {
+    display: flex;
+    flex-direction: column;
+    background: var(--gl-surface);
+    border: 1px solid #e7e1d2;
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--gl-ink);
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease;
+    height: 100%;
+  }
+  @media (min-width: 680px) {
+    .learncard {
+      flex-direction: row;
+      min-height: 220px;
+    }
+  }
+  .learncard:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  .learncard__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    background: var(--gl-cream-2);
+    flex: none;
+  }
+  @media (min-width: 680px) {
+    .learncard__media {
+      width: min(38%, 260px);
+      aspect-ratio: auto;
+      min-height: 100%;
+    }
+  }
+  .learncard__media :global(img),
+  .learncard__media :global(.gl-img-fallback) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 0;
+  }
+  .learncard__cat {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin: 0;
+    box-shadow: var(--shadow-sm);
+  }
+  .learncard__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-2);
+    padding: var(--sp-4) var(--sp-4) var(--sp-6);
+    flex: 1;
+    min-width: 0;
+  }
+  .learncard__name {
+    font-family: var(--font-ui);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.25;
+  }
+  .learncard__summary {
+    font-size: 14px;
+    color: var(--gl-ink-soft);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .learncard__scientific {
+    font-size: 12px;
+    color: var(--gl-ink-soft);
+    margin: -2px 0 0;
+  }
+  .learncard__names {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: #ece6d8;
+    border: 1px solid #ece6d8;
+    border-radius: var(--r-md);
+    overflow: hidden;
+    margin: var(--sp-2) 0 0;
+  }
+  .learncard__names div {
+    min-width: 0;
+    background: var(--gl-cream);
+    padding: 7px 9px;
+  }
+  .learncard__names dt {
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 700;
+    color: var(--gl-teal);
+    margin: 0 0 4px;
+  }
+  .learncard__names dd {
+    font-size: 12px;
+    line-height: 1.25;
+    color: var(--gl-ink);
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+  .learncard__badges {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: var(--sp-2) 0 0;
+    padding: 0;
+    margin-top: auto;
+    padding-top: var(--sp-3);
+  }
+  .learncard__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gl-ink-soft);
+    background: var(--gl-cream);
+    border: 1px solid #ece6d8;
+    border-radius: var(--r-pill);
+    padding: 4px 10px;
+  }
+  .learncard__badge :global(svg) {
+    color: var(--gl-teal);
+    flex: none;
+  }
+</style>

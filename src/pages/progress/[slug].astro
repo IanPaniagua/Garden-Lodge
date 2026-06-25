@@ -1,0 +1,395 @@
+---
+import Base from "../../layouts/Base.astro";
+import SmartImage from "../../components/SmartImage.astro";
+import Icon from "../../components/Icon.astro";
+import { getPublicEpics, type GardenEpic } from "../../lib/ops";
+
+export async function getStaticPaths() {
+  const entries = await getPublicEpics();
+  return entries.map((entry, i) => ({
+    params: { slug: entry.slug },
+    props: {
+      entry,
+      newer: entries[i - 1] ?? null,
+      older: entries[i + 1] ?? null,
+    },
+  }));
+}
+
+const { entry, newer, older } = Astro.props as {
+  entry: GardenEpic;
+  newer: GardenEpic | null;
+  older: GardenEpic | null;
+};
+
+const date = entry.date ?? new Date();
+const dateStr = date.toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+const iso = date.toISOString().slice(0, 10);
+
+const framework = [
+  {
+    title: "Set a goal",
+    tone: "emerald",
+    icon: "calendar",
+    rows: [
+      ["Problem", entry.goal.problem],
+      ["Current context", entry.goal.context],
+      ["Planned solution", entry.goal.plannedSolution],
+    ],
+  },
+  {
+    title: "Learn how it's done",
+    tone: "indigo",
+    icon: "users",
+    rows: [
+      ["Learnings", entry.learn.learnings.join(" · ")],
+      ["Research", entry.learn.research.join(" · ")],
+      ["Strategy", entry.learn.strategy],
+    ],
+  },
+  {
+    title: "Apply it",
+    tone: "aubergine",
+    icon: "shovel",
+    rows: [["What we did", entry.apply.text]],
+    photos: entry.apply.photos,
+  },
+  {
+    title: "Leave it better",
+    tone: "teal",
+    icon: "sprout",
+    rows: [
+      ["Improvement", entry.leaveBetter.text],
+      ["Result", entry.leaveBetter.result],
+    ],
+    photos: entry.leaveBetter.photos,
+  },
+] as const;
+---
+
+<Base
+  title={entry.title}
+  description={entry.summary}
+  image={entry.coverUrl ?? (entry.cover ? `/images/progress/${entry.cover}` : undefined)}
+>
+  <article class="gl-container entry">
+    <a href="/progress" class="entry__back">
+      <Icon name="arrow-right" size={16} class="entry__back-icon" />
+      Back to progress log
+    </a>
+
+    <header class="entry__head">
+      <span class="pill pill--indigo entry__sprint">{entry.sprint}</span>
+      <h1 class="entry__title">{entry.title}</h1>
+      <time class="entry__date" datetime={iso}>{dateStr}</time>
+    </header>
+
+    <div class="entry__cover">
+      {
+        entry.coverUrl ? (
+          <img src={entry.coverUrl} alt={entry.title} class="entry__cover-img" loading="eager" />
+        ) : (
+          <SmartImage
+            dir="progress"
+            src={entry.cover ?? undefined}
+            alt={entry.title}
+            width={1040}
+            height={585}
+            loading="eager"
+            sizes="(min-width: 880px) 880px, 92vw"
+            class="entry__cover-img"
+          />
+        )
+      }
+    </div>
+
+    <div class="gl-prose entry__body">
+      {
+        entry.body ? (
+          <Fragment set:html={entry.body} />
+        ) : (
+          <>
+            <p>{entry.summary}</p>
+            <p>
+              Goal for the sprint: {entry.goal.plannedSolution}
+            </p>
+          </>
+        )
+      }
+    </div>
+
+    <section class="framework" aria-labelledby="framework-title">
+      <h2 id="framework-title">Epic record</h2>
+      <div class="framework__grid">
+        {
+          framework.map((step, index) => (
+            <article class="framework__step">
+              <div class="framework__head">
+                <span class={`framework__icon framework__icon--${step.tone}`}>
+                  <Icon name={step.icon as any} size={18} />
+                </span>
+                <span class="framework__num">{String(index + 1).padStart(2, "0")}</span>
+              </div>
+              <h3>{step.title}</h3>
+              <dl>
+                {step.rows
+                  .filter(([, value]) => Boolean(value))
+                  .map(([label, value]) => (
+                    <div>
+                      <dt>{label}</dt>
+                      <dd>{value}</dd>
+                    </div>
+                  ))}
+              </dl>
+              {"photos" in step && step.photos.length > 0 && (
+                <div class="framework__photos">
+                  {step.photos.map((photo) => (
+                    <figure>
+                      <img src={photo.src} alt={photo.alt || photo.caption} loading="lazy" />
+                      <figcaption>{photo.caption}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    {
+      entry.next.length > 0 && (
+        <section class="entry__next" aria-labelledby="next-title">
+          <h2 id="next-title">Next signals</h2>
+          <ul>
+            {entry.next.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <nav class="entry__nav" aria-label="More entries">
+      {
+        older ? (
+          <a class="entry__nav-link is-prev" href={`/progress/${older.slug}`}>
+            <span class="entry__nav-dir">← Older</span>
+            <span class="entry__nav-title">{older.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+      {
+        newer ? (
+          <a class="entry__nav-link is-next" href={`/progress/${newer.slug}`}>
+            <span class="entry__nav-dir">Newer →</span>
+            <span class="entry__nav-title">{newer.title}</span>
+          </a>
+        ) : (
+          <span />
+        )
+      }
+    </nav>
+  </article>
+</Base>
+
+<style>
+  .entry {
+    padding-block: var(--sp-8) var(--sp-16);
+  }
+  .entry__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gl-indigo);
+    text-decoration: none;
+    margin-bottom: var(--sp-6);
+  }
+  .entry__back :global(.entry__back-icon) {
+    transform: rotate(180deg);
+  }
+  .entry__head {
+    max-width: 68ch;
+  }
+  .entry__sprint {
+    margin: 0 0 var(--sp-3);
+  }
+  .entry__title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5vw, 40px);
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--gl-ink);
+    margin: 0;
+  }
+  .entry__date {
+    display: block;
+    margin-top: var(--sp-3);
+    color: var(--gl-ink-soft);
+    font-size: 15px;
+  }
+  .entry__cover {
+    margin: var(--sp-8) 0;
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background: var(--gl-cream-2);
+  }
+  .entry__cover :global(img),
+  .entry__cover :global(.gl-img-fallback),
+  .entry__cover-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0;
+  }
+  .entry__body {
+    margin-bottom: var(--sp-12);
+  }
+  .framework {
+    margin-top: var(--sp-12);
+  }
+  .framework > h2,
+  .entry__next h2 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--gl-aubergine);
+    margin: 0 0 var(--sp-4);
+  }
+  .framework__grid {
+    display: grid;
+    gap: var(--sp-4);
+  }
+  @media (min-width: 760px) {
+    .framework__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .framework__step {
+    border: 1px solid #e7e1d2;
+    border-radius: var(--r-md);
+    padding: var(--sp-6);
+    background: var(--gl-surface);
+  }
+  .framework__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    margin-bottom: var(--sp-3);
+  }
+  .framework__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--r-sm);
+    color: var(--gl-surface);
+  }
+  .framework__icon--emerald {
+    background: var(--gl-emerald);
+  }
+  .framework__icon--indigo {
+    background: var(--gl-indigo);
+  }
+  .framework__icon--aubergine {
+    background: var(--gl-aubergine);
+  }
+  .framework__icon--teal {
+    background: var(--gl-teal);
+  }
+  .framework__num {
+    color: var(--gl-ink-soft);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .framework__step h3 {
+    font-family: var(--font-display);
+    color: var(--gl-ink);
+    font-size: 22px;
+    margin: 0 0 var(--sp-4);
+  }
+  .framework__step dl {
+    display: grid;
+    gap: var(--sp-3);
+    margin: 0;
+  }
+  .framework__step dt {
+    color: var(--gl-teal);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .framework__step dd {
+    color: var(--gl-ink-soft);
+    margin: 0;
+  }
+  .framework__photos {
+    display: grid;
+    gap: var(--sp-3);
+    margin-top: var(--sp-4);
+  }
+  .framework__photos figure {
+    margin: 0;
+  }
+  .framework__photos img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--r-sm);
+  }
+  .framework__photos figcaption {
+    margin-top: 6px;
+    color: var(--gl-ink-soft);
+    font-size: 13px;
+  }
+  .entry__next {
+    margin-top: var(--sp-12);
+  }
+  .entry__next ul {
+    display: grid;
+    gap: var(--sp-2);
+    padding-left: 1.2rem;
+    color: var(--gl-ink-soft);
+  }
+  .entry__nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-4);
+    margin-top: var(--sp-16);
+    padding-top: var(--sp-8);
+    border-top: 1px solid #e7e1d2;
+  }
+  .entry__nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-decoration: none;
+    color: var(--gl-ink);
+    padding: var(--sp-4);
+    border: 1px solid #e7e1d2;
+    border-radius: var(--r-md);
+    transition: 0.15s ease;
+  }
+  .entry__nav-link:hover {
+    border-color: var(--gl-indigo);
+  }
+  .entry__nav-link.is-next {
+    text-align: right;
+  }
+  .entry__nav-dir {
+    font-size: 13px;
+    color: var(--gl-ink-soft);
+  }
+  .entry__nav-title {
+    font-weight: 600;
+    color: var(--gl-indigo);
+  }
+</style>
