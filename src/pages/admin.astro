@@ -22,7 +22,7 @@ import Base from "../layouts/Base.astro";
 
     <section class="panel auth-panel" data-auth-panel>
       <h2>Sign in</h2>
-      <p>Use an InsForge account before editing the garden record.</p>
+      <p>Use the private Garden Lodge admin account before editing the garden record.</p>
       <form class="auth-form" data-login-form>
         <label>
           Email
@@ -34,9 +34,6 @@ import Base from "../layouts/Base.astro";
         </label>
         <div class="admin__actions">
           <button type="submit">Sign in</button>
-          <button type="button" data-signup>Create account</button>
-          <button type="button" data-oauth="google">Google</button>
-          <button type="button" data-oauth="github">GitHub</button>
         </div>
       </form>
     </section>
@@ -380,32 +377,6 @@ import Base from "../layouts/Base.astro";
     await refreshAuth();
   });
 
-  $("[data-signup]")?.addEventListener("click", async () => {
-    if (!loginForm) return;
-    const form = new FormData(loginForm);
-    const { error, data } = await insforge.auth.signUp({
-      email: String(form.get("email")),
-      password: String(form.get("password")),
-      name: "Garden Lodge admin",
-    });
-    if (error) return setStatus(error.message, "error");
-    if (data?.requireEmailVerification) {
-      setStatus("Account created. Check the verification code flow in InsForge.", "ok");
-    } else {
-      await refreshAuth();
-    }
-  });
-
-  document.querySelectorAll<HTMLButtonElement>("[data-oauth]").forEach((button) => {
-    button.addEventListener("click", async () => {
-      const provider = button.dataset.oauth!;
-      const { error } = await insforge.auth.signInWithOAuth(provider, {
-        redirectTo: window.location.href,
-      });
-      if (error) setStatus(error.message, "error");
-    });
-  });
-
   $("[data-signout]")?.addEventListener("click", async () => {
     await insforge.auth.signOut();
     await refreshAuth();
@@ -618,8 +589,6 @@ import Base from "../layouts/Base.astro";
   }
   button[type="reset"],
   [data-signout],
-  [data-oauth],
-  [data-signup],
   [data-edit-epic] {
     background: transparent;
     color: var(--gl-ink);
