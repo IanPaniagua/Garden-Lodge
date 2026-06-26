@@ -11,7 +11,7 @@ import GlassMark from "./GlassMark.astro";
     </a>
 
     <nav class="gl-nav__links" aria-label="Primary">
-      {site.nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      {site.mainNav.map((item) => <a href={item.href}>{item.label}</a>)}
     </nav>
 
     <div class="gl-nav__right">
@@ -30,7 +30,7 @@ import GlassMark from "./GlassMark.astro";
 
   <div class="gl-nav__mobile" id="gl-mobile-menu" hidden>
     <nav class="gl-container" aria-label="Mobile">
-      {site.nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      {site.mainNav.map((item) => <a href={item.href}>{item.label}</a>)}
     </nav>
   </div>
 </header>

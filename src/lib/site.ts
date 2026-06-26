@@ -10,7 +10,12 @@ export const site = {
     email: "mailto:hello@example.com",
     support: "mailto:hello@example.com?subject=I%20want%20to%20support%20Garden%20Lodge",
   },
-  nav: [
+  mainNav: [
+    { label: "Why", href: "/#why" },
+    { label: "How we work", href: "/#how-we-work" },
+    { label: "Learn", href: "/learn" },
+  ],
+  footerNav: [
     { label: "Why", href: "/#why" },
     { label: "How we work", href: "/#how-we-work" },
     { label: "Sprints", href: "/sprints" },
