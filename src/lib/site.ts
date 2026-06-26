@@ -14,6 +14,7 @@ export const site = {
     { label: "Why", href: "/#why" },
     { label: "How we work", href: "/#how-we-work" },
     { label: "Learn", href: "/learn" },
+    { label: "Get involved", href: "/#get-involved" },
   ],
   footerNav: [
     { label: "Why", href: "/#why" },
