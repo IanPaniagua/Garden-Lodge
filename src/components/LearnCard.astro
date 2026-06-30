@@ -67,6 +67,10 @@ const toneColor = `var(--gl-${tone === "amber" ? "amber" : tone})`;
         ))
       }
     </ul>
+    <span class="learncard__cta">
+      <T text={{ en: "More info", es: "Ver más info", de: "Mehr Infos" }} />
+      <Icon name="arrow-right" size={15} />
+    </span>
   </div>
 </a>
 
@@ -204,5 +208,21 @@ const toneColor = `var(--gl-${tone === "amber" ? "amber" : tone})`;
   .learncard__badge :global(svg) {
     color: var(--gl-teal);
     flex: none;
+  }
+  .learncard__cta {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 6px;
+    margin-top: var(--sp-2);
+    color: var(--gl-indigo);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .learncard__cta :global(svg) {
+    transition: transform 0.15s ease;
+  }
+  .learncard:hover .learncard__cta :global(svg) {
+    transform: translateX(2px);
   }
 </style>

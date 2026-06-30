@@ -1,88 +1,331 @@
 [
   {
-    "id": "lettuce-lollo-bionda",
+    "id": "parsley",
     "category": "vegetable",
-    "name": { "en": "Lettuce (Lollo Bionda)", "es": "Lechuga (Lollo Bionda)", "de": "Salat (Lollo Bionda)" },
-    "scientificName": "Lactuca sativa",
-    "image": "lettuce-lollo-bionda.jpg",
+    "name": { "en": "Flat-leaf parsley", "es": "Perejil de hoja plana", "de": "Glatte Petersilie" },
+    "scientificName": "Petroselinum crispum",
+    "image": "parsley.jpg",
     "summary": {
-      "en": "Loose-leaf lettuce, fast and forgiving for beginners.",
-      "es": "Lechuga de hoja suelta, rápida y agradecida para empezar.",
-      "de": "Pflücksalat, schnell und unkompliziert für Anfänger."
+      "en": "Hardy kitchen herb for pots and bed edges.",
+      "es": "Hierba de cocina resistente para macetas y bordes de bancal.",
+      "de": "Robustes Küchenkraut für Töpfe und Beetränder."
     },
-    "tags": ["leafy", "beginner"],
+    "tags": ["herb", "pot"],
     "data": {
       "sun": "partial_sun",
       "water": "medium",
-      "sowMonths": [3, 4, 5, 8],
-      "harvestMonths": [5, 6, 7, 10],
+      "sowMonths": [3, 4, 5, 6, 7, 8],
+      "transplantMonths": [4, 5, 6, 7, 8, 9],
+      "harvestMonths": [5, 6, 7, 8, 9, 10, 11],
+      "harvestAfterTransplant": {
+        "en": "Light harvest after 2–3 weeks; regular harvest once it has new growth.",
+        "es": "Cosecha ligera tras 2–3 semanas; cosecha normal cuando veas crecimiento nuevo.",
+        "de": "Leichte Ernte nach 2–3 Wochen; regelmäßig ernten, sobald neue Triebe wachsen."
+      },
       "sowDepthCm": 1,
-      "spacingCm": 25,
-      "soil": "well_drained",
+      "spacingCm": 20,
+      "soil": "rich",
       "difficulty": "easy",
-      "companions": ["carrot", "radish"],
+      "companions": ["tomato", "pepper", "radish"],
       "tips": {
-        "en": "In sandy soil, mix in compost to hold moisture and pick outer leaves first.",
-        "es": "En suelo arenoso, añade compost para retener humedad y cosecha las hojas exteriores primero.",
-        "de": "In sandigem Boden Kompost untermischen und zuerst die äußeren Blätter ernten."
+        "en": "Keep evenly moist and harvest outer stems first so the plant keeps growing.",
+        "es": "Mantén humedad constante y cosecha primero los tallos exteriores para que siga creciendo.",
+        "de": "Gleichmäßig feucht halten und zuerst äußere Stiele ernten, damit die Pflanze weiterwächst."
+      },
+      "whereToPlant": {
+        "en": "Best in partial sun in Hamburg: morning sun or bright shade. It can take sun if the soil stays moist.",
+        "es": "Mejor en semisombra en Hamburgo: sol de mañana o sombra luminosa. Puede aceptar sol si la tierra no se seca.",
+        "de": "In Hamburg am besten halbschattig: Morgensonne oder heller Schatten. Sonne geht, wenn der Boden feucht bleibt."
+      },
+      "transplantHow": {
+        "en": "Water the pot first. Plant at the same depth as the pot, firm the soil gently, leave about 20 cm around it, then water well.",
+        "es": "Riega la maceta primero. Planta a la misma profundidad que venía, aprieta la tierra suavemente, deja unos 20 cm alrededor y riega bien.",
+        "de": "Topf zuerst gießen. In gleicher Tiefe einsetzen, Erde leicht andrücken, etwa 20 cm Abstand lassen und gründlich angießen."
+      },
+      "aftercare": {
+        "en": "For the first week, check moisture daily. After that, water when the top soil starts to dry. Cut outer stems, not the whole plant.",
+        "es": "La primera semana revisa la humedad cada día. Después riega cuando la capa superior empiece a secarse. Corta tallos exteriores, no toda la planta.",
+        "de": "In der ersten Woche täglich Feuchtigkeit prüfen. Danach gießen, wenn die Oberfläche antrocknet. Äußere Stiele schneiden, nicht die ganze Pflanze."
+      },
+      "harvestCue": {
+        "en": "Harvest once stems are firm and the plant has recovered from transplanting.",
+        "es": "Cosecha cuando los tallos estén firmes y la planta se haya recuperado del trasplante.",
+        "de": "Ernten, wenn die Stiele kräftig sind und die Pflanze das Umpflanzen gut überstanden hat."
       }
     }
   },
   {
-    "id": "lettuce-eichenlaub",
+    "id": "dill",
     "category": "vegetable",
-    "name": { "en": "Oak-leaf lettuce (Eichenlaub grün)", "es": "Lechuga hoja de roble (Eichenlaub grün)", "de": "Eichenlaubsalat (grün)" },
-    "scientificName": "Lactuca sativa",
-    "image": "lettuce-eichenlaub.jpg",
+    "name": { "en": "Dill", "es": "Eneldo", "de": "Dill" },
+    "scientificName": "Anethum graveolens",
+    "image": "dill.jpg",
     "summary": {
-      "en": "Soft oak-shaped leaves, slow to bolt and easy to grow.",
-      "es": "Hojas suaves en forma de roble, tardan en espigar y fáciles de cultivar.",
-      "de": "Weiche, eichenförmige Blätter, schießt spät und ist leicht anzubauen."
+      "en": "Fragrant herb with fine leaves, useful for pollinators and the kitchen.",
+      "es": "Hierba aromática de hojas finas, útil para polinizadores y cocina.",
+      "de": "Duftendes Kraut mit feinen Blättern, gut für Bestäuber und Küche."
     },
-    "tags": ["leafy", "beginner"],
-    "data": {
-      "sun": "partial_sun",
-      "water": "medium",
-      "sowMonths": [3, 4, 5, 8, 9],
-      "harvestMonths": [5, 6, 7, 10],
-      "sowDepthCm": 1,
-      "spacingCm": 25,
-      "soil": "well_drained",
-      "difficulty": "easy",
-      "companions": ["radish", "beetroot"],
-      "tips": {
-        "en": "Sow a few seeds every two weeks for a continuous harvest.",
-        "es": "Siembra unas semillas cada dos semanas para cosechar de forma continua.",
-        "de": "Alle zwei Wochen ein paar Samen säen für eine fortlaufende Ernte."
-      }
-    }
-  },
-  {
-    "id": "potato-bag",
-    "category": "vegetable",
-    "name": { "en": "Potato (in bags)", "es": "Patata (en saco)", "de": "Kartoffel (im Sack)" },
-    "scientificName": "Solanum tuberosum",
-    "image": "potato-bag.jpg",
-    "summary": {
-      "en": "Grown in bags — perfect for small or sandy plots.",
-      "es": "Cultivada en saco: perfecta para parcelas pequeñas o arenosas.",
-      "de": "Im Sack gezogen — ideal für kleine oder sandige Beete."
-    },
-    "tags": ["root", "container"],
+    "tags": ["herb", "pollinator"],
     "data": {
       "sun": "full_sun",
       "water": "medium",
-      "sowMonths": [3, 4, 5],
-      "harvestMonths": [7, 8, 9],
-      "sowDepthCm": 12,
-      "spacingCm": 30,
-      "soil": "loose",
+      "sowMonths": [4, 5, 6, 7],
+      "transplantMonths": [5, 6, 7],
+      "harvestMonths": [6, 7, 8, 9, 10],
+      "harvestAfterTransplant": {
+        "en": "Leaves can be cut after 3–5 weeks; flowers and seeds take longer.",
+        "es": "Puedes cortar hojas tras 3–5 semanas; flores y semillas tardan más.",
+        "de": "Blätter nach 3–5 Wochen schneiden; Blüten und Samen brauchen länger."
+      },
+      "sowDepthCm": 1,
+      "spacingCm": 25,
+      "soil": "well_drained",
       "difficulty": "easy",
-      "companions": ["bean", "marigold"],
+      "companions": ["cucumber", "lettuce", "onion"],
       "tips": {
-        "en": "Add soil as the shoots grow (earthing up). Water steadily but never waterlogged.",
-        "es": "Añade tierra a medida que crecen los brotes (aporcado). Riega constante pero sin encharcar.",
-        "de": "Erde nachfüllen, wenn die Triebe wachsen (Anhäufeln). Gleichmäßig gießen, aber nicht zu nass."
+        "en": "Sow directly when possible; dill dislikes root disturbance and bolts faster in drought.",
+        "es": "Siembra directo cuando sea posible; al eneldo no le gusta que molesten sus raíces y espiga antes con sequía.",
+        "de": "Möglichst direkt säen; Dill mag keine Wurzelstörung und schießt bei Trockenheit schneller."
+      },
+      "whereToPlant": {
+        "en": "Choose a sunny, open spot with loose soil. A little afternoon shade is fine during hot Hamburg days.",
+        "es": "Elige un lugar soleado y abierto con tierra suelta. Algo de sombra por la tarde va bien en días calurosos de Hamburgo.",
+        "de": "Sonnigen, offenen Platz mit lockerem Boden wählen. Etwas Nachmittagsschatten ist an heißen Hamburger Tagen gut."
+      },
+      "transplantHow": {
+        "en": "Transplant gently because dill dislikes root damage. Keep the root ball whole, plant at pot depth, leave about 25 cm, and water slowly.",
+        "es": "Trasplanta con cuidado porque al eneldo no le gusta que dañen sus raíces. Mantén el cepellón entero, planta a la profundidad de la maceta, deja unos 25 cm y riega despacio.",
+        "de": "Vorsichtig umpflanzen, da Dill Wurzelschäden schlecht verträgt. Ballen ganz lassen, in Topftiefe setzen, etwa 25 cm Abstand lassen und langsam angießen."
+      },
+      "aftercare": {
+        "en": "Keep evenly moist but not wet. Do not move it again once planted. If it starts flowering, keep some flowers for pollinators.",
+        "es": "Mantén humedad constante sin encharcar. No lo muevas otra vez después de plantarlo. Si florece, deja algunas flores para polinizadores.",
+        "de": "Gleichmäßig feucht, aber nicht nass halten. Nach dem Pflanzen nicht erneut umsetzen. Bei Blüte einige Blüten für Bestäuber stehen lassen."
+      },
+      "harvestCue": {
+        "en": "Cut small side stems when the plant is upright and growing; avoid cutting the central stem too low.",
+        "es": "Corta tallos laterales pequeños cuando la planta esté erguida y creciendo; evita cortar el tallo central demasiado bajo.",
+        "de": "Kleine Seitentriebe schneiden, wenn die Pflanze aufrecht wächst; Haupttrieb nicht zu tief abschneiden."
+      }
+    }
+  },
+  {
+    "id": "bell-pepper-blockpaprika",
+    "category": "vegetable",
+    "name": { "en": "Bell pepper (mixed colors)", "es": "Pimiento morrón de colores", "de": "Blockpaprika bunt" },
+    "scientificName": "Capsicum annuum",
+    "image": "bell-pepper-blockpaprika.jpg",
+    "summary": {
+      "en": "Sweet blocky pepper that needs warmth, sun, and steady watering.",
+      "es": "Pimiento dulce y ancho que necesita calor, sol y riego constante.",
+      "de": "Süßer blockiger Paprika, der Wärme, Sonne und gleichmäßiges Gießen braucht."
+    },
+    "tags": ["pepper", "warmth"],
+    "data": {
+      "sun": "full_sun",
+      "water": "medium",
+      "sowMonths": [2, 3, 4, 5],
+      "transplantMonths": [5, 6],
+      "harvestMonths": [7, 8, 9, 10],
+      "harvestAfterTransplant": {
+        "en": "Usually 8–12 weeks after transplanting, depending on warmth and fruit color.",
+        "es": "Normalmente 8–12 semanas tras el trasplante, según calor y color del fruto.",
+        "de": "Meist 8–12 Wochen nach dem Umpflanzen, abhängig von Wärme und Fruchtfarbe."
+      },
+      "sowDepthCm": 1,
+      "spacingCm": 45,
+      "soil": "rich",
+      "difficulty": "medium",
+      "companions": ["parsley", "basil", "tomato"],
+      "tips": {
+        "en": "Plant outside only after cold nights are over; feed lightly once flowers appear.",
+        "es": "Planta fuera solo cuando pasen las noches frías; abona suavemente cuando aparezcan flores.",
+        "de": "Erst nach kalten Nächten auspflanzen; leicht düngen, sobald Blüten erscheinen."
+      },
+      "whereToPlant": {
+        "en": "Needs the warmest, sunniest, most sheltered spot available. In Hamburg, a wall, balcony edge, or south-facing bed helps a lot.",
+        "es": "Necesita el sitio más cálido, soleado y protegido posible. En Hamburgo ayuda mucho una pared, borde de balcón o bancal orientado al sur.",
+        "de": "Braucht den wärmsten, sonnigsten und geschütztesten Platz. In Hamburg helfen Wandnähe, Balkonrand oder Südlage sehr."
+      },
+      "transplantHow": {
+        "en": "Plant after cold nights, ideally in the evening. Keep the root ball intact, plant at pot depth, leave about 45 cm, water deeply, and add a small stake if exposed.",
+        "es": "Planta cuando ya no haya noches frías, idealmente por la tarde. Mantén el cepellón entero, planta a la profundidad de la maceta, deja unos 45 cm, riega profundo y pon un tutor pequeño si está expuesto.",
+        "de": "Nach kalten Nächten auspflanzen, am besten abends. Ballen intakt lassen, in Topftiefe setzen, etwa 45 cm Abstand lassen, gründlich gießen und bei Wind leicht stützen."
+      },
+      "aftercare": {
+        "en": "Keep water steady: dry-wet swings stress peppers. Feed lightly every 2–3 weeks once flowers appear and protect from strong wind.",
+        "es": "Riego constante: los cambios seco-mojado estresan al pimiento. Abona suave cada 2–3 semanas cuando aparezcan flores y protégelo del viento fuerte.",
+        "de": "Gleichmäßig gießen: trocken-nass Wechsel stressen Paprika. Ab Blüte alle 2–3 Wochen leicht düngen und vor starkem Wind schützen."
+      },
+      "harvestCue": {
+        "en": "Harvest green when full-sized, or wait longer for yellow, orange, or red color.",
+        "es": "Cosecha verde cuando tenga tamaño completo, o espera más para color amarillo, naranja o rojo.",
+        "de": "Grün ernten, wenn die Frucht ausgewachsen ist, oder länger auf gelbe, orange oder rote Farbe warten."
+      }
+    }
+  },
+  {
+    "id": "pointed-pepper",
+    "category": "vegetable",
+    "name": { "en": "Pointed pepper", "es": "Pimiento italiano", "de": "Spitzpaprika" },
+    "scientificName": "Capsicum annuum",
+    "image": "pointed-pepper.jpg",
+    "summary": {
+      "en": "Long sweet pepper, harvested green or red when warm enough.",
+      "es": "Pimiento dulce alargado, cosechable verde o rojo si tiene suficiente calor.",
+      "de": "Langer süßer Paprika, grün oder rot geerntet, wenn es warm genug ist."
+    },
+    "tags": ["pepper", "warmth"],
+    "data": {
+      "sun": "full_sun",
+      "water": "medium",
+      "sowMonths": [2, 3, 4, 5],
+      "transplantMonths": [5, 6],
+      "harvestMonths": [7, 8, 9, 10],
+      "harvestAfterTransplant": {
+        "en": "Usually 8–11 weeks after transplanting in a warm, sheltered place.",
+        "es": "Normalmente 8–11 semanas tras el trasplante en un lugar cálido y protegido.",
+        "de": "Meist 8–11 Wochen nach dem Umpflanzen an einem warmen, geschützten Platz."
+      },
+      "sowDepthCm": 1,
+      "spacingCm": 45,
+      "soil": "rich",
+      "difficulty": "medium",
+      "companions": ["parsley", "basil", "marigold"],
+      "tips": {
+        "en": "Use a warm, sheltered spot and avoid letting the pot dry out completely.",
+        "es": "Usa un lugar cálido y protegido, y evita que la maceta se seque del todo.",
+        "de": "Warm und geschützt stellen und den Topf nicht völlig austrocknen lassen."
+      },
+      "whereToPlant": {
+        "en": "Full sun and shelter are key. A warm patio, raised bed edge, or place near a bright wall is better than an open windy bed.",
+        "es": "Sol pleno y protección son clave. Un patio cálido, borde de bancal elevado o sitio junto a una pared luminosa es mejor que un bancal abierto con viento.",
+        "de": "Volle Sonne und Schutz sind entscheidend. Warme Terrasse, Hochbeetrand oder helle Wandnähe ist besser als ein offenes windiges Beet."
+      },
+      "transplantHow": {
+        "en": "Plant at the same depth as the pot, keep 45 cm spacing, water deeply, and mulch lightly once the soil is warm.",
+        "es": "Planta a la misma profundidad que la maceta, deja 45 cm, riega profundo y acolcha ligeramente cuando la tierra esté caliente.",
+        "de": "In Topftiefe pflanzen, 45 cm Abstand lassen, gründlich angießen und leicht mulchen, sobald der Boden warm ist."
+      },
+      "aftercare": {
+        "en": "Water at the base and keep moisture even. A small stake helps if the plant leans when fruits grow.",
+        "es": "Riega en la base y mantén humedad regular. Un tutor pequeño ayuda si la planta se inclina cuando crezcan los frutos.",
+        "de": "An der Basis gießen und Feuchtigkeit gleichmäßig halten. Ein kleiner Stab hilft, wenn die Pflanze mit Früchten kippt."
+      },
+      "harvestCue": {
+        "en": "Pick green for a fresher taste or wait until red for sweeter fruit.",
+        "es": "Cosecha verde para sabor más fresco o espera a rojo para frutos más dulces.",
+        "de": "Grün für frischeren Geschmack ernten oder bis Rot warten für süßere Früchte."
+      }
+    }
+  },
+  {
+    "id": "pot-paprika-belinda",
+    "category": "vegetable",
+    "name": { "en": "Pot pepper 'Belinda Red F1'", "es": "Pimiento de maceta 'Belinda Rojo F1'", "de": "Topf-Paprika 'Belinda Rot F1'" },
+    "scientificName": "Capsicum annuum",
+    "image": "pot-paprika-belinda.jpg",
+    "summary": {
+      "en": "Compact red pepper variety suited to containers.",
+      "es": "Variedad compacta de pimiento rojo adecuada para macetas.",
+      "de": "Kompakte rote Paprikasorte, gut für Töpfe geeignet."
+    },
+    "tags": ["pepper", "container"],
+    "data": {
+      "sun": "full_sun",
+      "water": "medium",
+      "sowMonths": [2, 3, 4, 5],
+      "transplantMonths": [5, 6],
+      "harvestMonths": [7, 8, 9, 10],
+      "harvestAfterTransplant": {
+        "en": "Usually 7–10 weeks after transplanting; containers warm faster but dry faster.",
+        "es": "Normalmente 7–10 semanas tras el trasplante; las macetas calientan antes pero se secan antes.",
+        "de": "Meist 7–10 Wochen nach dem Umpflanzen; Töpfe wärmen schneller auf, trocknen aber schneller aus."
+      },
+      "sowDepthCm": 1,
+      "spacingCm": 35,
+      "soil": "rich",
+      "difficulty": "medium",
+      "companions": ["parsley", "basil"],
+      "tips": {
+        "en": "Choose a large pot with drainage, water steadily, and protect from cold wind.",
+        "es": "Elige una maceta grande con drenaje, riega constante y protégelo del viento frío.",
+        "de": "Großen Topf mit Abfluss wählen, gleichmäßig gießen und vor kaltem Wind schützen."
+      },
+      "whereToPlant": {
+        "en": "Best in a pot or container in full sun, protected from wind and cold rain. Use at least 10–15 liters of soil if possible.",
+        "es": "Mejor en maceta o contenedor a pleno sol, protegido del viento y lluvia fría. Usa al menos 10–15 litros de tierra si puedes.",
+        "de": "Am besten im Topf oder Kübel in voller Sonne, geschützt vor Wind und kaltem Regen. Wenn möglich 10–15 Liter Erde verwenden."
+      },
+      "transplantHow": {
+        "en": "Move it into a larger pot with drainage holes. Plant at pot depth, firm gently, water until water drains out, and keep it sheltered for two days.",
+        "es": "Pásalo a una maceta mayor con agujeros de drenaje. Planta a profundidad de maceta, aprieta suave, riega hasta que salga agua por abajo y mantenlo protegido dos días.",
+        "de": "In einen größeren Topf mit Abzugslöchern setzen. In Topftiefe pflanzen, leicht andrücken, gießen bis Wasser abläuft und zwei Tage geschützt stellen."
+      },
+      "aftercare": {
+        "en": "Containers need frequent checks. Water when the top 2 cm are dry and feed lightly once fruit starts forming.",
+        "es": "Las macetas necesitan revisión frecuente. Riega cuando los 2 cm superiores estén secos y abona suave cuando empiecen los frutos.",
+        "de": "Töpfe häufig prüfen. Gießen, wenn die oberen 2 cm trocken sind, und ab Fruchtansatz leicht düngen."
+      },
+      "harvestCue": {
+        "en": "Harvest when fruits are firm and red, or earlier if the plant carries too many small fruits.",
+        "es": "Cosecha cuando los frutos estén firmes y rojos, o antes si la planta carga demasiados frutos pequeños.",
+        "de": "Ernten, wenn die Früchte fest und rot sind, oder früher, wenn die Pflanze zu viele kleine Früchte trägt."
+      }
+    }
+  },
+  {
+    "id": "tomato",
+    "category": "vegetable",
+    "name": { "en": "Tomato", "es": "Tomate", "de": "Tomate" },
+    "scientificName": "Solanum lycopersicum",
+    "image": "tomato.jpg",
+    "summary": {
+      "en": "Warm-season crop that rewards sun, support, and steady watering.",
+      "es": "Cultivo de temporada cálida que agradece sol, soporte y riego constante.",
+      "de": "Wärmeliebende Pflanze, die Sonne, Stütze und gleichmäßiges Gießen braucht."
+    },
+    "tags": ["fruiting", "support"],
+    "data": {
+      "sun": "full_sun",
+      "water": "medium",
+      "sowMonths": [2, 3, 4, 5],
+      "transplantMonths": [5, 6],
+      "harvestMonths": [7, 8, 9, 10],
+      "harvestAfterTransplant": {
+        "en": "Usually 6–10 weeks after transplanting, depending on variety and summer warmth.",
+        "es": "Normalmente 6–10 semanas tras el trasplante, según variedad y calor del verano.",
+        "de": "Meist 6–10 Wochen nach dem Umpflanzen, je nach Sorte und Sommerwärme."
+      },
+      "sowDepthCm": 1,
+      "spacingCm": 50,
+      "soil": "rich",
+      "difficulty": "medium",
+      "companions": ["basil", "parsley", "marigold"],
+      "tips": {
+        "en": "Plant deep, add a stake early, water the soil not the leaves, and remove yellowing lower leaves.",
+        "es": "Planta profundo, pon tutor pronto, riega el suelo y no las hojas, y retira hojas bajas amarillas.",
+        "de": "Tief pflanzen, früh stützen, den Boden statt der Blätter gießen und gelbe untere Blätter entfernen."
+      },
+      "whereToPlant": {
+        "en": "Full sun, warmth, and airflow. In Hamburg, a rain-sheltered spot is ideal because wet leaves increase disease risk.",
+        "es": "Sol pleno, calor y aire. En Hamburgo, un sitio protegido de lluvia es ideal porque las hojas mojadas aumentan el riesgo de enfermedades.",
+        "de": "Volle Sonne, Wärme und Luftbewegung. In Hamburg ist Regenschutz ideal, weil nasse Blätter Krankheiten fördern."
+      },
+      "transplantHow": {
+        "en": "Plant deeper than the pot, burying part of the stem so new roots form. Leave about 50 cm, add a stake now, water deeply, and keep leaves off the soil.",
+        "es": "Planta más profundo que la maceta, enterrando parte del tallo para que forme raíces nuevas. Deja unos 50 cm, pon tutor ahora, riega profundo y evita que las hojas toquen el suelo.",
+        "de": "Tiefer als im Topf setzen und einen Teil des Stängels eingraben, damit neue Wurzeln entstehen. Etwa 50 cm Abstand lassen, jetzt stützen, gründlich gießen und Blätter vom Boden fernhalten."
+      },
+      "aftercare": {
+        "en": "Water at the base, not over the leaves. Tie the plant as it grows, remove yellow lower leaves, and keep the soil evenly moist.",
+        "es": "Riega en la base, no sobre las hojas. Ata la planta al crecer, retira hojas bajas amarillas y mantén humedad constante.",
+        "de": "An der Basis gießen, nicht über die Blätter. Beim Wachsen anbinden, gelbe untere Blätter entfernen und gleichmäßig feucht halten."
+      },
+      "harvestCue": {
+        "en": "Pick when fruits are fully colored and slightly soft. If autumn turns cold, finish ripening indoors.",
+        "es": "Cosecha cuando los frutos tengan color completo y estén ligeramente blandos. Si llega frío en otoño, termina la maduración dentro.",
+        "de": "Ernten, wenn die Früchte voll gefärbt und leicht weich sind. Bei Herbstkälte drinnen nachreifen lassen."
       }
     }
   }

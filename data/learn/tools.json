@@ -1,19 +1,266 @@
 [
   {
-    "id": "hand-trowel",
+    "id": "axe",
     "category": "tool",
-    "name": { "en": "Hand trowel", "es": "Desplantador", "de": "Pflanzkelle" },
-    "image": "hand-trowel.jpg",
-    "summary": {
-      "en": "Small hand tool for digging holes and transplanting.",
-      "es": "Herramienta de mano para hacer hoyos y trasplantar.",
-      "de": "Kleines Handwerkzeug zum Löcher graben und Umpflanzen."
+    "name": {
+      "en": "Axe",
+      "es": "Hacha",
+      "de": "Axt"
     },
-    "tags": ["hand", "essential"],
+    "image": "axe.jpg",
+    "summary": {
+      "en": "Heavy cutting tool for splitting small wood and rough garden jobs.",
+      "es": "Herramienta pesada para partir madera pequeña y trabajos duros del jardín.",
+      "de": "Schweres Werkzeug zum Spalten von kleinem Holz und für grobe Gartenarbeiten."
+    },
+    "tags": [
+      "cutting",
+      "wood"
+    ],
     "data": {
-      "use": { "en": "Digging small holes, transplanting seedlings, weeding.", "es": "Hacer hoyos pequeños, trasplantar plántulas, desherbar.", "de": "Kleine Löcher graben, Setzlinge umpflanzen, jäten." },
-      "whenToUse": { "en": "All season — the everyday tool.", "es": "Toda la temporada: la herramienta del día a día.", "de": "Die ganze Saison — das Alltagswerkzeug." },
-      "care": { "en": "Wipe clean and dry after use to prevent rust.", "es": "Limpia y seca tras usar para evitar óxido.", "de": "Nach Gebrauch abwischen und trocknen, um Rost zu vermeiden." },
+      "use": {
+        "en": "Splitting branches, preparing stakes, and rough cutting.",
+        "es": "Partir ramas, preparar tutores y hacer cortes fuertes.",
+        "de": "Äste spalten, Stäbe vorbereiten und grob schneiden."
+      },
+      "whenToUse": {
+        "en": "Only when hand saws are too slow and there is enough safe space.",
+        "es": "Solo cuando las sierras manuales sean lentas y haya espacio seguro.",
+        "de": "Nur wenn Handsägen zu langsam sind und genug sicherer Platz vorhanden ist."
+      },
+      "care": {
+        "en": "Keep the edge sharp, dry the head, and store it covered.",
+        "es": "Mantén el filo afilado, seca la cabeza y guárdala cubierta.",
+        "de": "Schneide scharf halten, Kopf trocknen und abgedeckt lagern."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "bow-saw",
+    "category": "tool",
+    "name": {
+      "en": "Bow saw",
+      "es": "Sierra de arco",
+      "de": "Bügelsäge"
+    },
+    "image": "bow-saw.jpg",
+    "summary": {
+      "en": "Large hand saw for cutting thicker branches and rough timber.",
+      "es": "Sierra manual grande para cortar ramas gruesas y madera basta.",
+      "de": "Große Handsäge für dickere Äste und grobes Holz."
+    },
+    "tags": [
+      "cutting",
+      "pruning"
+    ],
+    "data": {
+      "use": {
+        "en": "Cutting branches, old stakes, and rough pieces of wood.",
+        "es": "Cortar ramas, tutores viejos y piezas de madera.",
+        "de": "Äste, alte Stäbe und grobe Holzstücke schneiden."
+      },
+      "whenToUse": {
+        "en": "For branches that are too thick for loppers.",
+        "es": "Para ramas demasiado gruesas para las tijeras de dos manos.",
+        "de": "Für Äste, die zu dick für eine Astschere sind."
+      },
+      "care": {
+        "en": "Clean sap from the blade and replace it when it bends or dulls.",
+        "es": "Limpia la savia de la hoja y cámbiala si se dobla o pierde filo.",
+        "de": "Harz von der Klinge reinigen und sie bei Verbiegen oder Stumpfheit ersetzen."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "broom",
+    "category": "tool",
+    "name": {
+      "en": "Broom",
+      "es": "Escoba",
+      "de": "Besen"
+    },
+    "image": "broom.jpg",
+    "summary": {
+      "en": "Simple cleaning tool for paths, storage rooms, and shared areas.",
+      "es": "Herramienta sencilla para limpiar caminos, almacenes y zonas compartidas.",
+      "de": "Einfaches Reinigungswerkzeug für Wege, Lagerräume und gemeinsame Flächen."
+    },
+    "tags": [
+      "cleaning",
+      "maintenance"
+    ],
+    "data": {
+      "use": {
+        "en": "Sweeping soil, leaves, and light debris from hard surfaces.",
+        "es": "Barrer tierra, hojas y restos ligeros de superficies duras.",
+        "de": "Erde, Laub und leichte Reste von festen Flächen fegen."
+      },
+      "whenToUse": {
+        "en": "After work sessions and before storing tools.",
+        "es": "Después de las sesiones de trabajo y antes de guardar herramientas.",
+        "de": "Nach Arbeitseinsätzen und vor dem Einräumen der Werkzeuge."
+      },
+      "care": {
+        "en": "Shake it out and store it with the bristles off the wet floor.",
+        "es": "Sacúdela y guárdala con las cerdas lejos del suelo mojado.",
+        "de": "Ausschütteln und mit den Borsten weg vom nassen Boden lagern."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "charcoal-grill",
+    "category": "tool",
+    "name": {
+      "en": "Charcoal grill",
+      "es": "Parrilla de carbón",
+      "de": "Holzkohlegrill"
+    },
+    "image": "charcoal-grill.jpg",
+    "summary": {
+      "en": "Shared outdoor grill for cooking and community garden days.",
+      "es": "Parrilla exterior compartida para cocinar y pasar días de jardín en comunidad.",
+      "de": "Gemeinsamer Außengrill zum Kochen und für Gartentage in der Gemeinschaft."
+    },
+    "tags": [
+      "community",
+      "outdoor"
+    ],
+    "data": {
+      "use": {
+        "en": "Cooking outside and turning work sessions into shared meals.",
+        "es": "Cocinar fuera y convertir jornadas de trabajo en comidas compartidas.",
+        "de": "Draußen kochen und Arbeitseinsätze zu gemeinsamen Mahlzeiten machen."
+      },
+      "whenToUse": {
+        "en": "On dry days, away from plants, dry leaves, and wooden structures.",
+        "es": "En días secos, lejos de plantas, hojas secas y estructuras de madera.",
+        "de": "An trockenen Tagen, fern von Pflanzen, trockenem Laub und Holz."
+      },
+      "care": {
+        "en": "Let ashes cool completely, empty them safely, and clean the grate.",
+        "es": "Deja enfriar la ceniza por completo, retírala con seguridad y limpia la rejilla.",
+        "de": "Asche vollständig abkühlen lassen, sicher entsorgen und den Rost reinigen."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "cultivator",
+    "category": "tool",
+    "name": {
+      "en": "Cultivator",
+      "es": "Cultivador",
+      "de": "Grubber"
+    },
+    "image": "cultivator.jpg",
+    "summary": {
+      "en": "Clawed tool for loosening soil and pulling out shallow weeds.",
+      "es": "Herramienta de garras para soltar la tierra y retirar hierbas superficiales.",
+      "de": "Krallenwerkzeug zum Lockern des Bodens und Entfernen flacher Unkräuter."
+    },
+    "tags": [
+      "soil",
+      "weeding"
+    ],
+    "data": {
+      "use": {
+        "en": "Loosening compacted topsoil and aerating between rows.",
+        "es": "Soltar la capa superior compactada y airear entre líneas.",
+        "de": "Verdichtete obere Erde lockern und zwischen Reihen belüften."
+      },
+      "whenToUse": {
+        "en": "Before planting or when the soil surface has crusted.",
+        "es": "Antes de sembrar o cuando la superficie del suelo se haya endurecido.",
+        "de": "Vor dem Pflanzen oder wenn die Bodenoberfläche verkrustet ist."
+      },
+      "care": {
+        "en": "Remove soil from the claws and dry the metal after use.",
+        "es": "Retira la tierra de las garras y seca el metal después de usarlo.",
+        "de": "Erde von den Zinken entfernen und Metall nach Gebrauch trocknen."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "dustpan-brush",
+    "category": "tool",
+    "name": {
+      "en": "Dustpan and brush",
+      "es": "Recogedor y cepillo",
+      "de": "Kehrset"
+    },
+    "image": "dustpan-brush.jpg",
+    "summary": {
+      "en": "Small cleaning set for quick tidying in storage and work areas.",
+      "es": "Set pequeño de limpieza para ordenar rápido zonas de trabajo y almacén.",
+      "de": "Kleines Reinigungsset zum schnellen Aufräumen von Lager- und Arbeitsbereichen."
+    },
+    "tags": [
+      "cleaning",
+      "small"
+    ],
+    "data": {
+      "use": {
+        "en": "Collecting spilled soil, seeds, dry leaves, and small debris.",
+        "es": "Recoger tierra caída, semillas, hojas secas y restos pequeños.",
+        "de": "Verschüttete Erde, Samen, trockenes Laub und kleine Reste aufnehmen."
+      },
+      "whenToUse": {
+        "en": "After potting, seed sorting, or indoor tool cleaning.",
+        "es": "Después de plantar en macetas, ordenar semillas o limpiar herramientas dentro.",
+        "de": "Nach dem Topfen, Sortieren von Samen oder Reinigen von Werkzeugen drinnen."
+      },
+      "care": {
+        "en": "Tap out soil and keep the brush dry.",
+        "es": "Sacude la tierra y mantén el cepillo seco.",
+        "de": "Erde ausklopfen und die Bürste trocken halten."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "garden-armchair",
+    "category": "tool",
+    "name": {
+      "en": "Garden armchair",
+      "es": "Silla de jardín con brazos",
+      "de": "Gartenstuhl mit Armlehnen"
+    },
+    "image": "garden-armchair.jpg",
+    "summary": {
+      "en": "Comfortable outdoor chair for resting, observing, and shared breaks.",
+      "es": "Silla exterior cómoda para descansar, observar y hacer pausas juntos.",
+      "de": "Bequemer Außenstuhl zum Ausruhen, Beobachten und für gemeinsame Pausen."
+    },
+    "tags": [
+      "furniture",
+      "rest"
+    ],
+    "data": {
+      "use": {
+        "en": "Resting between tasks and making the garden welcoming.",
+        "es": "Descansar entre tareas y hacer el jardín más acogedor.",
+        "de": "Zwischen Aufgaben ausruhen und den Garten einladender machen."
+      },
+      "whenToUse": {
+        "en": "During breaks, planning, and quiet observation.",
+        "es": "Durante pausas, planificación y observación tranquila.",
+        "de": "In Pausen, bei Planung und ruhiger Beobachtung."
+      },
+      "care": {
+        "en": "Wipe clean and store or cover it during harsh weather.",
+        "es": "Límpiala y cúbrela o guárdala con mal tiempo.",
+        "de": "Abwischen und bei schlechtem Wetter abdecken oder lagern."
+      },
       "ownOrRent": "own",
       "powered": false
     }
@@ -21,39 +268,571 @@
   {
     "id": "garden-rake",
     "category": "tool",
-    "name": { "en": "Garden rake", "es": "Rastrillo", "de": "Gartenrechen" },
+    "name": {
+      "en": "Garden rake",
+      "es": "Rastrillo de jardín",
+      "de": "Gartenrechen"
+    },
     "image": "garden-rake.jpg",
     "summary": {
-      "en": "Levels soil and clears leaves and debris.",
-      "es": "Nivela el suelo y retira hojas y restos.",
-      "de": "Ebnet den Boden und entfernt Laub und Reste."
+      "en": "Firm rake for levelling soil, breaking clods, and shaping beds.",
+      "es": "Rastrillo firme para nivelar suelo, romper terrones y dar forma a bancales.",
+      "de": "Stabiler Rechen zum Ebnen von Erde, Zerkleinern von Klumpen und Formen von Beeten."
     },
-    "tags": ["hand", "essential"],
+    "tags": [
+      "soil",
+      "essential"
+    ],
     "data": {
-      "use": { "en": "Levelling beds, breaking clods, clearing debris.", "es": "Nivelar bancales, romper terrones, retirar restos.", "de": "Beete ebnen, Erdklumpen zerkleinern, Reste entfernen." },
-      "whenToUse": { "en": "Bed preparation and autumn clean-up.", "es": "Preparación de bancales y limpieza de otoño.", "de": "Beetvorbereitung und Herbstaufräumen." },
-      "care": { "en": "Knock off soil and store dry.", "es": "Quita la tierra y guárdalo seco.", "de": "Erde abklopfen und trocken lagern." },
+      "use": {
+        "en": "Levelling beds, breaking clods, clearing debris, and preparing seed rows.",
+        "es": "Nivelar bancales, romper terrones, retirar restos y preparar líneas de siembra.",
+        "de": "Beete ebnen, Erdklumpen zerkleinern, Reste entfernen und Saatreihen vorbereiten."
+      },
+      "whenToUse": {
+        "en": "Before sowing, after digging, and during bed preparation.",
+        "es": "Antes de sembrar, después de cavar y durante la preparación de bancales.",
+        "de": "Vor der Aussaat, nach dem Graben und bei der Beetvorbereitung."
+      },
+      "care": {
+        "en": "Knock off soil, check the teeth, and store it dry.",
+        "es": "Quita la tierra, revisa los dientes y guárdalo seco.",
+        "de": "Erde abklopfen, Zinken prüfen und trocken lagern."
+      },
       "ownOrRent": "own",
       "powered": false
     }
   },
   {
-    "id": "hedge-trimmer",
+    "id": "glass-garden-table",
     "category": "tool",
-    "name": { "en": "Hedge trimmer", "es": "Cortasetos", "de": "Heckenschere" },
-    "image": "hedge-trimmer.jpg",
-    "summary": {
-      "en": "Powered shears for shaping hedges and shrubs.",
-      "es": "Tijera motorizada para dar forma a setos y arbustos.",
-      "de": "Motorschere zum Formen von Hecken und Sträuchern."
+    "name": {
+      "en": "Glass garden table",
+      "es": "Mesa de jardín de vidrio",
+      "de": "Gartentisch aus Glas"
     },
-    "tags": ["powered", "pruning"],
+    "image": "glass-garden-table.jpg",
+    "summary": {
+      "en": "Outdoor table for planning, sorting materials, and shared breaks.",
+      "es": "Mesa exterior para planificar, ordenar materiales y hacer pausas compartidas.",
+      "de": "Außentisch zum Planen, Sortieren von Material und für gemeinsame Pausen."
+    },
+    "tags": [
+      "furniture",
+      "planning"
+    ],
     "data": {
-      "use": { "en": "Trimming and shaping hedges and shrubs.", "es": "Recortar y dar forma a setos y arbustos.", "de": "Hecken und Sträucher schneiden und formen." },
-      "whenToUse": { "en": "Late spring and late summer; avoid nesting season.", "es": "Final de primavera y final de verano; evita época de nidos.", "de": "Spätfrühling und Spätsommer; Brutzeit meiden." },
-      "care": { "en": "Clean and oil the blades after each use.", "es": "Limpia y engrasa las cuchillas tras cada uso.", "de": "Klingen nach jedem Gebrauch reinigen und ölen." },
+      "use": {
+        "en": "Holding tools, seed trays, notes, food, and drinks during garden days.",
+        "es": "Apoyar herramientas, bandejas, notas, comida y bebidas durante jornadas de jardín.",
+        "de": "Werkzeuge, Saatschalen, Notizen, Essen und Getränke bei Gartentagen abstellen."
+      },
+      "whenToUse": {
+        "en": "Whenever the team needs a clean, flat work surface.",
+        "es": "Cuando el equipo necesite una superficie limpia y plana.",
+        "de": "Wenn das Team eine saubere, ebene Arbeitsfläche braucht."
+      },
+      "care": {
+        "en": "Clean the glass, check stability, and protect it in storms.",
+        "es": "Limpia el vidrio, revisa la estabilidad y protégela en tormentas.",
+        "de": "Glas reinigen, Stabilität prüfen und bei Sturm schützen."
+      },
       "ownOrRent": "own",
-      "powered": true
+      "powered": false
+    }
+  },
+  {
+    "id": "hand-hoe-cultivator",
+    "category": "tool",
+    "name": {
+      "en": "Hand hoe cultivator",
+      "es": "Azadilla cultivadora de mano",
+      "de": "Handhacke mit Grubber"
+    },
+    "image": "hand-hoe-cultivator.jpg",
+    "summary": {
+      "en": "Small two-sided hand tool for weeding, loosening soil, and detail work.",
+      "es": "Herramienta de mano de dos lados para desherbar, soltar tierra y trabajar detalles.",
+      "de": "Kleines zweiseitiges Handwerkzeug zum Jäten, Lockern und für Detailarbeit."
+    },
+    "tags": [
+      "hand",
+      "weeding"
+    ],
+    "data": {
+      "use": {
+        "en": "Working around seedlings, loosening small patches, and removing weeds.",
+        "es": "Trabajar alrededor de plántulas, soltar zonas pequeñas y quitar hierbas.",
+        "de": "Um Setzlinge arbeiten, kleine Flächen lockern und Unkraut entfernen."
+      },
+      "whenToUse": {
+        "en": "For close work where a long-handled tool is too rough.",
+        "es": "Para trabajo cercano donde una herramienta larga es demasiado brusca.",
+        "de": "Für enge Arbeit, bei der ein langes Werkzeug zu grob ist."
+      },
+      "care": {
+        "en": "Rinse soil off the head and dry it before storage.",
+        "es": "Aclara la tierra de la cabeza y sécala antes de guardarla.",
+        "de": "Erde vom Kopf abspülen und vor dem Lagern trocknen."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "hand-trowel",
+    "category": "tool",
+    "name": {
+      "en": "Hand trowel",
+      "es": "Pala de mano",
+      "de": "Pflanzkelle"
+    },
+    "image": "hand-trowel.jpg",
+    "summary": {
+      "en": "Small hand tool for digging holes, transplanting, and working in pots.",
+      "es": "Herramienta de mano para hacer hoyos, trasplantar y trabajar en macetas.",
+      "de": "Kleines Handwerkzeug zum Löcher graben, Umpflanzen und Arbeiten in Töpfen."
+    },
+    "tags": [
+      "hand",
+      "essential"
+    ],
+    "data": {
+      "use": {
+        "en": "Digging small holes, transplanting seedlings, filling pots, and weeding.",
+        "es": "Hacer hoyos pequeños, trasplantar plántulas, llenar macetas y desherbar.",
+        "de": "Kleine Löcher graben, Setzlinge umpflanzen, Töpfe füllen und jäten."
+      },
+      "whenToUse": {
+        "en": "All season; it is one of the everyday tools.",
+        "es": "Toda la temporada; es una de las herramientas del día a día.",
+        "de": "Die ganze Saison; eines der Alltagswerkzeuge."
+      },
+      "care": {
+        "en": "Wipe clean and dry after use to prevent rust.",
+        "es": "Limpia y seca tras usar para evitar óxido.",
+        "de": "Nach Gebrauch abwischen und trocknen, um Rost zu vermeiden."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "hoe",
+    "category": "tool",
+    "name": {
+      "en": "Hoe",
+      "es": "Azada",
+      "de": "Hacke"
+    },
+    "image": "hoe.jpg",
+    "summary": {
+      "en": "Long-handled tool for chopping weeds and opening the soil surface.",
+      "es": "Herramienta de mango largo para cortar hierbas y abrir la superficie del suelo.",
+      "de": "Langstieliges Werkzeug zum Hacken von Unkraut und Öffnen der Bodenoberfläche."
+    },
+    "tags": [
+      "soil",
+      "weeding"
+    ],
+    "data": {
+      "use": {
+        "en": "Chopping weeds, loosening topsoil, and shaping shallow lines.",
+        "es": "Cortar hierbas, soltar la capa superior y marcar líneas poco profundas.",
+        "de": "Unkraut hacken, Oberboden lockern und flache Linien ziehen."
+      },
+      "whenToUse": {
+        "en": "When weeds are small and the soil surface is workable.",
+        "es": "Cuando las hierbas son pequeñas y la superficie se puede trabajar.",
+        "de": "Wenn Unkraut klein ist und die Bodenoberfläche bearbeitbar ist."
+      },
+      "care": {
+        "en": "Keep the blade clean and sharpen it when it drags instead of cuts.",
+        "es": "Mantén la hoja limpia y afílala si arrastra en vez de cortar.",
+        "de": "Klinge sauber halten und schärfen, wenn sie zieht statt schneidet."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "leaf-rake",
+    "category": "tool",
+    "name": {
+      "en": "Leaf rake",
+      "es": "Rastrillo de hojas",
+      "de": "Laubrechen"
+    },
+    "image": "leaf-rake.jpg",
+    "summary": {
+      "en": "Flexible rake for gathering leaves and light debris without moving much soil.",
+      "es": "Rastrillo flexible para recoger hojas y restos ligeros sin mover demasiada tierra.",
+      "de": "Flexibler Rechen zum Sammeln von Laub und leichten Resten, ohne viel Erde zu bewegen."
+    },
+    "tags": [
+      "cleaning",
+      "leaves"
+    ],
+    "data": {
+      "use": {
+        "en": "Gathering leaves, dry plant waste, and light surface debris.",
+        "es": "Recoger hojas, restos secos de plantas y residuos ligeros de superficie.",
+        "de": "Laub, trockene Pflanzenreste und leichte Oberflächenreste sammeln."
+      },
+      "whenToUse": {
+        "en": "For autumn clean-up and quick path clearing.",
+        "es": "Para la limpieza de otoño y despejar caminos rápido.",
+        "de": "Für Herbstreinigung und schnelles Freiräumen von Wegen."
+      },
+      "care": {
+        "en": "Remove stuck leaves and store it where the tines do not bend.",
+        "es": "Retira hojas atascadas y guárdalo donde las púas no se doblen.",
+        "de": "Festhängendes Laub entfernen und so lagern, dass die Zinken nicht verbiegen."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "loppers",
+    "category": "tool",
+    "name": {
+      "en": "Loppers",
+      "es": "Tijeras de poda de dos manos",
+      "de": "Astschere"
+    },
+    "image": "loppers.jpg",
+    "summary": {
+      "en": "Long-handled pruning shears for branches too thick for hand pruners.",
+      "es": "Tijeras de poda largas para ramas demasiado gruesas para podadoras pequeñas.",
+      "de": "Langstielige Astschere für Äste, die zu dick für kleine Gartenscheren sind."
+    },
+    "tags": [
+      "pruning",
+      "cutting"
+    ],
+    "data": {
+      "use": {
+        "en": "Cutting medium branches and reducing overgrown shrubs.",
+        "es": "Cortar ramas medianas y reducir arbustos crecidos.",
+        "de": "Mittlere Äste schneiden und überwachsene Sträucher zurücknehmen."
+      },
+      "whenToUse": {
+        "en": "During pruning work, outside sensitive nesting periods.",
+        "es": "Durante trabajos de poda, fuera de épocas sensibles de nidificación.",
+        "de": "Bei Schnittarbeiten, außerhalb sensibler Brutzeiten."
+      },
+      "care": {
+        "en": "Clean and oil the joint, and sharpen the blade when cuts crush.",
+        "es": "Limpia y engrasa la unión, y afila la hoja si aplasta al cortar.",
+        "de": "Gelenk reinigen und ölen; Klinge schärfen, wenn Schnitte quetschen."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "manure-fork",
+    "category": "tool",
+    "name": {
+      "en": "Manure fork",
+      "es": "Horca",
+      "de": "Mistgabel"
+    },
+    "image": "manure-fork.jpg",
+    "summary": {
+      "en": "Fork with long tines for moving mulch, compost, leaves, and loose material.",
+      "es": "Horca de púas largas para mover acolchado, compost, hojas y material suelto.",
+      "de": "Gabel mit langen Zinken zum Bewegen von Mulch, Kompost, Laub und losem Material."
+    },
+    "tags": [
+      "compost",
+      "mulch"
+    ],
+    "data": {
+      "use": {
+        "en": "Moving compost, mulch, dry leaves, and other loose garden material.",
+        "es": "Mover compost, acolchado, hojas secas y otros materiales sueltos del jardín.",
+        "de": "Kompost, Mulch, trockenes Laub und anderes loses Gartenmaterial bewegen."
+      },
+      "whenToUse": {
+        "en": "When a shovel would carry too much soil and not enough volume.",
+        "es": "Cuando una pala llevaría demasiada tierra y poco volumen.",
+        "de": "Wenn eine Schaufel zu viel Erde und zu wenig Volumen aufnehmen würde."
+      },
+      "care": {
+        "en": "Clean between the tines and store dry to slow rust.",
+        "es": "Limpia entre las púas y guárdala seca para frenar el óxido.",
+        "de": "Zwischen den Zinken reinigen und trocken lagern, um Rost zu bremsen."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "metal-garden-bench",
+    "category": "tool",
+    "name": {
+      "en": "Metal garden bench",
+      "es": "Banco de jardín metálico",
+      "de": "Gartenbank aus Metall"
+    },
+    "image": "metal-garden-bench.jpg",
+    "summary": {
+      "en": "Shared seating that makes the garden a place to pause, talk, and observe.",
+      "es": "Asiento compartido que convierte el jardín en un lugar para pausar, hablar y observar.",
+      "de": "Gemeinsamer Sitzplatz, der den Garten zu einem Ort zum Pausieren, Reden und Beobachten macht."
+    },
+    "tags": [
+      "furniture",
+      "community"
+    ],
+    "data": {
+      "use": {
+        "en": "Resting, planning, observing plants, and welcoming visitors.",
+        "es": "Descansar, planificar, observar plantas y recibir visitantes.",
+        "de": "Ausruhen, planen, Pflanzen beobachten und Besucher willkommen heißen."
+      },
+      "whenToUse": {
+        "en": "During breaks and slow observation sessions.",
+        "es": "Durante pausas y momentos de observación tranquila.",
+        "de": "In Pausen und bei ruhiger Beobachtung."
+      },
+      "care": {
+        "en": "Brush off dirt and check for rust or unstable feet.",
+        "es": "Quita la suciedad y revisa óxido o patas inestables.",
+        "de": "Schmutz abbürsten und auf Rost oder wackelige Füße prüfen."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "mop-bucket",
+    "category": "tool",
+    "name": {
+      "en": "Mop and bucket",
+      "es": "Cubo con fregona",
+      "de": "Wischeimer mit Mopp"
+    },
+    "image": "mop-bucket.jpg",
+    "summary": {
+      "en": "Cleaning set for indoor floors, storage spaces, and muddy entrances.",
+      "es": "Set de limpieza para suelos interiores, almacenes y entradas con barro.",
+      "de": "Reinigungsset für Innenböden, Lagerräume und schlammige Eingänge."
+    },
+    "tags": [
+      "cleaning",
+      "maintenance"
+    ],
+    "data": {
+      "use": {
+        "en": "Cleaning muddy floors and shared indoor areas after garden work.",
+        "es": "Limpiar suelos con barro y zonas interiores compartidas tras trabajar en el jardín.",
+        "de": "Schlammige Böden und gemeinsame Innenbereiche nach Gartenarbeit reinigen."
+      },
+      "whenToUse": {
+        "en": "After wet work days or when soil is brought indoors.",
+        "es": "Después de jornadas húmedas o cuando entra tierra al interior.",
+        "de": "Nach nassen Arbeitstagen oder wenn Erde nach innen getragen wird."
+      },
+      "care": {
+        "en": "Rinse the mop, empty dirty water, and let everything dry.",
+        "es": "Aclara la fregona, vacía el agua sucia y deja secar todo.",
+        "de": "Mopp ausspülen, Schmutzwasser leeren und alles trocknen lassen."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "plant-pot",
+    "category": "tool",
+    "name": {
+      "en": "Plant pot",
+      "es": "Maceta",
+      "de": "Pflanztopf"
+    },
+    "image": "plant-pot.jpg",
+    "summary": {
+      "en": "Container for seedlings, herbs, flowers, or plants that need controlled soil.",
+      "es": "Recipiente para plántulas, hierbas, flores o plantas que necesitan suelo controlado.",
+      "de": "Gefäß für Setzlinge, Kräuter, Blumen oder Pflanzen mit kontrollierter Erde."
+    },
+    "tags": [
+      "planting",
+      "container"
+    ],
+    "data": {
+      "use": {
+        "en": "Starting plants, moving young plants, and growing in limited space.",
+        "es": "Iniciar plantas, mover plantas jóvenes y cultivar en espacio limitado.",
+        "de": "Pflanzen vorziehen, Jungpflanzen bewegen und auf kleinem Raum anbauen."
+      },
+      "whenToUse": {
+        "en": "For seedlings, balcony plants, herbs, and experiments.",
+        "es": "Para plántulas, plantas de balcón, hierbas y experimentos.",
+        "de": "Für Setzlinge, Balkonpflanzen, Kräuter und Experimente."
+      },
+      "care": {
+        "en": "Wash between uses and check that drainage holes stay open.",
+        "es": "Lávala entre usos y revisa que los agujeros de drenaje estén abiertos.",
+        "de": "Zwischen Nutzungen reinigen und prüfen, dass Abflusslöcher offen bleiben."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "pruning-saw",
+    "category": "tool",
+    "name": {
+      "en": "Pruning saw",
+      "es": "Serrucho de poda",
+      "de": "Astsäge"
+    },
+    "image": "pruning-saw.jpg",
+    "summary": {
+      "en": "Sharp hand saw for controlled cuts on branches and woody stems.",
+      "es": "Serrucho afilado para cortes controlados en ramas y tallos leñosos.",
+      "de": "Scharfe Handsäge für kontrollierte Schnitte an Ästen und verholzten Trieben."
+    },
+    "tags": [
+      "pruning",
+      "cutting"
+    ],
+    "data": {
+      "use": {
+        "en": "Pruning branches that are too thick for hand shears.",
+        "es": "Podar ramas demasiado gruesas para tijeras pequeñas.",
+        "de": "Äste schneiden, die zu dick für kleine Scheren sind."
+      },
+      "whenToUse": {
+        "en": "For selective pruning and clean cuts on woody growth.",
+        "es": "Para poda selectiva y cortes limpios en madera viva o seca.",
+        "de": "Für gezielten Schnitt und saubere Schnitte an verholztem Wachstum."
+      },
+      "care": {
+        "en": "Clean sap from the blade and store it safely covered.",
+        "es": "Limpia la savia de la hoja y guárdalo cubierto con seguridad.",
+        "de": "Harz von der Klinge reinigen und sicher abgedeckt lagern."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "spade",
+    "category": "tool",
+    "name": {
+      "en": "Spade",
+      "es": "Pala plana",
+      "de": "Spaten"
+    },
+    "image": "spade.jpg",
+    "summary": {
+      "en": "Strong digging tool for cutting into soil, edging, and moving earth.",
+      "es": "Herramienta fuerte para cortar el suelo, perfilar bordes y mover tierra.",
+      "de": "Starkes Grabwerkzeug zum Einstechen in Erde, Kantenstechen und Bewegen von Erde."
+    },
+    "tags": [
+      "soil",
+      "digging"
+    ],
+    "data": {
+      "use": {
+        "en": "Digging, edging beds, cutting roots, and moving compact soil.",
+        "es": "Cavar, perfilar bancales, cortar raíces y mover suelo compacto.",
+        "de": "Graben, Beetkanten stechen, Wurzeln schneiden und kompakte Erde bewegen."
+      },
+      "whenToUse": {
+        "en": "For bed preparation, clearing, and structural soil work.",
+        "es": "Para preparar bancales, limpiar terreno y hacer trabajo estructural del suelo.",
+        "de": "Für Beetvorbereitung, Räumen und grundlegende Bodenarbeit."
+      },
+      "care": {
+        "en": "Scrape off soil, dry the blade, and oil metal if stored long term.",
+        "es": "Raspa la tierra, seca la hoja y engrasa el metal si se guarda mucho tiempo.",
+        "de": "Erde abkratzen, Blatt trocknen und Metall bei längerer Lagerung ölen."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "watering-can",
+    "category": "tool",
+    "name": {
+      "en": "Watering can",
+      "es": "Regadera",
+      "de": "Gießkanne"
+    },
+    "image": "watering-can.jpg",
+    "summary": {
+      "en": "Manual tool for gentle watering, especially seedlings and new plantings.",
+      "es": "Herramienta manual para regar con suavidad, especialmente plántulas y nuevas siembras.",
+      "de": "Handgerät zum sanften Gießen, besonders für Setzlinge und neue Pflanzungen."
+    },
+    "tags": [
+      "water",
+      "essential"
+    ],
+    "data": {
+      "use": {
+        "en": "Watering seedlings, pots, and small beds without washing soil away.",
+        "es": "Regar plántulas, macetas y bancales pequeños sin arrastrar la tierra.",
+        "de": "Setzlinge, Töpfe und kleine Beete gießen, ohne Erde wegzuspülen."
+      },
+      "whenToUse": {
+        "en": "Morning or evening, and whenever young plants need careful watering.",
+        "es": "Por la mañana o al atardecer, y cuando las plantas jóvenes necesiten riego cuidadoso.",
+        "de": "Morgens oder abends, und wenn junge Pflanzen vorsichtig gegossen werden müssen."
+      },
+      "care": {
+        "en": "Empty after use and keep the rose/nozzle from clogging.",
+        "es": "Vacía después de usar y evita que la alcachofa o boquilla se obstruya.",
+        "de": "Nach Gebrauch leeren und Brause oder Tülle frei halten."
+      },
+      "ownOrRent": "own",
+      "powered": false
+    }
+  },
+  {
+    "id": "wooden-garden-chair",
+    "category": "tool",
+    "name": {
+      "en": "Wooden garden chair",
+      "es": "Silla de jardín de madera",
+      "de": "Gartenstuhl aus Holz"
+    },
+    "image": "wooden-garden-chair.jpg",
+    "summary": {
+      "en": "Simple outdoor chair for resting and making the garden more human.",
+      "es": "Silla exterior sencilla para descansar y hacer el jardín más humano.",
+      "de": "Einfacher Außenstuhl zum Ausruhen und um den Garten menschlicher zu machen."
+    },
+    "tags": [
+      "furniture",
+      "rest"
+    ],
+    "data": {
+      "use": {
+        "en": "Resting, talking, observing plants, and creating a comfortable corner.",
+        "es": "Descansar, hablar, observar plantas y crear un rincón cómodo.",
+        "de": "Ausruhen, reden, Pflanzen beobachten und eine gemütliche Ecke schaffen."
+      },
+      "whenToUse": {
+        "en": "During breaks, planning, and quiet garden time.",
+        "es": "Durante pausas, planificación y momentos tranquilos en el jardín.",
+        "de": "In Pausen, bei Planung und ruhiger Gartenzeit."
+      },
+      "care": {
+        "en": "Keep it dry when possible and oil or repair wood when it cracks.",
+        "es": "Mantenla seca cuando sea posible y aceita o repara la madera si se agrieta.",
+        "de": "Möglichst trocken halten und Holz ölen oder reparieren, wenn es reißt."
+      },
+      "ownOrRent": "own",
+      "powered": false
     }
   }
 ]

@@ -1,13 +1,13 @@
 {
   "hand-trowel": {
-    "imageSource": "https://commons.wikimedia.org/wiki/File:Trowel.JPG",
-    "imageCredit": "Wikimedia Commons contributor",
-    "imageLicense": "Open license; see source page"
+    "imageSource": "Garden Lodge Hamburg",
+    "imageCredit": "Garden Lodge",
+    "imageLicense": "Owner photo"
   },
   "garden-rake": {
-    "imageSource": "https://commons.wikimedia.org/wiki/File:Rake.jpg",
-    "imageCredit": "Wikimedia Commons contributor",
-    "imageLicense": "Open license; see source page"
+    "imageSource": "Garden Lodge Hamburg",
+    "imageCredit": "Garden Lodge",
+    "imageLicense": "Owner photo"
   },
   "hedge-trimmer": {
     "imageSource": "https://commons.wikimedia.org/wiki/File:Hedge_trimmers.JPG",
@@ -43,6 +43,36 @@
     "imageSource": "https://commons.wikimedia.org/wiki/File:Coccinella_septempunctata_Luc_Viatour.JPG",
     "imageCredit": "Wikimedia Commons contributor",
     "imageLicense": "Open license; see source page"
+  },
+  "parsley": {
+    "imageSource": "Garden Lodge Hamburg",
+    "imageCredit": "Garden Lodge",
+    "imageLicense": "Owner photo"
+  },
+  "dill": {
+    "imageSource": "Garden Lodge Hamburg",
+    "imageCredit": "Garden Lodge",
+    "imageLicense": "Owner photo"
+  },
+  "bell-pepper-blockpaprika": {
+    "imageSource": "Garden Lodge Hamburg",
+    "imageCredit": "Garden Lodge",
+    "imageLicense": "Owner photo"
+  },
+  "pointed-pepper": {
+    "imageSource": "Garden Lodge Hamburg",
+    "imageCredit": "Garden Lodge",
+    "imageLicense": "Owner photo"
+  },
+  "pot-paprika-belinda": {
+    "imageSource": "Garden Lodge Hamburg",
+    "imageCredit": "Garden Lodge",
+    "imageLicense": "Owner photo"
+  },
+  "tomato": {
+    "imageSource": "Garden Lodge Hamburg",
+    "imageCredit": "Garden Lodge",
+    "imageLicense": "Owner photo"
   },
   "earthworm": {
     "imageSource": "https://commons.wikimedia.org/wiki/File:Lumbricus_terrestris_(26559560801).jpg",

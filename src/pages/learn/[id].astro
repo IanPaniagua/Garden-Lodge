@@ -29,9 +29,15 @@ const F = {
   soil: { en: "Soil", es: "Suelo", de: "Boden" },
   difficulty: { en: "Difficulty", es: "Dificultad", de: "Schwierigkeit" },
   sow: { en: "Sowing window", es: "Época de siembra", de: "Aussaatzeit" },
+  transplant: { en: "Transplant window", es: "Época de trasplante", de: "Pflanzzeit" },
   harvest: { en: "Harvest window", es: "Época de cosecha", de: "Erntezeit" },
+  harvestAfterTransplant: { en: "Time to harvest", es: "Tiempo hasta cosecha", de: "Zeit bis zur Ernte" },
   depth: { en: "Sowing depth", es: "Profundidad", de: "Saattiefe" },
   spacing: { en: "Spacing", es: "Separación", de: "Abstand" },
+  whereToPlant: { en: "Where to plant", es: "Dónde plantarla", de: "Wo pflanzen" },
+  transplantHow: { en: "How to plant it today", es: "Cómo plantarla hoy", de: "Heute einpflanzen" },
+  aftercare: { en: "Care after planting", es: "Cuidados después", de: "Pflege danach" },
+  harvestCue: { en: "When to harvest", es: "Cuándo cosechar", de: "Wann ernten" },
   companions: { en: "Good companions", es: "Buenas compañeras", de: "Gute Nachbarn" },
   tips: { en: "Tips", es: "Consejos", de: "Tipps" },
   use: { en: "What it's for", es: "Para qué sirve", de: "Wofür" },
@@ -68,11 +74,19 @@ if (entry.category === "vegetable" || entry.category === "flower") {
     { label: F.water, value: labelAll("water", d.water), icon: "droplet" },
     { label: F.soil, value: labelAll("soil", d.soil), icon: "leaf" },
     { label: F.difficulty, value: labelAll("difficulty", d.difficulty), icon: "sprout" },
-    { label: F.sow, value: monthNamesAll(d.sowMonths), icon: "calendar" },
+    {
+      label: d.transplantMonths ? F.transplant : F.sow,
+      value: monthNamesAll(d.transplantMonths ?? d.sowMonths),
+      icon: "calendar",
+    },
     { label: F.harvest, value: monthNamesAll(d.harvestMonths), icon: "calendar" },
-    { label: F.depth, value: cm(d.sowDepthCm), icon: "ruler" },
     { label: F.spacing, value: cm(d.spacingCm), icon: "ruler" },
   );
+  if (d.harvestAfterTransplant) {
+    rows.push({ label: F.harvestAfterTransplant, value: d.harvestAfterTransplant, icon: "calendar" });
+  } else {
+    rows.push({ label: F.depth, value: cm(d.sowDepthCm), icon: "ruler" });
+  }
 } else if (entry.category === "tool") {
   const d = entry.data;
   rows.push(
@@ -106,6 +120,16 @@ const tips: I18nText | null =
   entry.category === "vegetable" || entry.category === "flower"
     ? entry.data.tips
     : null;
+
+const plantGuide =
+  entry.category === "vegetable" || entry.category === "flower"
+    ? [
+        { label: F.whereToPlant, value: entry.data.whereToPlant, icon: "sun" },
+        { label: F.transplantHow, value: entry.data.transplantHow, icon: "sprout" },
+        { label: F.aftercare, value: entry.data.aftercare, icon: "droplet" },
+        { label: F.harvestCue, value: entry.data.harvestCue, icon: "calendar" },
+      ].filter((item): item is { label: I18nText; value: I18nText; icon: string } => Boolean(item.value))
+    : [];
 ---
 
 <Base
@@ -166,6 +190,27 @@ const tips: I18nText | null =
         ))
       }
     </dl>
+
+    {
+      plantGuide.length > 0 && (
+        <div class="detail__block detail__guide">
+          <h2 class="detail__block-title">
+            <T text={{ en: "Planting guide", es: "Guía para plantar", de: "Pflanzanleitung" }} />
+          </h2>
+          <div class="detail__guide-grid">
+            {plantGuide.map((item) => (
+              <section class="detail__guide-card">
+                <h3>
+                  <Icon name={item.icon as any} size={17} />
+                  <T text={item.label} />
+                </h3>
+                <p><T text={item.value} /></p>
+              </section>
+            ))}
+          </div>
+        </div>
+      )
+    }
 
     {
       lists.items.length > 0 && (
@@ -331,6 +376,39 @@ const tips: I18nText | null =
     font-weight: 600;
     color: var(--gl-aubergine);
     margin: 0 0 var(--sp-3);
+  }
+  .detail__guide-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
+  }
+  @media (min-width: 760px) {
+    .detail__guide-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .detail__guide-card {
+    border: 1px solid #e7e1d2;
+    border-radius: var(--r-md);
+    background: var(--gl-surface);
+    box-shadow: 0 10px 24px rgba(42, 35, 28, 0.06);
+    padding: var(--sp-6);
+  }
+  .detail__guide-card h3 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-ui);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gl-teal);
+    margin: 0 0 var(--sp-3);
+  }
+  .detail__guide-card p {
+    color: var(--gl-ink);
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
   }
   .detail__companions {
     list-style: none;

@@ -42,21 +42,16 @@ const framework = [
     ],
   },
   {
-    title: "Learn how it's done",
-    tone: "indigo",
-    icon: "users",
-    rows: [
-      ["Learnings", entry.learn.learnings.join(" · ")],
-      ["Research", entry.learn.research.join(" · ")],
-      ["Strategy", entry.learn.strategy],
-    ],
-  },
-  {
     title: "Apply it",
     tone: "aubergine",
     icon: "shovel",
-    rows: [["What we did", entry.apply.text]],
+    rows: [
+      ["Research", entry.learn.research.join(" · ")],
+      ["Strategy", entry.learn.strategy],
+      ["What we did", entry.apply.text],
+    ],
     photos: entry.apply.photos,
+    compactPhotos: entry.apply.photos.length > 1,
   },
   {
     title: "Leave it better",
@@ -67,6 +62,14 @@ const framework = [
       ["Result", entry.leaveBetter.result],
     ],
     photos: entry.leaveBetter.photos,
+  },
+  {
+    title: "Learnings",
+    tone: "indigo",
+    icon: "users",
+    rows: [["Learnings", entry.learn.learnings.join(" · ")]],
+    photos: entry.learn.photos,
+    compactPhotos: true,
   },
 ] as const;
 ---
@@ -146,10 +149,31 @@ const framework = [
                   ))}
               </dl>
               {"photos" in step && step.photos.length > 0 && (
-                <div class="framework__photos">
+                <div
+                  class={`framework__photos ${
+                    "compactPhotos" in step && step.compactPhotos
+                      ? "framework__photos--compact"
+                      : ""
+                  }`}
+                >
                   {step.photos.map((photo) => (
                     <figure>
-                      <img src={photo.src} alt={photo.alt || photo.caption} loading="lazy" />
+                      {photo.src.startsWith("http") ? (
+                        <img src={photo.src} alt={photo.alt || photo.caption} loading="lazy" />
+                      ) : (
+                        <SmartImage
+                          dir="progress"
+                          src={photo.src}
+                          alt={photo.alt || photo.caption}
+                          width={"compactPhotos" in step && step.compactPhotos ? 260 : 560}
+                          height={"compactPhotos" in step && step.compactPhotos ? 195 : 420}
+                          sizes={
+                            "compactPhotos" in step && step.compactPhotos
+                              ? "(min-width: 880px) 140px, 28vw"
+                              : "(min-width: 880px) 360px, 84vw"
+                          }
+                        />
+                      )}
                       <figcaption>{photo.caption}</figcaption>
                     </figure>
                   ))}
@@ -337,6 +361,11 @@ const framework = [
     gap: var(--sp-3);
     margin-top: var(--sp-4);
   }
+  .framework__photos--compact {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    padding-top: var(--sp-1);
+  }
   .framework__photos figure {
     margin: 0;
   }
@@ -345,10 +374,27 @@ const framework = [
     height: auto;
     border-radius: var(--r-sm);
   }
+  .framework__photos--compact img {
+    aspect-ratio: 4 / 3;
+    height: 82px;
+    object-fit: cover;
+  }
   .framework__photos figcaption {
     margin-top: 6px;
     color: var(--gl-ink-soft);
     font-size: 13px;
+  }
+  .framework__photos--compact figcaption {
+    font-size: 12px;
+    line-height: 1.35;
+  }
+  @media (max-width: 560px) {
+    .framework__photos--compact {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .framework__photos--compact img {
+      height: 96px;
+    }
   }
   .entry__next {
     margin-top: var(--sp-12);

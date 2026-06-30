@@ -7,6 +7,12 @@ import { fileURLToPath } from "node:url";
 /* -------------------------------------------------------------------------
    Progress Log — markdown collection (authored in /content/progress-log)
    ------------------------------------------------------------------------- */
+const progressPhoto = z.object({
+  src: z.string(),
+  alt: z.string(),
+  caption: z.string(),
+});
+
 const progress = defineCollection({
   loader: glob({ pattern: "*.md", base: "./content/progress-log" }),
   schema: z.object({
@@ -25,19 +31,16 @@ const progress = defineCollection({
       learnings: z.array(z.string()).default([]),
       research: z.array(z.string()).default([]),
       strategy: z.string(),
+      photos: z.array(progressPhoto).default([]),
     }),
     apply: z.object({
       text: z.string(),
-      photos: z
-        .array(z.object({ src: z.string(), alt: z.string(), caption: z.string() }))
-        .default([]),
+      photos: z.array(progressPhoto).default([]),
     }),
     leaveBetter: z.object({
       text: z.string(),
       result: z.string(),
-      photos: z
-        .array(z.object({ src: z.string(), alt: z.string(), caption: z.string() }))
-        .default([]),
+      photos: z.array(progressPhoto).default([]),
     }),
     next: z.array(z.string()).default([]),
   }),
@@ -90,13 +93,19 @@ const plantData = z.object({
   sun,
   water,
   sowMonths: months,
+  transplantMonths: months.optional(),
   harvestMonths: months,
+  harvestAfterTransplant: i18n.optional(),
   sowDepthCm: z.number(),
   spacingCm: z.number(),
   soil,
   difficulty,
   companions: z.array(z.string()).default([]),
   tips: i18n,
+  whereToPlant: i18n.optional(),
+  transplantHow: i18n.optional(),
+  aftercare: i18n.optional(),
+  harvestCue: i18n.optional(),
 });
 
 const learnEntry = z.discriminatedUnion("category", [
@@ -174,6 +183,18 @@ async function loadSeedLearnEntries(logger: { warn: (message: string) => void })
   return all;
 }
 
+const mergeLearnEntry = (remote: RawLearnEntry, local: RawLearnEntry | undefined) => {
+  if (!local) return remote;
+  return {
+    ...local,
+    ...remote,
+    data: {
+      ...local.data,
+      ...remote.data,
+    },
+  } as RawLearnEntry;
+};
+
 async function loadInsforgeLearnEntries(logger: { warn: (message: string) => void }) {
   const baseUrl = process.env.INSFORGE_URL;
   const apiKey = process.env.INSFORGE_API_KEY;
@@ -220,8 +241,12 @@ const learn = defineCollection({
     name: "garden-learn-loader",
     async load({ store, parseData, logger }) {
       store.clear();
-      const entries =
-        (await loadInsforgeLearnEntries(logger)) ?? (await loadSeedLearnEntries(logger));
+      const seedEntries = await loadSeedLearnEntries(logger);
+      const remoteEntries = await loadInsforgeLearnEntries(logger);
+      const seedById = new Map(seedEntries.map((entry) => [entry.id, entry]));
+      const entries = remoteEntries
+        ? remoteEntries.map((entry) => mergeLearnEntry(entry, seedById.get(entry.id)))
+        : seedEntries;
 
       for (const entry of entries) {
         if (!entry?.id) {

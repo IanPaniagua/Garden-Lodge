@@ -46,6 +46,7 @@ export type GardenEpic = {
     learnings: string[];
     research: string[];
     strategy: string;
+    photos: EpicPhoto[];
   };
   apply: {
     text: string;
@@ -75,10 +76,12 @@ const toPhotos = (value: unknown): EpicPhoto[] =>
         .filter((photo) => photo.src)
     : [];
 
+const contentSlug = (id: string) => id.replace(/^\d+-/, "");
+
 function localEntryToEpic(entry: CollectionEntry<"progress">): GardenEpic {
   return {
     id: entry.id,
-    slug: entry.id,
+    slug: contentSlug(entry.id),
     title: entry.data.title,
     sprint: entry.data.sprint,
     status: "published",
@@ -117,6 +120,7 @@ function rowToEpic(row: any): GardenEpic {
       learnings: toArray(row.learn?.learnings),
       research: toArray(row.learn?.research),
       strategy: String(row.learn?.strategy ?? ""),
+      photos: toPhotos(row.learn?.photos),
     },
     apply: {
       text: String(row.apply?.text ?? ""),
@@ -129,6 +133,30 @@ function rowToEpic(row: any): GardenEpic {
     },
     next: toArray(row.next),
     source: "insforge",
+  };
+}
+
+function mergeWithLocal(remote: GardenEpic, local: GardenEpic | undefined): GardenEpic {
+  if (!local) return remote;
+  return {
+    ...remote,
+    cover: remote.coverUrl ? remote.cover : local.cover,
+    body: remote.body || local.body,
+    learn: {
+      ...remote.learn,
+      photos: remote.learn.photos.length > 0 ? remote.learn.photos : local.learn.photos,
+    },
+    apply: {
+      ...remote.apply,
+      photos: remote.apply.photos.length > 0 ? remote.apply.photos : local.apply.photos,
+    },
+    leaveBetter: {
+      ...remote.leaveBetter,
+      photos:
+        remote.leaveBetter.photos.length > 0
+          ? remote.leaveBetter.photos
+          : local.leaveBetter.photos,
+    },
   };
 }
 
@@ -145,7 +173,16 @@ async function getInsforgeEpics(status?: EpicStatus | EpicStatus[]) {
   else if (status) query = query.eq("status", status);
   const { data, error } = await query.order("start_date", { ascending: false });
   if (error || !Array.isArray(data)) return null;
-  return data.map(rowToEpic);
+  const localEpics = await getLocalEpics();
+  const localBySlug = new Map(localEpics.map((epic) => [epic.slug, epic]));
+  const remoteEpics = data
+    .map(rowToEpic)
+    .map((epic) => mergeWithLocal(epic, localBySlug.get(epic.slug)));
+  const remoteSlugs = new Set(remoteEpics.map((epic) => epic.slug));
+  const localOnlyEpics = localEpics.filter((epic) => !remoteSlugs.has(epic.slug));
+  return [...remoteEpics, ...localOnlyEpics].sort(
+    (a, b) => (b.date?.getTime() ?? 0) - (a.date?.getTime() ?? 0),
+  );
 }
 
 export async function getPublicEpics() {

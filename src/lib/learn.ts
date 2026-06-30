@@ -43,7 +43,7 @@ export function cardBadges(entry: LearnEntry): Badge[] {
       return [
         { icon: "sun", text: labelAll("sun", entry.data.sun) },
         { icon: "droplet", text: labelAll("water", entry.data.water) },
-        { icon: "calendar", text: monthNamesAll(entry.data.sowMonths) },
+        { icon: "calendar", text: monthNamesAll(entry.data.transplantMonths ?? entry.data.sowMonths) },
       ];
     case "fauna":
       return [
