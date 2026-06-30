@@ -276,7 +276,12 @@ const latest = (await getPublicEpics()).slice(0, 3);
               next tool we need for a sprint.
             </p>
           </div>
-          <Button href={site.links.support} variant="solid" class="support-box__button">
+          <Button
+            href={site.links.support}
+            variant="solid"
+            external={site.links.supportExternal}
+            class="support-box__button"
+          >
             Support financially
           </Button>
         </div>

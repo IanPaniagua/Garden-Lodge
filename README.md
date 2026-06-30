@@ -117,6 +117,21 @@ If Insforge is not configured, Astro falls back to the local seed files under
 `data/learn`. Set `INSFORGE_STRICT=true` in CI/production if a DB error should
 fail the build instead of falling back.
 
+### Stripe support link
+
+The public support button can redirect to a Stripe-hosted Payment Link. Create
+the link in Stripe, then set this public build environment variable in
+Cloudflare:
+
+```bash
+PUBLIC_DONATION_URL=https://buy.stripe.com/...
+```
+
+Only `https://buy.stripe.com/...` links are accepted by the site. If the variable
+is missing or does not look like a Stripe Payment Link, the support button falls
+back to email. Do not add Stripe secret keys to frontend/public environment
+variables.
+
 ### A new learning-library card
 1. Add one object to the right file in [`data/learn/`](data/learn) (matching the
    shape of the existing entries — `id`, `category`, `name {en,es,de}`, `image`,

@@ -5,7 +5,11 @@ import GlassMark from "./GlassMark.astro";
 const year = new Date().getFullYear();
 const social = [
   { label: "Email", href: site.links.email },
-  { label: "Support", href: site.links.support },
+  {
+    label: "Support",
+    href: site.links.support,
+    external: site.links.supportExternal,
+  },
 ];
 ---
 
@@ -26,7 +30,11 @@ const social = [
     <nav class="gl-footer__social" aria-label="Social">
       {
         social.map((s) => (
-          <a href={s.href} rel="noopener noreferrer">
+          <a
+            href={s.href}
+            rel={s.external ? "noopener noreferrer" : undefined}
+            target={s.external ? "_blank" : undefined}
+          >
             {s.label}
           </a>
         ))

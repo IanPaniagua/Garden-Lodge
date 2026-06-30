@@ -1,4 +1,10 @@
 /** Central site config — edit links/handles here. */
+const fallbackSupport =
+  "mailto:hello@example.com?subject=I%20want%20to%20support%20Garden%20Lodge";
+const donationUrl = import.meta.env.PUBLIC_DONATION_URL?.trim();
+const isStripePaymentLink =
+  donationUrl?.startsWith("https://buy.stripe.com/") ?? false;
+
 export const site = {
   name: "Garden Lodge",
   tagline: "We tend gardens the way you tend soil.",
@@ -8,7 +14,8 @@ export const site = {
     sprintBoard: "/sprints",
     backlog: "/backlog",
     email: "mailto:hello@example.com",
-    support: "mailto:hello@example.com?subject=I%20want%20to%20support%20Garden%20Lodge",
+    support: isStripePaymentLink ? donationUrl : fallbackSupport,
+    supportExternal: isStripePaymentLink,
   },
   mainNav: [
     { label: "Why", href: "/#why" },
