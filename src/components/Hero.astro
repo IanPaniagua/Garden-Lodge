@@ -37,6 +37,10 @@ import { site } from "../lib/site";
     position: relative;
     isolation: isolate;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 64px);
+    min-height: calc(100svh - 64px);
     background: #12351f;
   }
   .hero-shell :global(.hero-shell__image) {
@@ -58,8 +62,9 @@ import { site } from "../lib/site";
       radial-gradient(circle at 18% 22%, rgba(255, 248, 228, 0.2), transparent 34%);
   }
   .gl-hero {
-    padding-top: var(--sp-12);
-    padding-bottom: var(--sp-8);
+    width: 100%;
+    padding-top: clamp(var(--sp-8), 8vh, var(--sp-16));
+    padding-bottom: clamp(var(--sp-8), 8vh, var(--sp-16));
     position: relative;
   }
   .gl-hero :global(.gl-hero__panel) {

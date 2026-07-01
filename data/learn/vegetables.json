@@ -110,6 +110,61 @@
     }
   },
   {
+    "id": "basil",
+    "category": "vegetable",
+    "name": { "en": "Basil", "es": "Albahaca", "de": "Basilikum" },
+    "scientificName": "Ocimum basilicum",
+    "image": "basil.jpg",
+    "summary": {
+      "en": "Tender kitchen herb for warm pots, tomatoes, and summer harvesting.",
+      "es": "Hierba de cocina delicada para macetas cálidas, tomates y cosecha de verano.",
+      "de": "Empfindliches Küchenkraut für warme Töpfe, Tomaten und Sommerernte."
+    },
+    "tags": ["herb", "pot", "warmth"],
+    "data": {
+      "sun": "full_sun",
+      "water": "medium",
+      "sowMonths": [3, 4, 5, 6],
+      "transplantMonths": [5, 6, 7],
+      "harvestMonths": [6, 7, 8, 9, 10],
+      "harvestAfterTransplant": {
+        "en": "Light harvest after 2-3 weeks once it has settled and is making new leaves.",
+        "es": "Cosecha ligera tras 2-3 semanas cuando se haya asentado y saque hojas nuevas.",
+        "de": "Leichte Ernte nach 2-3 Wochen, sobald die Pflanze angewachsen ist und neue Blätter bildet."
+      },
+      "sowDepthCm": 0.5,
+      "spacingCm": 25,
+      "soil": "rich",
+      "difficulty": "easy",
+      "companions": ["tomato", "pepper", "marigold"],
+      "tips": {
+        "en": "Keep warm, water at the soil, and pinch the shoot tips often so it branches instead of flowering early.",
+        "es": "Mantén calor, riega la tierra y pinza las puntas a menudo para que ramifique en vez de florecer pronto.",
+        "de": "Warm halten, am Boden gießen und Triebspitzen oft abknipsen, damit sie buschig wächst statt früh zu blühen."
+      },
+      "whereToPlant": {
+        "en": "Choose a warm, sunny, sheltered pot or bed edge. In Hamburg it does best away from cold wind and heavy rain.",
+        "es": "Elige una maceta o borde de bancal cálido, soleado y protegido. En Hamburgo va mejor lejos del viento frío y la lluvia fuerte.",
+        "de": "Einen warmen, sonnigen, geschützten Topf oder Beetrand wählen. In Hamburg gedeiht er besser ohne kalten Wind und starken Regen."
+      },
+      "transplantHow": {
+        "en": "Plant after cold nights are over. Keep the root ball whole, plant at pot depth, leave about 25 cm, water gently, and keep sheltered for a few days.",
+        "es": "Planta cuando ya no haya noches frías. Mantén el cepellón entero, planta a la profundidad de la maceta, deja unos 25 cm, riega suave y protégela unos días.",
+        "de": "Nach kalten Nächten auspflanzen. Ballen ganz lassen, in Topftiefe setzen, etwa 25 cm Abstand lassen, sanft angießen und einige Tage geschützt stellen."
+      },
+      "aftercare": {
+        "en": "Do not let the pot dry out completely, but avoid wet feet. Remove flower buds and harvest from the top to keep it compact.",
+        "es": "No dejes que la maceta se seque del todo, pero evita el encharcamiento. Quita botones florales y cosecha por arriba para mantenerla compacta.",
+        "de": "Den Topf nicht völlig austrocknen lassen, aber Staunässe vermeiden. Blütenknospen entfernen und oben ernten, damit sie kompakt bleibt."
+      },
+      "harvestCue": {
+        "en": "Harvest when stems are upright with several pairs of healthy leaves; cut just above a leaf pair.",
+        "es": "Cosecha cuando los tallos estén erguidos con varios pares de hojas sanas; corta justo encima de un par de hojas.",
+        "de": "Ernten, wenn die Stiele aufrecht sind und mehrere gesunde Blattpaare haben; knapp über einem Blattpaar schneiden."
+      }
+    }
+  },
+  {
     "id": "bell-pepper-blockpaprika",
     "category": "vegetable",
     "name": { "en": "Bell pepper (mixed colors)", "es": "Pimiento morrón de colores", "de": "Blockpaprika bunt" },
